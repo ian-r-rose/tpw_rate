@@ -1,12 +1,14 @@
 % gjilguid2e.tex
 
+%\documentclass[onecolumn]{gji}
 \documentclass{gji}
 \usepackage{timet}
+\usepackage{amsmath}
 
 \title[TPW Rates]
   {Rates of true polar wander in convecting planets}
 \author[I. Rose and B. Buffett]
-  {Ian Rose$^1$ and Bruce Buffett$^1$ \\
+  {Ian Rose$^1$ and Bruce A. Buffett$^1$ \\
   $^1$ Department of Earth \& Planetary Science, University of California, Berkeley, CA 94720, USA.  E-mail: ian.rose@berkeley.edu
   }
 \date{}
@@ -33,19 +35,53 @@ Earth rotation variations; Mantle processes; Dynamics: convection currents and m
 \section{Introduction}
 
 
-\section{Dimensional analysis}
+\section{Governing equations}
+
+As mantle convection and rotational dynamics of planetary bodies are usually considered separately, some extra care must be taken to establish self-consistent governing equations.  
+Here we consider a planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
+
+\begin{equation}
+\nabla \cdot {\bf v} = 0
+\label{conserve_mass}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+ \rho \left[ \frac{D \bf v}{D t} + \frac{d \bf \Omega}{dt} \times {\bf r} +  2 {\bf \Omega} \times {\bf v} + {\bf \Omega \times \Omega \times r} \right] \\ = - \nabla P + \nabla \cdot \left( \eta \nabla_s {\bf v} \right) + \rho {\bf g}
+\label{navier_stokes}
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\frac{\partial T}{\partial t} + {\bf v} \cdot \nabla T = \kappa \nabla^2 T
+\label{energy}
+\end{equation}
+
+along with the equation of state
+
+\begin{equation}
+\rho = \rho_0 \left( 1 - \alpha T \right)
+\label{eos}
+\end{equation}
+
+Dimensional analysis of this system (c.f. \cite{barenblatt1996scaling}) requires seven nondimensional numbers to characterize it.
+
+
 
 \section{Scaling}
 
+\section{Rates of true polar wander}
+
 \section{Numerical results}
 
+\section{Discussion}
 
 
 \begin{acknowledgments}
 \end{acknowledgments}
 
-%\begin{thebibliography}{}
-%\end{thebibliography}
+\bibliographystyle{gji}
+\bibliography{tpw_rate.bib}
 
 
 \label{lastpage}
