@@ -18,6 +18,10 @@
 
 \let\leqslant=\leq
 
+%in case I want to add detail to any derivation
+\newif\ifdetail
+\detailfalse
+
 \begin{document}
 
 \label{firstpage}
@@ -47,7 +51,7 @@ Here we consider a planet in a rotating reference frame with no internal heating
 
 \begin{equation}
 \begin{aligned}
- \rho_0 \left[ \frac{D \bf v}{D t} + \frac{d \bf \Omega}{dt} \times {\bf r} +  2 {\bf \Omega} \times {\bf v} + {\bf \Omega \times \Omega \times r} \right] \\ = - \nabla P + \nabla \cdot \left( \eta \nabla_s {\bf v} \right) + \rho {\bf g}
+ \rho_0 \left[ \frac{D \bf v}{D t} + \frac{d \bf \Omega}{dt} \times {\bf r} +  2 {\bf \Omega} \times {\bf v} + {\bf \Omega \times \Omega \times r} \right] \\ = - \nabla P + \nabla \cdot \left( \eta \varepsilon ({\bf v}) \right) + \rho {\bf g}
 \label{navier_stokes}
 \end{aligned}
 \end{equation}
@@ -57,14 +61,14 @@ Here we consider a planet in a rotating reference frame with no internal heating
 \label{energy}
 \end{equation}
 
-along with the equation of state
+ where the parameters are defined in Table~\ref{parameters} and $\varepsilon({\bf v}) = 1/2 \; ( \partial v_i / \partial x_j + \partial v_j / \partial x_i )$ corresponds to the symmetrized velocity gradient.  In addition we use the simple equation of state
 
 \begin{equation}
 \rho = \rho_0 \left( 1 - \alpha T \right)
 \label{eos}
 \end{equation}
 
-Dimensional analysis of this system (c.f. \citet{barenblatt1996scaling}) requires six nondimensional numbers to characterize it.
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires six nondimensional numbers to characterize it.
 
 \begin{table}
 \caption{Parameters for rotating mantle convection}
@@ -117,6 +121,79 @@ A & Aspect ratio & $R_i/R_o$ & $0.55$ \\
 \bibliographystyle{gji}
 \bibliography{tpw_rate.bib}
 
+
+\appendix
+
+\section{Degree-two moments}
+
+We may explicitly draw a connection between the moment of inertia of a rotating object and it's degree-two density structure.  The moment of inertia tensor may be written in index notation
+\begin{equation}
+I_{ij} = \int_V \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) d^3 {\bf r}
+\label{inertia}
+\end{equation}
+
+where $\bf r$ is the Eulerian coordinate, $\rho$ is the density, and $V$ is the volume of the material.  The degree-two density structure may be expressed as a quadrupole-moment tensor (cf. \citet{jackson1998classical}):
+
+\begin{equation}
+Q_{ij} = \int_V \rho \left( 3 r_i r_j - r_q r_q \delta_{ij} \right) d^3 {\bf r}
+\end{equation}
+
+The commutator of these tensors, $\bf QI - IQ$, is zero, indicating that they may be simultaneously diagonalized.  
+
+\ifdetail
+We may demonstrate that the commutator is zero by using the definition of the commutator and expanding:
+\begin{equation} 
+\begin{aligned}
+{\bf IQ-QI} = &I_{ik} Q_{kj} - Q_{ik} I_{kj} \\
+ = &\int_V \rho \left( r_q r_q \delta_{ik} - r_i r_k \right) d^3 {\bf r} \int_V \rho \left( 3 r_k r_j - r_q r_q \delta_{kj} \right) d^3 {\bf r} \\
+ &- \int_V \rho \left( r_q r_q \delta_{kj} - r_k r_j \right) d^3 {\bf r} \int_V \rho \left( 3 r_i r_k - r_q r_q \delta_{ik} \right) d^3 {\bf r} \\
+ = &3 \delta_{ik} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_k r_j d^3 {\bf r} \\
+ &-\delta_{kj} \delta_{ik} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ &-3 \int_V \rho r_i r_k d^3 {\bf r} \int_V \rho r_k r_j d^3 {\bf r} \\
+ &+\delta_{kj} \int_V \rho r_i r_k d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ - &3 \delta_{kj} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_k d^3 {\bf r} \\
+ &+\delta_{ik} \delta_{kj} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ &+3 \int_V \rho r_k r_j d^3 {\bf r} \int_V \rho r_i r_k d^3 {\bf r} \\
+ &-\delta_{ik} \int_V \rho r_k r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ = \;&3 \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_j d^3 {\bf r} \\
+ &+ \int_V \rho r_i r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ - &3 \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_j d^3 {\bf r} \\
+ &- \int_V \rho r_i r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
+ & = 0
+\end{aligned}
+\end{equation}
+\else
+\fi
+
+We may therefore go into the principle coordinate system of both tensors to find
+\begin{equation}
+{\bf I} = \begin{bmatrix}
+\int_V \rho (y^2+z^z)\\
+\int_V \rho (x^2+z^2) \\
+\int_V \rho (x^2+y^2) 
+\end{bmatrix}^T {\bf 1}
+\end{equation}
+
+\begin{equation}
+{\bf Q} = \begin{bmatrix}
+\int_V \rho (2 x^2 - y^2 - z^z)\\
+\int_V \rho (2 y^2 - x^2 -z^2)\\
+\int_V \rho (2 z^2 - x^2 - y^2) 
+\end{bmatrix}^T {\bf 1}
+\end{equation}
+
+where $\bf 1$ is the identity matrix.  If we let the diagonal elements of $\bf I$ be $\lambda_1, \lambda_2, \lambda_3$, we may rewrite $\bf Q$ as
+
+\begin{equation}
+{\bf Q} = \begin{bmatrix}
+(\lambda_2-\lambda_1) + (\lambda_3-\lambda_1)\\
+(\lambda_1-\lambda_2) + (\lambda_3-\lambda_2)\\
+(\lambda_1-\lambda_3) + (\lambda_2-\lambda_3)\\
+\end{bmatrix}^T {\bf 1}
+\label{maccullagh}
+\end{equation}
+
+which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{stacey1977physics}
 
 \label{lastpage}
 
