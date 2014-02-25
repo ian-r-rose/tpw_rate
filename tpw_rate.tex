@@ -106,9 +106,52 @@ A & Aspect ratio & $R_i/R_o$ & $0.55$ \\
 
 
 
+\section{Rates of true polar wander}
+
+We may write the nonlinear Liouville equations 
+\begin{equation}
+{\bf \Omega} \times {\bf \dot{\Omega} } = \frac{1}{\varepsilon I_0 \tau} {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
+\end{equation}
+
+introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
+\begin{equation}
+ \dot{\mitbf{\omega}}  = \frac{1}{\varepsilon I_0 \tau} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
+\end{equation}
+
+Note that the quantity in brackets is identical in form to the shear stress on a plane in classical elastostatics.
+If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
+\begin{equation}
+\begin{aligned}
+\dot{\theta} &= - \frac{1}{2 \varepsilon I_0 \tau} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
+\dot{\phi} &= \;\; \frac{1}{2 \varepsilon I_0 \tau} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
+\end{aligned}
+\label{milankovitch}
+\end{equation}
+
+
+These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
+Written this way, it is clear that the important quantities are $\theta$, $\phi$, and the differences of the eigenvalues of the convective moment $\bf E$.
+Thus it remains to derive estimates for these.
+
 \section{Scaling}
 
-\section{Rates of true polar wander}
+The nonhydrostatic moment of inertia is defined
+\begin{equation}
+J_{ij} = \int_{V_S} \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) 
+\end{equation}
+
+where $V_S$ is the reference spherical volume of the mantle.
+If we substitute in Equation \ref{eos} we find
+
+\begin{equation}
+J_{ij} = I_0 \delta_{ij} + \int_{V_S} \rho_0 \alpha T \left( r_q r_q \delta_{ij} - r_i r_j \right) = I_0 \delta_{ij} + E_{ij} 
+\end{equation}
+
+Nondimensionalizing the integral for $E_ij$ we find
+
+\begin{equation}
+J_{ij} = I_0 \delta_{ij} + \int_{V_S^\prime} \alpha T^\prime \left( r_q^\prime r_q^\prime \delta_{ij} - r_i^\prime r_j^\prime \right) 
+\end{equation}
 
 \section{Numerical results}
 
@@ -193,7 +236,7 @@ where $\bf 1$ is the identity matrix.  If we let the diagonal elements of $\bf I
 \label{maccullagh}
 \end{equation}
 
-which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{stacey1977physics}
+which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{stacey1977physics}.
 
 \label{lastpage}
 
