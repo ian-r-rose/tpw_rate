@@ -132,6 +132,14 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
 
 Convenient choices for these numbers are shown in Table \ref{nondim} along with approximate Earthlike values.
 In addition to the more usual Rayleigh and Prandtl numbers we include a Froude number, characterizing the ratio of centrifugal to gravitational forces, and $\Gamma$, a nondimensional characterization of density variations.
+Nondimensionalizing with these parameters we obtain
+\begin{equation}
+\begin{aligned}
+ - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\bf \Omega \times \Omega \times r} = 0
+\end{aligned}
+\end{equation}
+
+where we have introduced a dynamic pressure $P^* = P - P_0$.
 
 \begin{table}
 \caption{Parameters for rotating mantle convection}
@@ -190,9 +198,19 @@ If we enter the coordinate system of the convective moment of inertia $\bf E$ wi
 \label{milankovitch}
 \end{equation}
 
+Without loss of generality we may choose the coordinate system such that $\phi=0$:
+\begin{equation}
+\dot{\theta} = - \frac{1}{2 \varepsilon \tau}\sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
+\end{equation}
 
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
-Written this way, it is clear that the important quantities are $\theta$, $\phi$, and the differences of the eigenvalues of the convective moment $\bf E$.
+Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$.
+We may rewrite this in terms of the nondimensional numbers defined above, where $\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R \sim \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
+
+\begin{equation}
+\dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
+\end{equation}
+
 Thus it remains to derive estimates for these.
 
 \section{Scaling}
@@ -218,6 +236,8 @@ J_{ij} = I_0 \delta_{ij} + \int_{V_S^\prime} \alpha T^\prime \left( r_q^\prime r
 \section{Numerical results}
 
 \section{Discussion}
+
+
 
 
 \begin{acknowledgments}
