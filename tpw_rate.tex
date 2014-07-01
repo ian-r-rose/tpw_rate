@@ -21,6 +21,7 @@
 %in case I want to add detail to any derivation
 \newif\ifdetail
 \detailfalse
+%\detailtrue
 
 \begin{document}
 
@@ -115,7 +116,6 @@ We may furthermore define a hydrostatic reference state where the density is the
 
 \begin{equation}
  \rho_0{\bf \Omega \times \Omega \times r}= - \nabla P_0 + \rho_0 {\bf g}
-\label{navier_stokes}
 \end{equation}
 
 Subtracting this from the momentum equation and defining a dynamic pressure $P^* = P - P_0$, we find
@@ -198,6 +198,69 @@ introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ we m
 
 Note that the quantity in brackets is identical in form to the shear stress on a plane in classical elastostatics.
 If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
+
+\ifdetail
+
+And here is the tedious algebra.  Let the prefactors $\frac{1}{\varepsilon I_0 \tau}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
+
+\begin{equation}
+\begin{aligned}
+ & \cos{\theta}\cos{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\cos{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ &\cos{\theta}\sin{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\sin{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ - &\sin{\theta} \dot{\theta} = \\
+  &A \cos{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+Now multiply the top equation by $\cos{\phi}$ and the second equation by $\sin{\phi}$ and add them together to get
+
+\begin{equation}
+\begin{aligned}
+ & \cos{\theta}\cos^2{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \cos{\phi} \dot{\phi} + \cos{\theta}\sin^2{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \sin{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\cos^2{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] + \\
+  &A \sin{\theta}\sin^2{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ & \cos{\theta}\dot{\theta} =  
+   A \sin{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
+  &A \sin{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+Now multiply the above by $\cos{\theta}$ and the third equation by $-\sin{\theta}$ and add them to get
+
+\begin{equation}
+\begin{aligned}
+ & \cos^2{\theta}\dot{\theta} + \sin^2{\theta} \dot{\theta} =  
+   A \sin{\theta} \cos{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
+  &A \sin{\theta} \cos{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] - \\
+  &A \cos{\theta} \sin{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+After a lot of cancellation, we find
+
+\begin{equation}
+\begin{aligned}
+ \dot{\theta} &= A \sin{\theta} \cos{\theta} \left[ - \lambda_3 + \lambda_1 \cos^2{\phi} + \lambda_2 \sin^2{\phi} \right] \\
+              &= - A \sin{\theta} \cos{\theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
+              &= -\frac{A}{2} \sin{2 \theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
+\end{aligned}
+\end{equation}
+
+Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equation by $\cos{\phi}$ and add them to get
+
+\begin{equation}
+\begin{aligned}
+ & \sin{\theta} \dot{\phi} = A \sin{\theta}\cos{\phi}\sin{\phi} \left( \lambda_2 - \lambda_1 \right ) \\
+& \dot{\phi} = \frac{A}{2} \sin{2 \phi} (\lambda_2-\lambda_1)
+\end{aligned}
+\end{equation}
+
+\else
+\fi
+
+
 \begin{equation}
 \begin{aligned}
 \dot{\theta} &= - \frac{1}{2 \varepsilon I_0 \tau} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
