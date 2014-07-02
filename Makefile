@@ -6,3 +6,6 @@ tpw_rate.pdf: tpw_rate.tex tpw_rate.bib
 
 clean:
 	rm *.bbl *.blg *.aux *.log tpw_rate.pdf
+
+figures:
+	./perturb.sh
