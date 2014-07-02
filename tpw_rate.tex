@@ -184,7 +184,7 @@ A & Aspect ratio & $R_i/R$ & $0.55$ \\
 
 
 
-\section{Rates of true polar wander}
+\section{Rotational dynamics}
 
 We may write the nonlinear Liouville equations 
 \begin{equation}
@@ -272,19 +272,25 @@ Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equa
 Without loss of generality we may choose the coordinate system such that $\phi=0$:
 \begin{equation}
 \dot{\theta} = - \frac{1}{2 \varepsilon \tau}\sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
+\label{simple_milankovitch}
 \end{equation}
 
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$.
-We may rewrite this in terms of the nondimensional numbers defined above, where $\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R \sim \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
+It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} = (\lambda_i - \lambda_j)/I_0$.  
+With this we may rewrite this in terms of the nondimensional numbers defined above, where 
+$\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
 
 \begin{equation}
-\dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
 \end{equation}
 
-Thus it remains to derive estimates for these.
+At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for estimating characteristic rates of TPW.
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between where the 
+convective moment
 
 \section{Scaling}
+
 
 The nonhydrostatic moment of inertia is defined
 \begin{equation}
