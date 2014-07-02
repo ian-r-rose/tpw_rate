@@ -4,6 +4,7 @@
 \documentclass[extra]{gji}
 \usepackage{timet}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 \title[TPW Rates]
   {Rates of true polar wander in convecting planets}
@@ -290,7 +291,19 @@ They represent, respectively, the size of convective anomalies in the moment of 
 convective moment
 
 \section{Scaling}
+\subsection{An estimate of $\Lambda_{ij}$}
 
+\begin{figure}
+\label{misfit}
+\includegraphics[]{figures/eigengap.pdf}
+\caption{Oooga}
+\end{figure}
+
+\begin{figure}
+\label{misfit}
+\includegraphics[width=10cm]{figures/perturb.pdf}
+\caption{Oooga}
+\end{figure}
 
 The nonhydrostatic moment of inertia is defined
 \begin{equation}
@@ -310,6 +323,35 @@ Nondimensionalizing the integral for $E_{ij}$ we find
 J_{ij} = I_0 \delta_{ij} + \int_{V_S^\prime} \alpha T^\prime \left( r_q^\prime r_q^\prime \delta_{ij} - r_i^\prime r_j^\prime \right) 
 \end{equation}
 
+
+For thermal convection, the convective part of the moment of inertia $\bf E$ is directly related to the degree-two structure of the temperature field (see Appendix \ref{appendix:moments}).
+Therefore, an estimate of one allows an estimate of the other.
+
+
+The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
+the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is the broadening of the spatial 
+and temporal spectra \citep{mclaughlin1982transition}.  
+
+We can expand the temperature structure of the convecting planet with a set of orthogonal basis functions $X_{lmn}$, 
+where $l$, $m$, and $n$ are wavenumbers in the $x$, $y$, and $z$ directions, respectively.  
+\begin{equation} 
+T( x, y ,z )  = {\displaystyle \sum_{l m n} } T_{lmn} X_{lmn} (x , y, z)
+\end{equation}
+
+For chaotic thermal convection  there will be some power in every mode $X_{lmn}$ up to some wavenumber.  
+At that critical wavenumber thermal diffusivity will 
+
+\subsection{An estimate of the mismatch $\theta$}
+
+\citet{davis1970rotation}
+
+\begin{figure}
+\label{misfit}
+\includegraphics[width=10cm]{figures/misfit.pdf}
+\caption{Oooga}
+\end{figure}
+
+
 \section{Numerical results}
 
 \section{Discussion}
@@ -327,6 +369,7 @@ J_{ij} = I_0 \delta_{ij} + \int_{V_S^\prime} \alpha T^\prime \left( r_q^\prime r
 \appendix
 
 \section{Degree-two moments}
+\label{appendix:moments}
 
 We may explicitly draw a connection between the moment of inertia of a rotating object and it's degree-two density structure.  The moment of inertia tensor may be written in index notation
 \begin{equation}
