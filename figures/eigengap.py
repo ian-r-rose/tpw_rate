@@ -98,16 +98,15 @@ for f, i in zip( output_files, range(len(output_files)) ):
   timescales.append(peak)
 
   ax = plt.subplot(1,2,1)
-  ax.plot(times, diff, color=c[i])
+  ax.plot(times, diff, color=c[i], label=r'Ra = $10^{%.1f}$' % np.log10(Ra))
   ax.set_xlim(0,1.0e-10)
   ax.set_ylim(0, 1.0e-2)
-
-#  ax = plt.subplot(1,2,2)
-#  ax.plot(times-np.ones_like(times)*times.mean(), np.sqrt(np.abs(acorrdiff)), color=c[i])
-#  ax.set_xlim(-0.5e-10,0.5e-10)
-#  ax.yaxis.tick_right()
+  ax.set_xlabel("Time (nondimensional)")
+  ax.set_ylabel(r'Relative moment $(\lambda_2-\lambda_1)/I_0$')
 
 
+
+plt.legend(loc="upper right")
 print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
 print np.polyfit(np.log(Rayleighs[3:]), np.log(timescales[3:]),1)
 
@@ -116,8 +115,19 @@ ax.set_xscale('log')
 ax.set_yscale('log')
 ax.xaxis.set_major_formatter(matplotlib.ticker.LogFormatter())
 ax.yaxis.set_major_formatter(matplotlib.ticker.LogFormatter())
-ax.scatter(Rayleighs, np.array(amplitudes), c = c)
+
+Ra=np.logspace(7.3, 8.1)
+Moment = 400.*np.power(Ra, -2./3.)
+
+ax.plot(Ra, Moment, c='k', linewidth=4)
+ax.scatter(Rayleighs, np.array(amplitudes), c = c, s=50)
+
 ax.set_ylim(0, 1.0e-2)
+ax.set_xlim(1.e7, 4.0e8)
+ax.set_xlabel("Rayleigh number")
+ax.set_ylabel("Average relative moment")
 
 plt.show()
+fig = plt.gcf()
+fig.set_size_inches(12.0,6.0)
 plt.savefig("eigengap.pdf")
