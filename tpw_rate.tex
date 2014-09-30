@@ -1,7 +1,7 @@
 % gjilguid2e.tex
 
-%\documentclass[extra,onecolumn]{gji}
-\documentclass[extra]{gji}
+\documentclass[extra,onecolumn]{gji}
+%\documentclass[extra]{gji}
 \usepackage{timet}
 \usepackage{amsmath}
 \usepackage{graphicx}
@@ -301,15 +301,15 @@ rotation axis it and where the convective moment wants it to be.
 \begin{figure}
 \centering
 \label{misfit}
-\includegraphics[width=20cm]{figures/eigengap.pdf}
+\includegraphics[width=0.9\textwidth]{figures/eigengap.pdf}
 \caption{Oooga}
 \end{figure}
 
 \begin{figure}
 \centering
 \label{misfit}
-\includegraphics[width=10cm]{figures/perturb.pdf}
-\caption{Oooga}
+\includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
+\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
 \end{figure}
 
 The nonhydrostatic moment of inertia is defined
@@ -374,23 +374,23 @@ Then the rotation of the principal axes of the tensor is bounded by
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
 
-Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator is precisely the same as the quantity which we estimated in the previous section to be $\sim \mathrm{Ra}^{-1}$.
+Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
 Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
 Additionally, the timescale of fluctuations in these values goes down. 
 Overall, this makes the principle axes of high Rayleigh number systems much less stable.
-This result agrees with the qualitative results of 
+This result is consistent with the result of \citet{richards1997explanation}.
 
 \begin{figure}
 \centering
 \label{misfit}
-\includegraphics[width=20cm]{figures/misfit.pdf}
-\caption{Oooga}
+\includegraphics[width=0.9\textwidth]{figures/misfit.pdf}
+\caption{Top: }
 \end{figure}
 
 
 \section{Discussion}
 
-
+We have developed a framework for discussing the rates of true polar wander in terms of a small number of nondimensional numbers.
 
 
 \begin{acknowledgments}
