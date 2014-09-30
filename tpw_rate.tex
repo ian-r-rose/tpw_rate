@@ -89,6 +89,7 @@ We count the number of fundamental units for the problem, in this case mass (kg)
 These parameters are listed in Table \ref{parameters}, and subtracting the ...
 
 \begin{table}
+\centering
 \caption{Nondimensionalizations for variables, primed variables denote dimensional variables}
 \label{nondim_convert}
 \begin{tabular}{@{}lll}
@@ -151,6 +152,7 @@ Nondimensionalizing with these parameters we obtain
 where we have introduced a dynamic pressure $P^* = P - P_0$.
 
 \begin{table}
+\centering
 \caption{Parameters for rotating mantle convection}
 \label{parameters}
 \begin{tabular}{@{}lcc}
@@ -169,6 +171,7 @@ $\Delta T$ & temperature difference \\
 \end{table}
 
 \begin{table}
+\centering
 \caption{Nondimensional numbers with approximate Earthlike values}
 \label{nondim}
 \begin{tabular}{@{}lcccc}
@@ -284,22 +287,26 @@ $\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kapp
 
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
+\label{scaled_rotation}
 \end{equation}
 
 At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for estimating characteristic rates of TPW.
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between where the 
-convective moment
+rotation axis it and where the convective moment wants it to be.
 
 \section{Scaling}
+
 \subsection{An estimate of $\Lambda_{ij}$}
 
 \begin{figure}
+\centering
 \label{misfit}
-\includegraphics[]{figures/eigengap.pdf}
+\includegraphics[width=20cm]{figures/eigengap.pdf}
 \caption{Oooga}
 \end{figure}
 
 \begin{figure}
+\centering
 \label{misfit}
 \includegraphics[width=10cm]{figures/perturb.pdf}
 \caption{Oooga}
@@ -332,27 +339,54 @@ The structure of thermal convection is primarily controlled by the Rayleigh numb
 the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is the broadening of the spatial 
 and temporal spectra \citep{mclaughlin1982transition}.  
 
-We can expand the temperature structure of the convecting planet with a set of orthogonal basis functions $X_{lmn}$, 
-where $l$, $m$, and $n$ are wavenumbers in the $x$, $y$, and $z$ directions, respectively.  
+We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $X_{lmn}$, 
+where $l$, $m$, and $n$ are wavenumbers.  
 \begin{equation} 
 T( x, y ,z )  = {\displaystyle \sum_{l m n} } T_{lmn} X_{lmn} (x , y, z)
 \end{equation}
 
-For chaotic thermal convection  there will be some power in every mode $X_{lmn}$ up to some wavenumber.  
-At that critical wavenumber thermal diffusivity will 
+The quantity $\Lambda_{ij}$ is the normalized degree-two temperature field.  The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $X_{lmn}$ is constrained by
+
+\begin{equation}
+\lVert T(x,y,z) \rVert_\infty = \lVert {\displaystyle \sum_{l m n} } T_{lmn} X_{lmn} (x , y, z) \rVert_\infty = 1
+\end{equation}
+
+This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  We can, however, make hypotheses about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
 
 \subsection{An estimate of the mismatch $\theta$}
 
-\citet{davis1970rotation}
+The mismatch between the current axis and the principle axis of the convective moment is perhaps the most important parameter in Equation \ref{scaled_rotation}.  
+Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
+
+An estimate for $\theta$ must concern the stability of the convective moment of inertia. 
+Convection is continuously redistributing mass throughout the mantle, which will perturb the convective moment of inertia.  
+If the convective moment is stable to small perturbations, then $\theta$ should be small, but if it is not stable to perturbations, then $\theta$ could be up to $90^\circ$. 
+Given a random perturbation to that moment, we would like to give a bound on how big the perturbation to $\theta$ is. 
+This may be done by application of a theorem due to \citet{davis1970rotation}.
+
+Let $\delta$ be the perturbation to the convective moment of inertia, and let $\lambda_3 \ge \lambda_2 \ge \lambda_1$ be the eigenvalues of that moment.  
+Then the rotation of the principal axes of the tensor is bounded by
+
+\begin{equation}
+\sin(2 \theta) \le \frac{ 2 \lVert \delta \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\end{equation} 
+
+That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
+If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
+
+Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator is precisely the same as the quantity which we estimated in the previous section to be $\sim \mathrm{Ra}^{-1}$.
+Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
+Additionally, the timescale of fluctuations in these values goes down. 
+Overall, this makes the principle axes of high Rayleigh number systems much less stable.
+This result agrees with the qualitative results of 
 
 \begin{figure}
+\centering
 \label{misfit}
-\includegraphics[width=10cm]{figures/misfit.pdf}
+\includegraphics[width=20cm]{figures/misfit.pdf}
 \caption{Oooga}
 \end{figure}
 
-
-\section{Numerical results}
 
 \section{Discussion}
 
@@ -438,7 +472,7 @@ where $\bf 1$ is the identity matrix.  If we let the diagonal elements of $\bf I
 \label{maccullagh}
 \end{equation}
 
-which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{stacey1977physics}.
+which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{munk1960rotation}.
 
 \label{lastpage}
 
