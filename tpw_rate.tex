@@ -3,6 +3,7 @@
 \documentclass[extra,onecolumn]{gji}
 %\documentclass[extra]{gji}
 \usepackage{timet}
+\usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
 
@@ -47,9 +48,10 @@ Earth rotation variations; Mantle processes; Dynamics: convection currents and m
 \end{keywords}
 
 \section{Introduction}
-
+\label{sec:intro}
 
 \section{Governing equations}
+\label{sec:govern}
 
 As mantle convection and rotational dynamics of planetary bodies are usually considered separately, some extra care must be taken to establish self-consistent governing equations.  
 Here we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
@@ -80,7 +82,7 @@ Here we consider an isoviscous planet in a rotating reference frame with no inte
 \end{equation}
 
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure. 
-Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires five nondimensional numbers to characterize it.
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires \_\_\_\_? nondimensional numbers to characterize it.
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
@@ -163,10 +165,8 @@ $R$ & outer radius \\
 $\Omega_0$ & reference rotation rate \\
 $\eta$ & viscosity \\
 $\kappa$ & thermal diffusivity \\
-$\alpha$ & thermal expansivity \\
 $g_0$ & reference gravity \\
-$\rho_0$ & reference density \\
-$\Delta T$ & temperature difference \\ 
+$\delta \rho = \rho_0 \alpha \Delta T$ & buoyancy parameter \\ 
 \end{tabular}
 \end{table}
 
@@ -189,10 +189,12 @@ A & Aspect ratio & $R_i/R$ & $0.55$ \\
 
 
 \section{Rotational dynamics}
+\label{sec:rotation}
 
 We may write the nonlinear Liouville equations 
 \begin{equation}
 {\bf \Omega} \times {\bf \dot{\Omega} } = \frac{1}{\varepsilon I_0 \tau} {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
+\label{eq:liouville}
 \end{equation}
 
 introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
@@ -290,11 +292,20 @@ $\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kapp
 \label{scaled_rotation}
 \end{equation}
 
-At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for estimating characteristic rates of TPW.
+At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for predicting characteristic rates of TPW.
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between where the 
 rotation axis it and where the convective moment wants it to be.
 
 \section{Scaling}
+\label{sec:scaling}
+
+The quantites $\Lambda_{i,j}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
+We consider relatively slowly rotating bodies here ($\mathrm{Fr} << 1$), so that the rotation does not affect the style of convection.  
+In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$.
+
+We support our scaling analyses with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
+\texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
+We performed a number of simulations at different Rayleigh numbers, integrating Equation \ref{eq:liouville} at every time step.
 
 \subsection{An estimate of $\Lambda_{ij}$}
 
@@ -303,13 +314,6 @@ rotation axis it and where the convective moment wants it to be.
 \label{misfit}
 \includegraphics[width=0.9\textwidth]{figures/eigengap.pdf}
 \caption{Oooga}
-\end{figure}
-
-\begin{figure}
-\centering
-\label{misfit}
-\includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
-\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
 \end{figure}
 
 The nonhydrostatic moment of inertia is defined
@@ -342,16 +346,55 @@ and temporal spectra \citep{mclaughlin1982transition}.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $X_{lmn}$, 
 where $l$, $m$, and $n$ are wavenumbers.  
 \begin{equation} 
-T( x, y ,z )  = {\displaystyle \sum_{l m n} } T_{lmn} X_{lmn} (x , y, z)
+T( x, y ,z, t )  = {\displaystyle \sum_{l m n}^\infty } T_{lmn}(t) X_{lmn} (x , y, z)
+\label{T_series}
 \end{equation}
 
 The quantity $\Lambda_{ij}$ is the normalized degree-two temperature field.  The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $X_{lmn}$ is constrained by
 
 \begin{equation}
-\lVert T(x,y,z) \rVert_\infty = \lVert {\displaystyle \sum_{l m n} } T_{lmn} X_{lmn} (x , y, z) \rVert_\infty = 1
+\lVert T(x,y,z, t) \rVert_\infty = \lVert {\displaystyle \sum_{l m n}^\infty } T_{lmn} (t) X_{lmn} (x , y, z) \rVert_\infty = 1
 \end{equation}
 
-This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  We can, however, make hypotheses about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
+This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
+
+At high Rayleigh number we expect there to be a lengthscale which characterizes the smallest length of features in the convecting system.  
+At lengthscales smaller than this diffusion will tend to wipe out heterogeneities, and there will be no power in those modes.  
+Therefore we expect, to a good approximation, that we will be able to cut off the infinite sum in \ref{T_series} at some maximum wavenumber, set by the smallest lengthscale $d$:
+ 
+\begin{equation}
+n_{\mathrm{max}}, l_{\mathrm{max}}, m_{\mathrm{max}} \sim \frac{R}{d}
+\end{equation}
+
+The total number of modes that are accessible to the system are therefore 
+
+\begin{equation}
+N_{\mathrm{modes}} = n_{\mathrm{max}} \times l_{\mathrm{max}} \times n_{\mathrm{max}} \sim \left( \frac{R}{d} \right)^{3}
+\end{equation}
+
+The value of each $T_{lmn}(t)$ will in general be some complex function of time, but for a given style of convection we expect there to be some average value.
+For chaotic flow the power should be spread out amongst the modes accessible to it.
+We may make the hypothesis that each of the modes are roughly as likely as any of the others, which implies
+
+\begin{equation}
+T_{\mathrm{degree 2}}(t) \sim \frac{1}{N_{\mathrm{modes}}} \sim \left( \frac{d}{R}\right)^3
+\end{equation}
+
+Any of a number of scaling laws can provide an estimate for the characteristic length scale of a convecting system which may depending on rheology, geometry, or density structure.
+The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $d/R ~ \mathrm{Ra}^{-1/3}$, thus furnishing us with an estimate of the power in the degree-two part of the field as a function of Rayleigh number:
+
+\begin{equation}
+T_{\mathrm{degree 2}}(t) \sim \mathrm{Ra}^{-1}
+\end{equation}
+
+This result has a simple interpretation.  As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.  The total power in the temperature field is spread across a larger spectrum, leaving less total power for the degree-two part, which is what drives TPW.
+
+With an estimate for the power in the degree-two part of the temperature field, we may finally estimate $\Lambda_{ij}$:
+
+\begin{equation}
+\Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
+\end{equation}
+
 
 \subsection{An estimate of the mismatch $\theta$}
 
@@ -368,17 +411,35 @@ Let $\delta$ be the perturbation to the convective moment of inertia, and let $\
 Then the rotation of the principal axes of the tensor is bounded by
 
 \begin{equation}
-\sin(2 \theta) \le \frac{ 2 \lVert \delta \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\lVert \sin(2 \theta) \rVert \le \frac{ 2 \lVert \delta \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\label{eq:kahan}
 \end{equation} 
 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
+This is illustrated in Figure \ref{fig:perturb}
 
-Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
+
+We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation \ref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
+
+\begin{equation}
+\lVert \dot{\theta} \rVert \le \frac{ \lVert \dot{\delta} \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\label{eq:grow_perturbation}
+\end{equation} 
+
+\begin{figure}
+\centering
+\label{fig:perturb}
+\includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
+\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
+\end{figure}
+
+
+Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator of these equations is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
 Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
 Additionally, the timescale of fluctuations in these values goes down. 
 Overall, this makes the principle axes of high Rayleigh number systems much less stable.
-This result is consistent with the result of \citet{richards1997explanation}.
+This is consistent with the result of \citet{richards1997explanation}.
 
 \begin{figure}
 \centering
@@ -387,9 +448,37 @@ This result is consistent with the result of \citet{richards1997explanation}.
 \caption{Top: }
 \end{figure}
 
+Figure \ref{misfit} demonstrates the importance of this ``eigengap'' for the rates of true polar wander.  
+
 
 \section{Discussion}
 
+The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
+As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principle axes of the convective moment of inertia. 
+There is a constant competition between growth of the mismatch angle $\theta$ through Equation \ref{eq:grow_perturbation} and its relaxation through Equation \ref{simple_milankovitch}
+We may plug in the estimate for $\Lambda_{ij}$ into equation \ref{simple_milankovitch} to find the strikingly simple expression
+\begin{equation}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{\mathrm{Fr}} \sin{2 \theta}
+\label{eq:simplest_milankovitch}
+\end{equation}
+Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the scaling. 
+This is somewhat of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
+However, we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
+
+More important is the observation that the most important parameters are the Froude number, which acts as the brakes on the system, and $\theta(\mathrm{Ra})$.
+Whereas the rest of the expression has at most a weak dependence on $\mathrm{Ra}$, this is expected to be strongly dependent on it.
+
+Indeed, we can identify two endmember behaviors of Equation \ref{eq:simplest_milankovitch}.
+When convection is not sufficiently chaotic to create a large $\theta$ we are in the regime where the planet's rotation axis closely tracks that of the convective moment.
+This is the regime considered in \citet{steinberger1997changes}, \citet{roberts2007cause}, and \citet{zhong2007supercontinent}, and can be considered the ``slow TPW'' regime.
+
+When convection is more chaotic, however, there may be large excursions in $\theta$, which can drastically increase the wander rate.  
+If $\theta=90^\circ$, this corresponds to IITPW \citep{kirschvink1997evidence}.  
+This, however, is a special case in the large $\theta$, ``fast TPW'' regime.
+
+
+
+\section{Conclusion}
 We have developed a framework for discussing the rates of true polar wander in terms of a small number of nondimensional numbers.
 
 
@@ -473,6 +562,23 @@ where $\bf 1$ is the identity matrix.  If we let the diagonal elements of $\bf I
 \end{equation}
 
 which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{munk1960rotation}.
+
+
+\section {TODO}
+
+\begin{enumerate}
+\item Figure out the best way of nondimensionalizing
+\item What to do about $\alpha \Delta T$?
+\item Connect nondimensionalization with Equation \ref{eq:liouville} via correspondence principle
+\item Make notation everywhere consistent
+\item More discussion of Davis+Kahan?
+\item Make better figures
+\item Make the argument about degree-two scaling much sharper
+\item Can I write equation \ref{eq:liouville} in terms of \ref{maccullagh}?
+\item Discuss elastic lithosphere, Creveling
+\item Discuss high-viscosity lower mantle
+\item Earth history, exoplanets?
+\end{enumerate}
 
 \label{lastpage}
 
