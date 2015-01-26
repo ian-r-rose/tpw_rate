@@ -1,7 +1,7 @@
 % gjilguid2e.tex
 
-\documentclass[extra,onecolumn]{gji}
-%\documentclass[extra]{gji}
+%\documentclass[extra,onecolumn]{gji}
+\documentclass[extra,mreferee]{gji}
 \usepackage{timet}
 \usepackage{url}
 \usepackage{amsmath}
@@ -49,6 +49,23 @@ Earth rotation variations; Mantle processes; Dynamics: convection currents and m
 
 \section{Introduction}
 \label{sec:intro}
+
+A rotating, quasistatic body like a planetary mantle will tend to spin about the axis of its maximum moment of inertia.
+Convection in a planetary mantle continuously redistributes mass, which can change the moment of ineratia tensor, necessitating a change in the spin axis of the planet to conserve angular momentum, a process known as true polar wander (TPW).
+
+TPW was first considered in detail by \citet{darwin1887influence}, and the theory has been subsequently developed by many \citep[e.g.][]{munk1960rotation, goldreich1969some, ricard1993polar}. 
+Despite this, the ability of internal mass anomalies to drive large-scale TPW remains controversial. 
+Paleomagnetic data have been interpreted to requre up to $\sim 1^\circ$/Myr rates of TPW \citep{mitchell2011sutton}, but the ability of the mantle to respond at such rates has been questioned \citep{tsai2007theoretical}.
+
+The primary uncertainties in assigning a maximum TPW rate to a convecting planet are the size of convective anomalies, which drive the rotational adjustment, and the viscosity structure of the mantle, which retards it. 
+These two uncertainties are not unrelated: they are both expected to be functions of the geometric and material properties of the mantle.
+As such, they do not vary independently. 
+This suggests that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
+
+Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.]{tsai2007theoretical, creveling2012mechanisms}. 
+\citet{richards1999polar} coupled full thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
+
+Herein we perform a scaling analysis for a minimal system of a rotating, convecting mantle.
 
 \section{Governing equations}
 \label{sec:govern}
@@ -340,7 +357,7 @@ Therefore, an estimate of one allows an estimate of the other.
 
 
 The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
-the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is the broadening of the spatial 
+the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is a broadening of the spatial 
 and temporal spectra \citep{mclaughlin1982transition}.  
 
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $X_{lmn}$, 
@@ -455,7 +472,7 @@ Figure \ref{misfit} demonstrates the importance of this ``eigengap'' for the rat
 
 The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principle axes of the convective moment of inertia. 
-There is a constant competition between growth of the mismatch angle $\theta$ through Equation \ref{eq:grow_perturbation} and its relaxation through Equation \ref{simple_milankovitch}
+There is a constant competition between growth of the mismatch angle $\theta$ through Equation \ref{eq:grow_perturbation} and its relaxation through Equation \ref{simple_milankovitch}.
 We may plug in the estimate for $\Lambda_{ij}$ into equation \ref{simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{\mathrm{Fr}} \sin{2 \theta}
