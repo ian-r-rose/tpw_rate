@@ -144,14 +144,14 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
 \begin{equation}
 \begin{aligned}
  - & \Omega_0^2  \alpha  \Delta T T R \; {\bf \Omega \times \Omega \times r} = - \eta \kappa / R^2 \; \nabla P^* \\ 
-&+ \eta \kappa / R^2 \; \nabla \cdot \left( \eta \varepsilon ({\bf v}) \right) - \alpha \Delta T g_0 \; {\bf g}
+&+ \eta \kappa / R^2 \; \nabla \cdot \left( \eta \epsilon ({\bf v}) \right) - \alpha \Delta T g_0 \; {\bf g}
 \end{aligned}
 \end{equation}
 
 \begin{equation}
 \begin{aligned}
  - & \mathrm{Ra \; Fr}\; T \; {\bf \Omega \times \Omega \times r} = - \nabla P^* \\ 
-&+ \; \nabla \cdot \left( \eta \varepsilon ({\bf v}) \right) - \mathrm{Ra} \; T \; {\bf g}
+&+ \; \nabla \cdot \left( \eta \epsilon ({\bf v}) \right) - \mathrm{Ra} \; T \; {\bf g}
 \end{aligned}
 \end{equation}
 
@@ -210,13 +210,13 @@ A & Aspect ratio & $R_i/R$ & $0.55$ \\
 
 We may write the nonlinear Liouville equations 
 \begin{equation}
-{\bf \Omega} \times {\bf \dot{\Omega} } = \frac{1}{\varepsilon I_0 \tau} {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
+{\bf \Omega} \times {\bf \dot{\Omega} } = \frac{1}{\epsilon I_0 \tau} {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
 \label{eq:liouville}
 \end{equation}
 
 introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
 \begin{equation}
- \dot{\mitbf{\omega}}  = \frac{1}{\varepsilon I_0 \tau} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
+ \dot{\mitbf{\omega}}  = \frac{1}{\epsilon I_0 \tau} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
 \end{equation}
 
 Note that the quantity in brackets is identical in form to the shear stress on a plane in classical elastostatics.
@@ -224,7 +224,7 @@ If we enter the coordinate system of the convective moment of inertia $\bf E$ wi
 
 \ifdetail
 
-And here is the tedious algebra.  Let the prefactors $\frac{1}{\varepsilon I_0 \tau}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
+And here is the tedious algebra.  Let the prefactors $\frac{1}{\epsilon I_0 \tau}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
 
 \begin{equation}
 \begin{aligned}
@@ -286,15 +286,15 @@ Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equa
 
 \begin{equation}
 \begin{aligned}
-\dot{\theta} &= - \frac{1}{2 \varepsilon I_0 \tau} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
-\dot{\phi} &= \;\; \frac{1}{2 \varepsilon I_0 \tau} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
+\dot{\theta} &= - \frac{1}{2 \epsilon I_0 \tau} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
+\dot{\phi} &= \;\; \frac{1}{2 \epsilon I_0 \tau} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
 \end{aligned}
 \label{milankovitch}
 \end{equation}
 
 Without loss of generality we may choose the coordinate system such that $\phi=0$:
 \begin{equation}
-\dot{\theta} = - \frac{1}{2 \varepsilon \tau}\sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
+\dot{\theta} = - \frac{1}{2 \epsilon \tau}\sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
 \label{simple_milankovitch}
 \end{equation}
 
@@ -302,7 +302,7 @@ These equations are a version of what has been called the ``Milankovitch theorem
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$.
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 With this we may rewrite this in terms of the nondimensional numbers defined above, where 
-$\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
+$\epsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
 
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
@@ -310,13 +310,12 @@ $\varepsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kapp
 \end{equation}
 
 At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for predicting characteristic rates of TPW.
-They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between where the 
-rotation axis it and where the convective moment wants it to be.
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
 
 \section{Scaling}
 \label{sec:scaling}
 
-The quantites $\Lambda_{i,j}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
+The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
 We consider relatively slowly rotating bodies here ($\mathrm{Fr} \ll 1$), so that the rotation does not affect the style of convection.  
 In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$.
 
@@ -589,17 +588,17 @@ which shows the connection between the degree-two component of the density field
 \section {TODO}
 
 \begin{enumerate}
-\item Figure out the best way of nondimensionalizing
-\item What to do about $\alpha \Delta T$?
+\item Figure out the best way of nondimensionalizing ($\alpha \Delta T$)
 \item Connect nondimensionalization with Equation \ref{eq:liouville} via correspondence principle
 \item Make notation everywhere consistent
 \item More discussion of Davis+Kahan?
 \item Make better figures
+\item Integrate numerical results
 \item Make the argument about degree-two scaling much sharper
 \item Can I write equation \ref{eq:liouville} in terms of \ref{maccullagh}?
 \item Discuss elastic lithosphere, Creveling
 \item Discuss high-viscosity lower mantle
-\item Earth history, exoplanets?
+\item Earth-like parameters
 \end{enumerate}
 
 \label{lastpage}
