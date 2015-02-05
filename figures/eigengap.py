@@ -1,6 +1,4 @@
 import matplotlib
-matplotlib.use('agg')
-
 import numpy as np
 import scipy as sp
 import scipy.signal as signal
@@ -11,8 +9,10 @@ import matplotlib.cm as cm
 import matplotlib.ticker
 import glob
 
+plt.style.use('ian')
+
 #c = ['#0A5F02', '#1c567a', '#814292', '#d7383b', '#fdae61', '#c0f8b8']
-c = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'] 
+#c = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'] 
 #c = ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e']
 
 rho = 3300
@@ -98,7 +98,7 @@ for f, i in zip( output_files, range(len(output_files)) ):
   timescales.append(peak)
 
   ax = plt.subplot(1,2,1)
-  ax.plot(times, diff, color=c[i], label=r'Ra = $10^{%.1f}$' % np.log10(Ra))
+  ax.plot(times, diff,  label=r'$\mathrm{Ra} = %.1f \times 10^{%i}$' % ( Ra/np.power(10., np.floor(np.log10(Ra))) , np.floor(np.log10(Ra))))
   ax.set_xlim(0,1.0e-10)
   ax.set_ylim(0, 1.0e-2)
   ax.set_xlabel("Time (nondimensional)")
@@ -120,14 +120,16 @@ Ra=np.logspace(7.3, 8.1)
 Moment = 400.*np.power(Ra, -2./3.)
 
 ax.plot(Ra, Moment, c='k', linewidth=4)
-ax.scatter(Rayleighs, np.array(amplitudes), c = c, s=50)
+
+clist = plt.rcParams['axes.color_cycle']
+ax.scatter(Rayleighs, np.array(amplitudes), c = clist, s=50)
 
 ax.set_ylim(0, 1.0e-2)
 ax.set_xlim(1.e7, 4.0e8)
 ax.set_xlabel("Rayleigh number")
 ax.set_ylabel("Average relative moment")
 
-plt.show()
 fig = plt.gcf()
 fig.set_size_inches(12.0,6.0)
 plt.savefig("eigengap.pdf")
+plt.show()

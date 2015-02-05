@@ -1,12 +1,12 @@
 
 import matplotlib
-matplotlib.use('agg')
 
 import matplotlib.pyplot as plt
 import matplotlib.ticker
 import numpy as np
+plt.style.use(['ian'])
 
-c = ['#0A5F02', '#1c567a', '#814292', '#d7383b', '#fdae61', '#c0f8b8']
+#c = ['#0A5F02', '#1c567a', '#814292', '#d7383b', '#fdae61', '#c0f8b8']
 data = np.loadtxt('statistics_500', skiprows=50, usecols=(1,15,16,17,18))
 
 rho = 3300
@@ -21,12 +21,13 @@ g = 9.81
 
 
 time = data[:,0]*kappa/D/D
+tmax = 0.5e-10
 mismatch = data[:,2]
 eig1 = data[:,3]
 eig2 = data[:,4]
-eigmean = np.mean(eig1+eig2)/2.0
-eig1 = eig1/eigmean - 1.
-eig2 = eig2/eigmean - 1.
+eigmean = np.mean(eig1[np.where( time<tmax )] + eig2[np.where(time<tmax)])/2.
+eig1 = (eig1-eigmean)/eigmean
+eig2 = (eig2-eigmean)/eigmean
 
 spin = data[:,1]
 
@@ -35,30 +36,34 @@ time[pos] = np.nan
 spin[pos] = np.nan
 
 fig = plt.figure()
-fig.subplots_adjust(wspace=0.0, hspace=0.0)
+#fig.subplots_adjust(wspace=0.0, hspace=0.0)
 
 ax = fig.add_subplot(211)
 
-ax.plot(time, eig1, color=c[3], label=r'$\lambda_1$')
-ax.plot(time, eig2, color=c[1], label=r'$\lambda_2$')
-plt.xlim(0.0, 0.5e-10)
+ax.plot(time, eig1, label=r'$\lambda_1$')
+ax.plot(time, eig2, label=r'$\lambda_2$')
+plt.xlim(0.0, tmax)
+plt.ylim(-4.e-5, 4.e-5)
 ax.legend(loc='upper right')
 ax.xaxis.set_major_formatter(matplotlib.ticker.NullFormatter())
-ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=5, prune='both'))
-plt.ylabel(r'Relative moment')
+ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=4, prune=None))
+plt.ylabel('Relative moment')
 
 ax = fig.add_subplot(212)
 
-ax.plot(time, spin, color=c[0], label=r'Spin axis')
-ax.plot(time, mismatch, color=c[2], label=r'$\theta$')
-plt.xlim(0.0, 0.5e-10)
+ax.plot(np.array([]), np.array([]))
+ax.plot(np.array([]), np.array([]))
+ax.plot(time, spin, label=r'Spin axis')
+ax.plot(time, mismatch, label=r'$\theta$')
+plt.xlim(0.0, tmax)
+plt.ylim(0., 180.)
 ax.legend(loc='upper right')
-ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=6, prune='both'))
+ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=3, prune=None))
 plt.xlabel(r"Time")
 plt.ylabel(r"Angle ($^\circ$)")
 
 
 
 
+plt.savefig("misfit.pdf", bbox_inches='tight')
 plt.show()
-plt.savefig("misfit.pdf")
