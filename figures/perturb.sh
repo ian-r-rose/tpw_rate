@@ -12,15 +12,15 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
 EOF
 
 gmt pstext -R -J -K  -O >>perturb.ps <<EOF
-.0 0.36 @~l@-1
+.0 0.36 @~l@-1@-@~
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.32 0.26 @~l@-2
+.32 0.26 @~l@-2@-@~
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.46 0.10 @~q
+.46 0.10 @~q@~
 EOF
 
 gmt psxy -R -J -Sv0.3+e -Wthicker,black -K -O >> perturb.ps <<EOF
@@ -28,7 +28,7 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,black -K -O >> perturb.ps <<EOF
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-0.9 .05 @~W
+0.9 .05 @~W@~
 EOF
 
 gmt psxy -R -J -Sc.1i -Gdarkgray -K -O >>perturb.ps <<EOF
@@ -48,15 +48,15 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
 EOF
 
 gmt pstext -R -J -K  -O >>perturb.ps <<EOF
--0.36 0.2 @~l@-1
+-0.36 0.2 @~l@-1@-@~
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.0 0.46 @~l@-2
+.0 0.46 @~l@-2@-@~
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.1 0.10 @~q
+.1 0.10 @~q@~
 EOF
 
 gmt psxy -R -J -Sv0.3+e -Wthicker,black -K -O >> perturb.ps <<EOF
@@ -64,7 +64,7 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,black -K -O >> perturb.ps <<EOF
 EOF
 
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-0.9 .05 @~W
+0.9 .05 @~W@~
 EOF
 
 gmt psxy -R -J -Sc.1i -Gdarkgray -K -O >>perturb.ps <<EOF
