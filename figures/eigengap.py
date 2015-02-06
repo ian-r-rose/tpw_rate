@@ -17,7 +17,6 @@ plt.style.use('ian')
 
 rho = 3300
 alpha_0 = 4.e-5
-delta_T_0 = 200.0
 k = 4.1
 cp = 1250.
 kappa = k/rho/cp
@@ -25,6 +24,7 @@ eta_0 = 1.e21
 D = 6371.e3
 g = 9.81
 
+seconds_to_Gyr = 3600.*24.*365.25*1.e9
 omega_E = 7.29e-5
 omega = 4.e-5
 
@@ -54,7 +54,7 @@ def get_spin_spectrum(text_file):
 
   # nondimensionalize
   diff = (lambda1-lambda2)/( np.mean(lambda1 + lambda2)/2.0 )
-  times = times * kappa / D / D
+  times = times/1.e9 #* kappa / D / D
  
   frequency = times[-1]/len(times)
   autocorr = lambda x: np.correlate(x,x, mode='same')
@@ -99,9 +99,9 @@ for f, i in zip( output_files, range(len(output_files)) ):
 
   ax = plt.subplot(1,2,1)
   ax.plot(times, diff,  label=r'$\mathrm{Ra} = %.1f \times 10^{%i}$' % ( Ra/np.power(10., np.floor(np.log10(Ra))) , np.floor(np.log10(Ra))))
-  ax.set_xlim(0,1.0e-10)
+  ax.set_xlim(0,5.)
   ax.set_ylim(0, 1.0e-2)
-  ax.set_xlabel("Time (nondimensional)")
+  ax.set_xlabel("Time (Gyr)")
   ax.set_ylabel(r'Relative moment $(\lambda_2-\lambda_1)/I_0$')
 
 
@@ -111,20 +111,21 @@ print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
 print np.polyfit(np.log(Rayleighs[3:]), np.log(timescales[3:]),1)
 
 ax = plt.subplot(122)
+ax.grid(False)
 ax.set_xscale('log')
 ax.set_yscale('log')
-ax.xaxis.set_major_formatter(matplotlib.ticker.LogFormatter())
-ax.yaxis.set_major_formatter(matplotlib.ticker.LogFormatter())
+ax.xaxis.set_major_formatter(matplotlib.ticker.LogFormatterMathtext())
+ax.yaxis.set_major_formatter(matplotlib.ticker.LogFormatterMathtext())
 
-Ra=np.logspace(7.3, 8.1)
-Moment = 400.*np.power(Ra, -2./3.)
+Ra=np.logspace(7.3, 8.3)
+Moment = 350.*np.power(Ra, -2./3.)
 
-ax.plot(Ra, Moment, c='k', linewidth=4)
+ax.plot(Ra, Moment, '--', c='0.5', linewidth=4)
 
 clist = plt.rcParams['axes.color_cycle']
-ax.scatter(Rayleighs, np.array(amplitudes), c = clist, s=50)
+ax.scatter(Rayleighs, np.array(amplitudes), c = clist, s=100)
 
-ax.set_ylim(0, 1.0e-2)
+ax.set_ylim(7.0e-4, 1.0e-2)
 ax.set_xlim(1.e7, 4.0e8)
 ax.set_xlabel("Rayleigh number")
 ax.set_ylabel("Average relative moment")
@@ -132,4 +133,4 @@ ax.set_ylabel("Average relative moment")
 fig = plt.gcf()
 fig.set_size_inches(12.0,6.0)
 plt.savefig("eigengap.pdf")
-plt.show()
+#plt.show()
