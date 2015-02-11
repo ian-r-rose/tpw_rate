@@ -63,7 +63,7 @@ As such, they do not vary independently.
 This suggests that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
 
 Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.]{tsai2007theoretical, creveling2012mechanisms}. 
-\citet{richards1999polar} coupled full thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
+\citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
 Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle.
 
@@ -103,7 +103,7 @@ Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
-The Buckingham Pi theorem (essentially an application of the rank-nullspace theorem from linear algebra) allows us to determine the number of nondimensional numbers for this problem.  
+The Buckingham Pi theorem (essentially an application of the rank-nullity theorem) allows us to determine the number of nondimensional numbers for this problem.  
 We count the number of fundamental units for the problem, in this case mass (kg), length (m), time (s), and temperature (K), as well as the number of parameters in use for this problem.  
 These parameters are listed in Table \ref{parameters}, and subtracting the ...
 
@@ -202,11 +202,36 @@ A & Aspect ratio & $R_i/R$ & $0.55$ \\
 \end{tabular}
 \end{table}
  
+This can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
 
+\begin{equation}
+-\int_V {\bf r} \times \nabla P^* + \int_V {\bf r} \times \nabla^2 {\bf v} - \mathrm{Ra} \int_V T {\bf r \times g} + \mathrm{Ra \; Fr} \int_V T {\bf r \times \Omega \times \Omega \times r} = 0
+\end{equation}
 
+The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
+Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque (citation...).
+Therefore, the we can neglect those terms, and we are left with
+
+\begin{equation}
+\begin{aligned}
+\int_V T {\bf r \times \Omega \times \Omega \times r} = 0 \\
+\end{aligned}
+\end{equation}
 
 \section{Rotational dynamics}
 \label{sec:rotation}
+
+\begin{equation}
+{\bf \Omega \times C \cdot \Omega} = 0
+\end{equation}
+
+Following \citet{ricard1993polar}, the total moment of inertia of the mantle may be separated into three parts, a spherically symmetric contribution, a rotationally deformed contribution, and a contribution due to the internal mass anomalies:
+
+\begin{equation}
+C_{ij} = I_0 \delta_{ij} + J_{ij} + E_{ij}
+\end{equation}
+
+where ${\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}$ is the convective part convolved with the surface response ot internal density anomalies, and $
 
 We may write the nonlinear Liouville equations 
 \begin{equation}
