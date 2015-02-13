@@ -33,7 +33,7 @@ frac = 50
 def get_spin_spectrum(text_file):
 
   #load the data
-  data = np.loadtxt(text_file,skiprows=50, usecols=(1,15,16,17,18))
+  data = np.loadtxt(text_file,skiprows=50, usecols=(1,17,18,19,20))
   #get rid of duplicate times (why might these exist?)
   stats = []
   for i in range(len(data)-1):
@@ -89,9 +89,9 @@ for f, i in zip( output_files, range(len(output_files)) ):
 
 
   times, diff, acorrdiff, peak = get_spin_spectrum(f)
-  diff = diff/alpha/delta_T
-  acorrdiff = acorrdiff/alpha/delta_T/alpha/delta_T
   tmax = times[-1]
+  tmin = times[0]
+  times = times-tmin
   
   Rayleighs.append(Ra)
   amplitudes.append(diff.mean())
@@ -99,8 +99,8 @@ for f, i in zip( output_files, range(len(output_files)) ):
 
   ax = plt.subplot(1,2,1)
   ax.plot(times, diff,  label=r'$\mathrm{Ra} = %.1f \times 10^{%i}$' % ( Ra/np.power(10., np.floor(np.log10(Ra))) , np.floor(np.log10(Ra))))
-  ax.set_xlim(0,5.)
-  ax.set_ylim(0, 1.0e-2)
+  ax.set_xlim(0,7)
+  ax.set_ylim(0, 1.0e-4)
   ax.set_xlabel("Time (Gyr)")
   ax.set_ylabel(r'Relative moment $(\lambda_2-\lambda_1)/I_0$')
 
@@ -117,16 +117,16 @@ ax.set_yscale('log')
 ax.xaxis.set_major_formatter(matplotlib.ticker.LogFormatterMathtext())
 ax.yaxis.set_major_formatter(matplotlib.ticker.LogFormatterMathtext())
 
-Ra=np.logspace(7.3, 8.3)
-Moment = 350.*np.power(Ra, -2./3.)
+Ra=np.logspace(6.6, 8.3)
+Moment = 2.5*np.power(Ra, -2./3.)
 
 ax.plot(Ra, Moment, '--', c='0.5', linewidth=4)
 
 clist = plt.rcParams['axes.color_cycle']
 ax.scatter(Rayleighs, np.array(amplitudes), c = clist, s=100)
 
-ax.set_ylim(7.0e-4, 1.0e-2)
-ax.set_xlim(1.e7, 4.0e8)
+ax.set_ylim(3.0e-6, 3e-4)
+ax.set_xlim(1.e6, 4.0e8)
 ax.set_xlabel("Rayleigh number")
 ax.set_ylabel("Average relative moment")
 
