@@ -62,10 +62,98 @@ These two uncertainties are not unrelated: they are both expected to be function
 As such, they do not vary independently. 
 This suggests that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
 
-Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.]{tsai2007theoretical, creveling2012mechanisms}. 
+Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
 \citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
 Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle.
+
+\section{Rotational dynamics}
+
+\subsection{The Liouville equation}
+Conservation of angular momentum for a torque-free system in a rotating reference frame requires
+
+\begin{equation}
+\frac{d {\bf H}}{dt} + {\bf \Omega} \times {\bf H} = 0
+\label{euler}
+\end{equation}
+
+known as Euler's equations, where ${\bf H} = {\bf I} \cdot {\bf \Omega}$ is the angular momentum vector, $\bf I$ is the moment of inertia tensor, and $\bf \Omega$ is the angular velocity.
+On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be as well.
+In this case Equation \ref{euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
+For a slowly convecting fluid such as a planetary mantle the inertial term $\partial {\bf H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
+\begin{equation}
+{\bf \Omega } (t)\times ( {\bf I}(t) \cdot {\bf \Omega }(t) ) = 0
+\label{quasistatic_liouville}
+\end{equation}
+
+Note that solving Equation \ref{quasistatic_liouville} is equivalent to solving an eigenvalue problem for ${\bf I}$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
+In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
+The moment of inertia tensor above includes all contributions to the mass structure of the planet, including
+\begin{itemize}
+\item the spherically symmetric mass distribution
+\item the rotational deformation
+\item internal density anomalies
+\item surface deflections due to internal density anomalies
+\end{itemize}
+
+The moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
+
+\begin{equation}
+I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + C_{ij}(t)
+\label{separation}
+\end{equation}
+
+wher $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $C_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
+If we plug this decomposition into Equation \ref{quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
+
+\begin{equation}
+{\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf C} \cdot {\bf \Omega} )
+\end{equation}
+
+This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches of the convective part of the moment of inertia ($\bf C$) and the rotational deformation part of the moment of inertia ($\bf J$).
+If $\bf J$ and $\bf C$ are coaxial, then the mismatch must be zero, and solving the polar wander problem reduces to solving an eigenvalue problem for $\bf C$.
+Our goal is to characterize this balance.
+
+\subsection{Rotational deformation}
+
+The part of the moment of inertia due to the elastic rotational deformation is traditionally related to the degree-two part of the gravity field via MacCullagh's formula \citep{munk1960rotation}:
+
+\begin{equation}
+J_{ij} = \frac{k a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right)
+\label{elastic_deformation}
+\end{equation}
+
+where $k$ is an elastic Love number, $a$ is the semimajor axis of the planet, and $G$ is the gravitational constant.
+This result may be extended to a viscoelastic rheology via the viscoelastic correspondence principle \citep[e.g.][]{peltier1974impulse}:
+
+\begin{equation}
+J_{ij} = \frac{k(t) a^5}{3 G} * \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right)
+\label{viscoelastic_deformation}
+\end{equation}
+
+where $k$ is now a time-dependent viscoelastic Love number which is convolved with the time-dependent rotation vector.
+
+The infinite time limit of Equation \ref{viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
+\begin{equation}
+k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
+\end{equation}
+
+where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
+
+Following \citet{ricard1993polar}
+..
+..(fill in gaps)
+
+\begin{equation}
+J_{ij} = \frac{k_f a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right) -
+ \frac{k_f a^5 T_1}{3G} \left(\dot{\Omega}_i \Omega_j + \Omega_i \dot{\Omega}_j - \frac{2}{3} \Omega_q \dot{\Omega}_q \delta_{ij} \right)
+\end{equation}
+
+The two terms of this equation have simple interpretations.  
+The first term corresponds to the fluid limit of rotational deformation (in the absence of any long-term elastic strength).  
+The second term represents the lag in the moment of inertia due to the viscous adjustment of the rotational bulge, where $T_1$ is the characteristic time constant for this adjustment.
+Since the first term represents the fluid limit of rotational deformation, it automatically satisfies Equation \ref{quasistatic_liouville}, and hence does not contribute to the polar wander problem.
+
 
 \section{Governing equations}
 \label{sec:govern}
@@ -231,7 +319,7 @@ Following \citet{ricard1993polar}, the total moment of inertia of the mantle may
 C_{ij} = I_0 \delta_{ij} + J_{ij} + E_{ij}
 \end{equation}
 
-where ${\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}$ is the convective part convolved with the surface response ot internal density anomalies, and $
+where ${\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}$ is the convective part convolved with the surface response ot internal density anomalies, and
 
 We may write the nonlinear Liouville equations 
 \begin{equation}
