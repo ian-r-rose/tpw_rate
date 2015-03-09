@@ -59,9 +59,10 @@ Paleomagnetic data have been interpreted to requre up to $\sim 1^\circ$/Myr rate
 
 The primary uncertainties in assigning a maximum TPW rate to a convecting planet are the size of convective anomalies, which drive the rotational adjustment, and the viscosity structure of the mantle, which retards it. 
 These two uncertainties are not unrelated: they are both expected to be functions of the geometric and material properties of the mantle.
-As such, they do not vary independently. 
-This suggests that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
+As such, they do not vary independently, and first-order questions about the propensity for planets to experience TPW remain: how are rates of TPW expected to vary with the vigor of convection? 
+Are other planetary bodies more or less likely than Earth to experience TPW?  And are these rates expected to vary in Earth history?
 
+These questions suggest that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
 Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
 \citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
@@ -99,20 +100,21 @@ The moment of inertia tensor above includes all contributions to the mass struct
 The moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
 
 \begin{equation}
-I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + C_{ij}(t)
+I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 \label{separation}
 \end{equation}
 
-wher $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $C_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
+wher $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
 If we plug this decomposition into Equation \ref{quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
 
 \begin{equation}
-{\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf C} \cdot {\bf \Omega} )
+{\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf E} \cdot {\bf \Omega} )
+\label{disequilibrium}
 \end{equation}
 
-This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches of the convective part of the moment of inertia ($\bf C$) and the rotational deformation part of the moment of inertia ($\bf J$).
-If $\bf J$ and $\bf C$ are coaxial, then the mismatch must be zero, and solving the polar wander problem reduces to solving an eigenvalue problem for $\bf C$.
-Our goal is to characterize this balance.
+This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches of the convective part of the moment of inertia ($\bf E$) and the rotational deformation part of the moment of inertia ($\bf J$).
+If $\bf J$ and $\bf E$ are coaxial, then the mismatch must be zero, and solving the polar wander problem reduces to solving an eigenvalue problem for $\bf E$.
+Our goal is to characterize this balance from a perspective of scaling and fluid dynamics.
 
 \subsection{Rotational deformation}
 
@@ -133,20 +135,23 @@ J_{ij} = \frac{k(t) a^5}{3 G} * \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q 
 
 where $k$ is now a time-dependent viscoelastic Love number which is convolved with the time-dependent rotation vector.
 
-The infinite time limit of Equation \ref{viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
+The infinite-time limit of Equation \ref{viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
 \begin{equation}
 k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
+\label{fluid_love}
 \end{equation}
 
 where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
+The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $C_{ij}$.
 
-Following \citet{ricard1993polar}
-..
-..(fill in gaps)
+\citet{ricard1993polar} obtain an approximation to Equation \ref{viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
+This introduces a new parameter, termed $T_1$, which can be seen as a weighted tidal relaxation time for the system.  
+This simple approximation in the Laplace domain allows for an analytical transformation back into the time domain, and neglecting second order terms in $\dot{\Omega}$ we find:
 
 \begin{equation}
 J_{ij} = \frac{k_f a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right) -
  \frac{k_f a^5 T_1}{3G} \left(\dot{\Omega}_i \Omega_j + \Omega_i \dot{\Omega}_j - \frac{2}{3} \Omega_q \dot{\Omega}_q \delta_{ij} \right)
+\label{rotational_deformation}
 \end{equation}
 
 The two terms of this equation have simple interpretations.  
@@ -154,9 +159,128 @@ The first term corresponds to the fluid limit of rotational deformation (in the 
 The second term represents the lag in the moment of inertia due to the viscous adjustment of the rotational bulge, where $T_1$ is the characteristic time constant for this adjustment.
 Since the first term represents the fluid limit of rotational deformation, it automatically satisfies Equation \ref{quasistatic_liouville}, and hence does not contribute to the polar wander problem.
 
+\subsection{The convective moment of inertia}
 
-\section{Governing equations}
-\label{sec:govern}
+The term on the right-hand side of equation \ref{disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
+This, as well, may be parameterized using a viscoelastic Love number approach:
+\begin{equation} 
+{\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}
+\end{equation}
+
+where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, and $C_{ij}$ is the moment of inertia without that response.
+Frequently the simplification is made that the timescale of the surface response is quick compared to the true polar wander timescale, and we may use the fluid limit geoid kernels \citep[e.g.][]{richards1984geoid}:  
+\begin{equation}
+E_{ij} = (1+k^L_f) C_{ij}
+\end{equation}
+
+..
+..
+(Text on free surface?)
+
+\subsection{Rate of true polar wander}
+
+We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
+A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d/dt (\Omega^2) = 2 {\Omega_i} \dot{ \Omega}_i = 0)$
+Substituting Equation \ref{rotational_deformation} into Equation \ref{disequilibrium} we find
+
+\begin{equation}
+\frac{k_f a^5 T_1}{3G}{\bf \Omega} \times {\bf \dot{\Omega} } = {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
+\label{eq:liouville}
+\end{equation}
+
+Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation \ref{fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
+\begin{equation}
+ \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
+\end{equation}
+
+Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
+If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
+
+\ifdetail
+
+And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
+
+\begin{equation}
+\begin{aligned}
+ & \cos{\theta}\cos{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\cos{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ &\cos{\theta}\sin{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\sin{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ - &\sin{\theta} \dot{\theta} = \\
+  &A \cos{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+Now multiply the top equation by $\cos{\phi}$ and the second equation by $\sin{\phi}$ and add them together to get
+
+\begin{equation}
+\begin{aligned}
+ & \cos{\theta}\cos^2{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \cos{\phi} \dot{\phi} + \cos{\theta}\sin^2{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \sin{\phi} \dot{\phi} = \\
+  &A \sin{\theta}\cos^2{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] + \\
+  &A \sin{\theta}\sin^2{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+ & \cos{\theta}\dot{\theta} =  
+   A \sin{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
+  &A \sin{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+Now multiply the above by $\cos{\theta}$ and the third equation by $-\sin{\theta}$ and add them to get
+
+\begin{equation}
+\begin{aligned}
+ & \cos^2{\theta}\dot{\theta} + \sin^2{\theta} \dot{\theta} =  
+   A \sin{\theta} \cos{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
+  &A \sin{\theta} \cos{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] - \\
+  &A \cos{\theta} \sin{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
+\end{aligned}
+\end{equation}
+
+After a lot of cancellation, we find
+
+\begin{equation}
+\begin{aligned}
+ \dot{\theta} &= A \sin{\theta} \cos{\theta} \left[ - \lambda_3 + \lambda_1 \cos^2{\phi} + \lambda_2 \sin^2{\phi} \right] \\
+              &= - A \sin{\theta} \cos{\theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
+              &= -\frac{A}{2} \sin{2 \theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
+\end{aligned}
+\end{equation}
+
+Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equation by $\cos{\phi}$ and add them to get
+
+\begin{equation}
+\begin{aligned}
+ & \sin{\theta} \dot{\phi} = A \sin{\theta}\cos{\phi}\sin{\phi} \left( \lambda_2 - \lambda_1 \right ) \\
+& \dot{\phi} = \frac{A}{2} \sin{2 \phi} (\lambda_2-\lambda_1)
+\end{aligned}
+\end{equation}
+
+\else
+\fi
+
+
+\begin{equation}
+\begin{aligned}
+\dot{\theta} &= - \frac{1}{(C-A)T_1} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
+\dot{\phi} &= \;\; \frac{1}{(C-A)T_1} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
+\end{aligned}
+\label{milankovitch}
+\end{equation}
+
+Without loss of generality we may choose the coordinate system such that $\phi=0$:
+\begin{equation}
+\dot{\theta} = - \frac{1}{(C-A)T_1} (\lambda_3-\lambda_1) \sin{2 \theta}
+\label{simple_milankovitch}
+\end{equation}
+
+These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
+Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
+
+In order to estimate $\theta$ and $\lambda_i$ we must examine the linear momentume equation.
+
+
+\section{Linear momentum equation}
+\label{sec:linear}
 
 As mantle convection and rotational dynamics of planetary bodies are usually considered separately, some extra care must be taken to establish self-consistent governing equations.  
 Here we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
@@ -168,7 +292,7 @@ Here we consider an isoviscous planet in a rotating reference frame with no inte
 
 \begin{equation}
 \begin{aligned}
- \rho{\bf \Omega \times \Omega \times r}= - \nabla P + \nabla \cdot \left( \eta \varepsilon ({\bf u}) \right) + \rho {\bf g}
+ \rho{\bf \Omega \times \Omega \times r}= - \nabla P + \nabla^2 {\bf u} + \rho {\bf g}
 \label{navier_stokes}
 \end{aligned}
 \end{equation}
@@ -178,8 +302,8 @@ Here we consider an isoviscous planet in a rotating reference frame with no inte
 \label{energy}
 \end{equation}
 
- where the parameters are defined in Table~\ref{parameters} and $\varepsilon({\bf v}) = 1/2 \; ( \partial v_i / \partial x_j + \partial v_j / \partial x_i )$ corresponds to the symmetrized velocity gradient.
- In addition we use the simple equation of state
+where the parameters are defined in Table~\ref{parameters}.
+In addition we use the simple equation of state
 
 \begin{equation}
 \rho = \rho_0 \left( 1 - \alpha T \right)
