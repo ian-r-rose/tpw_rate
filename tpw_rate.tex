@@ -276,14 +276,14 @@ These equations are a version of what has been called the ``Milankovitch theorem
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
 
-In order to estimate $\theta$ and $\lambda_i$ we must examine the linear momentume equation.
+In order to estimate $\theta$ and $\lambda_i$ we must examine the linear momentum equation.
 
 
 \section{Linear momentum equation}
 \label{sec:linear}
 
 As mantle convection and rotational dynamics of planetary bodies are usually considered separately, some extra care must be taken to establish self-consistent governing equations.  
-Here we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
+For simplicty we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
 
 \begin{equation}
 \nabla \cdot {\bf u} = 0
@@ -310,12 +310,18 @@ In addition we use the simple equation of state
 \label{eos}
 \end{equation}
 
-Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure. 
-Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires \_\_\_\_? nondimensional numbers to characterize it.
+Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it.
+Convenient choices for these numbers are listed in Table \ref{nondim}, along with approximate Earth-like values for them.
+
+In particular, the most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
+This second nondimensional number does not have a uniformly agreed-upon name, but has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, which we adopt here.
+Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
+It would be straightforward to include them, but does not affect the overall treatment of the effects of rotation.
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
-The Buckingham Pi theorem (essentially an application of the rank-nullity theorem) allows us to determine the number of nondimensional numbers for this problem.  
+The Buckingham Pi theorem (essentially an application of the rank-nullity theorem) allows us to determine the number of nondimensional numbers for this problem.
 We count the number of fundamental units for the problem, in this case mass (kg), length (m), time (s), and temperature (K), as well as the number of parameters in use for this problem.  
 These parameters are listed in Table \ref{parameters}, and subtracting the ...
 
@@ -370,13 +376,10 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
   
 \fi
 
-
-Convenient choices for these numbers are shown in Table \ref{nondim} along with approximate Earthlike values.
-In addition to the more usual Rayleigh and Prandtl numbers we include a Froude number, characterizing the ratio of centrifugal to gravitational forces, and $\Gamma$, a nondimensional characterization of density variations.
 Nondimensionalizing with these parameters we obtain
 \begin{equation}
 \begin{aligned}
- - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\bf \Omega \times \Omega \times r} = 0
+ - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times r} = 0
 \end{aligned}
 \end{equation}
 
@@ -407,17 +410,15 @@ $\delta \rho = \rho_0 \alpha \Delta T$ & buoyancy parameter \\
 Symbol &  Number & Definition & Approximate value \\
 \hline
 Ra & Rayleigh &  $\rho_0 g_0 \alpha \Delta T R^3/\eta \kappa$ & $10^7$\\
-Pr & Prandtl & $\eta/\rho_0 \kappa$ & $10^{23}$ \\
 Fr & Froude & $\Omega_0^2 R/g_0$ & $10^{-3}$ \\
-$\Gamma$ & Density deficit & $\alpha \Delta T$ & $10^{-2}$ \\
-A & Aspect ratio & $R_i/R$ & $0.55$ \\
+A & Aspect ratio & $R_i/R$ & $0.54$ \\
 \end{tabular}
 \end{table}
  
 This can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
 
 \begin{equation}
--\int_V {\bf r} \times \nabla P^* + \int_V {\bf r} \times \nabla^2 {\bf v} - \mathrm{Ra} \int_V T {\bf r \times g} + \mathrm{Ra \; Fr} \int_V T {\bf r \times \Omega \times \Omega \times r} = 0
+-\int_V {\bf r} \times \nabla P^* + \int_V {\bf r} \times \nabla^2 {\bf v} - \mathrm{Ra} \int_V T {\bf r \times g} + \mathrm{Ra \; Fr} \int_V T {\bf r \times \mitbf{\omega} \times \mitbf{\omega} \times r} = 0
 \end{equation}
 
 The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
@@ -426,120 +427,26 @@ Therefore, the we can neglect those terms, and we are left with
 
 \begin{equation}
 \begin{aligned}
-\int_V T {\bf r \times \Omega \times \Omega \times r} = 0 \\
+\int_V T {\bf r \times \mitbf{\omega} \times \mitbf{\omega} \times r} = 0 \\
 \end{aligned}
 \end{equation}
 
-\section{Rotational dynamics}
-\label{sec:rotation}
+\section{Scaling}
+\label{sec:scaling}
 
-\begin{equation}
-{\bf \Omega \times C \cdot \Omega} = 0
-\end{equation}
-
-Following \citet{ricard1993polar}, the total moment of inertia of the mantle may be separated into three parts, a spherically symmetric contribution, a rotationally deformed contribution, and a contribution due to the internal mass anomalies:
-
-\begin{equation}
-C_{ij} = I_0 \delta_{ij} + J_{ij} + E_{ij}
-\end{equation}
-
-where ${\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}$ is the convective part convolved with the surface response ot internal density anomalies, and
-
-We may write the nonlinear Liouville equations 
-\begin{equation}
-{\bf \Omega} \times {\bf \dot{\Omega} } = \frac{1}{\epsilon I_0 \tau} {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
-\label{eq:liouville}
-\end{equation}
-
-introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
-\begin{equation}
- \dot{\mitbf{\omega}}  = \frac{1}{\epsilon I_0 \tau} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
-\end{equation}
-
-Note that the quantity in brackets is identical in form to the shear stress on a plane in classical elastostatics.
-If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
-
-\ifdetail
-
-And here is the tedious algebra.  Let the prefactors $\frac{1}{\epsilon I_0 \tau}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
-
-\begin{equation}
-\begin{aligned}
- & \cos{\theta}\cos{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \dot{\phi} = \\
-  &A \sin{\theta}\cos{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
- &\cos{\theta}\sin{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \dot{\phi} = \\
-  &A \sin{\theta}\sin{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
- - &\sin{\theta} \dot{\theta} = \\
-  &A \cos{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
-\end{aligned}
-\end{equation}
-
-Now multiply the top equation by $\cos{\phi}$ and the second equation by $\sin{\phi}$ and add them together to get
-
-\begin{equation}
-\begin{aligned}
- & \cos{\theta}\cos^2{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \cos{\phi} \dot{\phi} + \cos{\theta}\sin^2{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \sin{\phi} \dot{\phi} = \\
-  &A \sin{\theta}\cos^2{\phi}\left[ \lambda_1 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] + \\
-  &A \sin{\theta}\sin^2{\phi} \left[ \lambda_2 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
- & \cos{\theta}\dot{\theta} =  
-   A \sin{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
-  &A \sin{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
-\end{aligned}
-\end{equation}
-
-Now multiply the above by $\cos{\theta}$ and the third equation by $-\sin{\theta}$ and add them to get
-
-\begin{equation}
-\begin{aligned}
- & \cos^2{\theta}\dot{\theta} + \sin^2{\theta} \dot{\theta} =  
-   A \sin{\theta} \cos{\theta} \left[ \lambda_1 \cos^2{\phi} +  \lambda_2 \sin^2{\phi} \right] + \\
-  &A \sin{\theta} \cos{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] - \\
-  &A \cos{\theta} \sin{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
-\end{aligned}
-\end{equation}
-
-After a lot of cancellation, we find
-
-\begin{equation}
-\begin{aligned}
- \dot{\theta} &= A \sin{\theta} \cos{\theta} \left[ - \lambda_3 + \lambda_1 \cos^2{\phi} + \lambda_2 \sin^2{\phi} \right] \\
-              &= - A \sin{\theta} \cos{\theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
-              &= -\frac{A}{2} \sin{2 \theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
-\end{aligned}
-\end{equation}
-
-Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equation by $\cos{\phi}$ and add them to get
-
-\begin{equation}
-\begin{aligned}
- & \sin{\theta} \dot{\phi} = A \sin{\theta}\cos{\phi}\sin{\phi} \left( \lambda_2 - \lambda_1 \right ) \\
-& \dot{\phi} = \frac{A}{2} \sin{2 \phi} (\lambda_2-\lambda_1)
-\end{aligned}
-\end{equation}
-
-\else
-\fi
-
-
-\begin{equation}
-\begin{aligned}
-\dot{\theta} &= - \frac{1}{2 \epsilon I_0 \tau} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
-\dot{\phi} &= \;\; \frac{1}{2 \epsilon I_0 \tau} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
-\end{aligned}
-\label{milankovitch}
-\end{equation}
-
-Without loss of generality we may choose the coordinate system such that $\phi=0$:
-\begin{equation}
-\dot{\theta} = - \frac{1}{2 \epsilon \tau}\sin{2 \theta} \frac{(\lambda_3-\lambda_1)}{I_0}
-\label{simple_milankovitch}
-\end{equation}
-
-These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
-Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$.
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
-With this we may rewrite this in terms of the nondimensional numbers defined above, where 
-$\epsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}$. 
+This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
+We also define a new nondimensional number (which will come in handy in intermediate steps) corresponding to the fractional density changes due to temperature variations: $\Gamma = \alpha \Delta T$.
+With this we may rewrite Equation \ref{simple_milankovitch} in terms of the nondimensional numbers defined above.
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep[e.g.][]{??}.
+\begin{equation}
+(C-A) \sim I_0 \mathrm{Fr}
+\end{equation}
+
+The time constant $T_1$ is related to the viscous tidal relaxation time of the planet. It is frequently represented as a weighted average of the different relaxation modes of the planet \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
+\begin{equation}
+T_1 \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}
+\end{equation}
 
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
@@ -549,12 +456,10 @@ $\epsilon \sim \mathrm{Fr}$ and $\tau \sim \eta / \rho g R = \frac{R^2}{\kappa} 
 At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for predicting characteristic rates of TPW.
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
 
-\section{Scaling}
-\label{sec:scaling}
 
 The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
-We consider relatively slowly rotating bodies here ($\mathrm{Fr} \ll 1$), so that the rotation does not affect the style of convection.  
-In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$.
+We consider relatively slowly rotating bodies here ($\mathrm{Fr} \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
+In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra})$ and $\theta(\mathrm{Ra})$.
 
 We support our scaling analyses with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
 \texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
@@ -569,17 +474,16 @@ We performed a number of simulations at different Rayleigh numbers, integrating 
 \caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayliehg number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
 \end{figure}
 
-The nonhydrostatic moment of inertia is defined
-\begin{equation}
-J_{ij} = \int_{V_S} \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) 
-\end{equation}
+TODO: Needs work with notational consistency/connecting to previous scaling...
 
+Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure.
+
+\begin{equation}
+C_{ij} = \int_{V_S} \rho_0 \alpha T \left( r_q r_q \delta_{ij} - r_i r_j \right) 
+\end{equation}
 where $V_S$ is the reference spherical volume of the mantle.
-If we substitute in Equation \ref{eos} we find
 
-\begin{equation}
-J_{ij} = I_0 \delta_{ij} + \int_{V_S} \rho_0 \alpha T \left( r_q r_q \delta_{ij} - r_i r_j \right) = I_0 \delta_{ij} + E_{ij} 
-\end{equation}
+These internal density loads may be convolved with surface responses to get the convective moment of inertia $\bf E$.
 
 Nondimensionalizing the integral for $E_{ij}$ we find
 
@@ -825,14 +729,11 @@ which shows the connection between the degree-two component of the density field
 \section {TODO}
 
 \begin{enumerate}
-\item Figure out the best way of nondimensionalizing ($\alpha \Delta T$)
-\item Connect nondimensionalization with Equation \ref{eq:liouville} via correspondence principle
 \item Make notation everywhere consistent
 \item More discussion of Davis+Kahan?
 \item Make better figures
 \item Integrate numerical results
 \item Make the argument about degree-two scaling much sharper
-\item Can I write equation \ref{eq:liouville} in terms of \ref{maccullagh}?
 \item Discuss elastic lithosphere, Creveling
 \item Discuss high-viscosity lower mantle
 \item Earth-like parameters
