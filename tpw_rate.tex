@@ -292,7 +292,7 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 
 \begin{equation}
 \begin{aligned}
- \rho{\bf \Omega \times \Omega \times r}= - \nabla P + \nabla^2 {\bf u} + \rho {\bf g}
+- \nabla P + \eta \nabla^2 {\bf g} =  \rho {\bf g} -  \rho{\bf \Omega \times \Omega \times r}
 \label{navier_stokes}
 \end{aligned}
 \end{equation}
@@ -317,7 +317,66 @@ Convenient choices for these numbers are listed in Table \ref{nondim}, along wit
 In particular, the most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
 This second nondimensional number does not have a uniformly agreed-upon name, but has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
-It would be straightforward to include them, but does not affect the overall treatment of the effects of rotation.
+It would be straightforward to include them, but does not affect the overall treatment of this scaling.
+
+Customarily a hydrostatic reference state is defined as the solution to \ref{navier_stokes} where there is no flow:
+
+\begin{equation}
+\begin{aligned}
+- \nabla P_0 =  \rho_0 {\bf g} -  \rho_0 {\bf \Omega \times \Omega \times r}
+\label{hydrostatic}
+\end{aligned}
+\end{equation}
+
+where $P_0$ is the reference pressure.
+We can define a ``dynamic pressure'' $P^* = P - P_0$.
+
+Nondimensionalizing with the parameters in Table \ref{nondim} we find
+\begin{equation}
+\begin{aligned}
+ - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times {\bf r}} = 0
+\end{aligned}
+\end{equation}
+
+
+The figure for the planet which is consistent with the hydrostatic state we call $V_H$.
+The actual figure of the planet's mantle, $V$, may have some disequilibrium with this hydrostatic shape: $V = V_H + \Delta V $.
+The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma = \alpha \Delta T$ is convenient.
+
+Equation \ref{navier_stokes} can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
+
+\begin{equation}
+\begin{aligned}
+-\int_V {\bf r} \times \nabla P + \int_V \eta {\bf r} \times \nabla^2 {\bf u} - \int_V \rho {\bf r \times g} + \int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} &= 0 \\
+\end{aligned}
+\end{equation}
+
+
+The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
+Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque (citation...).
+Therefore, the we can neglect those terms, and we are left with
+
+\begin{equation}
+\begin{aligned}
+\int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} &= 0 \\
+\end{aligned}
+\end{equation}
+
+which is simply a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
+Splitting the volume into $V_H$ and $\Delta V$ and substituting \ref{eos} we find
+
+\begin{equation}
+\begin{aligned}
+&\int_{V_H} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
+\int_{V_H} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} +  \\
+&\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
+\int_{\Delta V} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 0  \\
+\end{aligned}
+\end{equation}
+
+The first term of this equation is zero due to the hydrostatic equation.  
+The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\alpha \Delta T$.
+
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
@@ -376,15 +435,6 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
   
 \fi
 
-Nondimensionalizing with these parameters we obtain
-\begin{equation}
-\begin{aligned}
- - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times r} = 0
-\end{aligned}
-\end{equation}
-
-where we have introduced a dynamic pressure $P^* = P - P_0$.
-
 \begin{table}
 \centering
 \caption{Parameters for rotating mantle convection}
@@ -415,22 +465,6 @@ A & Aspect ratio & $R_i/R$ & $0.54$ \\
 \end{tabular}
 \end{table}
  
-This can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
-
-\begin{equation}
--\int_V {\bf r} \times \nabla P^* + \int_V {\bf r} \times \nabla^2 {\bf v} - \mathrm{Ra} \int_V T {\bf r \times g} + \mathrm{Ra \; Fr} \int_V T {\bf r \times \mitbf{\omega} \times \mitbf{\omega} \times r} = 0
-\end{equation}
-
-The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
-Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque (citation...).
-Therefore, the we can neglect those terms, and we are left with
-
-\begin{equation}
-\begin{aligned}
-\int_V T {\bf r \times \mitbf{\omega} \times \mitbf{\omega} \times r} = 0 \\
-\end{aligned}
-\end{equation}
-
 \section{Scaling}
 \label{sec:scaling}
 
@@ -443,7 +477,7 @@ The difference in the polar and equatorial moments of the hydrostatic planet $(C
 (C-A) \sim I_0 \mathrm{Fr}
 \end{equation}
 
-The time constant $T_1$ is related to the viscous tidal relaxation time of the planet. It is frequently represented as a weighted average of the different relaxation modes of the planet \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
+The time constant $T_1$ is a viscous tidal relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
 \begin{equation}
 T_1 \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}
 \end{equation}
