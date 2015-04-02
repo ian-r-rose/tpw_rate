@@ -6,6 +6,7 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{color, soul}
 
 \title[TPW Rates]
   {Rates of true polar wander in convecting planets}
@@ -343,6 +344,8 @@ The figure for the planet which is consistent with the hydrostatic state we call
 The actual figure of the planet's mantle, $V$, may have some disequilibrium with this hydrostatic shape: $V = V_H + \Delta V $.
 The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma = \alpha \Delta T$ is convenient.
 
+\hl{This text is still causing me difficulty. Nondimensionalizing the hydrostatic equation does indeed result in an $\alpha T$ dependence.  }
+
 Equation \ref{navier_stokes} can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
 
 \begin{equation}
@@ -363,6 +366,9 @@ Therefore, the we can neglect those terms, and we are left with
 \end{equation}
 
 which is simply a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
+
+\hl{I suppose this could stop here. Another couple of lines of text will get to the quasistatic Liouville equation.  However, it does not really make a clear connection to the nondimensionalization }
+
 Splitting the volume into $V_H$ and $\Delta V$ and substituting \ref{eos} we find
 
 \begin{equation}
@@ -376,7 +382,17 @@ Splitting the volume into $V_H$ and $\Delta V$ and substituting \ref{eos} we fin
 
 The first term of this equation is zero due to the hydrostatic equation.  
 The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\alpha \Delta T$.
+Removing these, we find
+\begin{equation}
+\begin{aligned}
+\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 
+-\int_{V_H} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }}
+\end{aligned}
+\end{equation}
 
+This equation may be identified with \ref{disequilibrium}, where the mismatch of the convective moment of intertia with the spin axis is balanced by disequilibrium in the rotational deformation.
+
+\hl{(I am not sure about this strategy for connecting the linear momentum equation with the angular momentum equation.  In particular, I could go much further, and divide $V$ into more pieces: $V = V_S + \Delta V_H + \Delta V_L + \Delta V_D$, where we have, repsectively, the spherical reference volume, the reference hydrostatic volume, the lag between the current figure and the hydrostatic figure, and the deflections of the surface.  This would produce a lot of terms...  The goal here is to show that this set of equations is consistent with the Liouville approach above, and that this set of nondimensional numbers is appropriate.)}
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
