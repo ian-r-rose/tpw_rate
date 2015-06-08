@@ -81,14 +81,14 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 
 known as Euler's equations, where ${\bf H} = {\bf I} \cdot {\bf \Omega}$ is the angular momentum vector, $\bf I$ is the moment of inertia tensor, and $\bf \Omega$ is the angular velocity.
 On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be as well.
-In this case Equation \ref{euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
+In this case Equation \eqref{euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
 For a slowly convecting fluid such as a planetary mantle the inertial term $\partial {\bf H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
 {\bf \Omega } (t)\times ( {\bf I}(t) \cdot {\bf \Omega }(t) ) = 0
 \label{quasistatic_liouville}
 \end{equation}
 
-Note that solving Equation \ref{quasistatic_liouville} is equivalent to solving an eigenvalue problem for ${\bf I}$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
+Note that solving Equation \eqref{quasistatic_liouville} is equivalent to solving an eigenvalue problem for ${\bf I}$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor above includes all contributions to the mass structure of the planet, including
 \begin{itemize}
@@ -106,7 +106,7 @@ I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 \end{equation}
 
 wher $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
-If we plug this decomposition into Equation \ref{quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
+If we plug this decomposition into Equation \eqref{quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
 
 \begin{equation}
 {\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf E} \cdot {\bf \Omega} )
@@ -136,7 +136,7 @@ J_{ij} = \frac{k(t) a^5}{3 G} * \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q 
 
 where $k$ is now a time-dependent viscoelastic Love number which is convolved with the time-dependent rotation vector.
 
-The infinite-time limit of Equation \ref{viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
+The infinite-time limit of Equation \eqref{viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
 \begin{equation}
 k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 \label{fluid_love}
@@ -145,7 +145,7 @@ k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
 The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $C_{ij}$.
 
-\citet{ricard1993polar} obtain an approximation to Equation \ref{viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
+\citet{ricard1993polar} obtain an approximation to Equation \eqref{viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
 This introduces a new parameter, termed $T_1$, which can be seen as a weighted tidal relaxation time for the system.  
 This simple approximation in the Laplace domain allows for an analytical transformation back into the time domain, and neglecting second order terms in $\dot{\Omega}$ we find:
 
@@ -158,11 +158,11 @@ J_{ij} = \frac{k_f a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Om
 The two terms of this equation have simple interpretations.  
 The first term corresponds to the fluid limit of rotational deformation (in the absence of any long-term elastic strength).  
 The second term represents the lag in the moment of inertia due to the viscous adjustment of the rotational bulge, where $T_1$ is the characteristic time constant for this adjustment.
-Since the first term represents the fluid limit of rotational deformation, it automatically satisfies Equation \ref{quasistatic_liouville}, and hence does not contribute to the polar wander problem.
+Since the first term represents the fluid limit of rotational deformation, it automatically satisfies Equation \eqref{quasistatic_liouville}, and hence does not contribute to the polar wander problem.
 
 \subsection{The convective moment of inertia}
 
-The term on the right-hand side of equation \ref{disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
+The term on the right-hand side of equation \eqref{disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
 This, as well, may be parameterized using a viscoelastic Love number approach:
 \begin{equation} 
 {\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}
@@ -182,14 +182,14 @@ E_{ij} = (1+k^L_f) C_{ij}
 
 We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d/dt (\Omega^2) = 2 {\Omega_i} \dot{ \Omega}_i = 0)$
-Substituting Equation \ref{rotational_deformation} into Equation \ref{disequilibrium} we find
+Substituting Equation \eqref{rotational_deformation} into Equation \eqref{disequilibrium} we find
 
 \begin{equation}
 \frac{k_f a^5 T_1}{3G}{\bf \Omega} \times {\bf \dot{\Omega} } = {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
 \label{eq:liouville}
 \end{equation}
 
-Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation \ref{fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
+Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation \eqref{fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
 \begin{equation}
  \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
 \end{equation}
@@ -283,7 +283,8 @@ In order to estimate $\theta$ and $\lambda_i$ we must examine the linear momentu
 \section{Linear momentum equation}
 \label{sec:linear}
 
-As mantle convection and rotational dynamics of planetary bodies are usually considered separately, some extra care must be taken to establish self-consistent governing equations.  
+Mantle convection and rotational dynamics of planetary bodies are usually considered separately, yet the processes are based on a common set of governing equations. 
+As such, some extra care must be taken to ensure that the equations we consider are self-consistent. 
 For simplicty we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
 
 \begin{equation}
@@ -293,7 +294,7 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 
 \begin{equation}
 \begin{aligned}
-- \nabla P + \eta \nabla^2 {\bf g} =  \rho {\bf g} -  \rho{\bf \Omega \times \Omega \times r}
+- \nabla P + \eta \nabla^2 {\bf u} =  \rho {\bf g} -  \rho{\bf \Omega \times \Omega \times r}
 \label{navier_stokes}
 \end{aligned}
 \end{equation}
@@ -302,25 +303,24 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 \frac{\partial T}{\partial t} + {\bf u} \cdot \nabla T = \kappa \nabla^2 T
 \label{energy}
 \end{equation}
-
-where the parameters are defined in Table~\ref{parameters}.
+here the parameters are defined in Table~\eqref{parameters}.
 In addition we use the simple equation of state
-
 \begin{equation}
-\rho = \rho_0 \left( 1 - \alpha T \right)
+\rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
 \label{eos}
 \end{equation}
-
+where $\bf u$ is the velocity, $P$ is the pressure, and $T$ is the temperature.
+The other parameters are defined in Table \eqref{parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it.
-Convenient choices for these numbers are listed in Table \ref{nondim}, along with approximate Earth-like values for them.
+Convenient choices for these numbers are listed in Table \eqref{nondim}, along with approximate Earth-like values for them.
 
 In particular, the most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
 This second nondimensional number does not have a uniformly agreed-upon name, but has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
-It would be straightforward to include them, but does not affect the overall treatment of this scaling.
+It would be straightforward to include them, and they do not affect the overall treatment of this scaling.
 
-Customarily a hydrostatic reference state is defined as the solution to \ref{navier_stokes} where there is no flow:
+Customarily a hydrostatic reference state is defined as the solution to \eqref{navier_stokes} where there is no flow:
 
 \begin{equation}
 \begin{aligned}
@@ -332,7 +332,7 @@ Customarily a hydrostatic reference state is defined as the solution to \ref{nav
 where $P_0$ is the reference pressure.
 We can define a ``dynamic pressure'' $P^* = P - P_0$.
 
-Nondimensionalizing with the parameters in Table \ref{nondim} we find
+Nondimensionalizing with the parameters in Table \eqref{nondim} we find
 \begin{equation}
 \begin{aligned}
  - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times {\bf r}} = 0
@@ -344,9 +344,8 @@ The figure for the planet which is consistent with the hydrostatic state we call
 The actual figure of the planet's mantle, $V$, may have some disequilibrium with this hydrostatic shape: $V = V_H + \Delta V $.
 The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma = \alpha \Delta T$ is convenient.
 
-\hl{This text is still causing me difficulty. Nondimensionalizing the hydrostatic equation does indeed result in an $\alpha T$ dependence.  }
 
-Equation \ref{navier_stokes} can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
+Equation \eqref{navier_stokes} can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
 
 \begin{equation}
 \begin{aligned}
@@ -356,7 +355,7 @@ Equation \ref{navier_stokes} can be transformed into an angular momentum equatio
 
 
 The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
-Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque (citation...).
+Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque \citep{braginsky1995equations}.
 Therefore, the we can neglect those terms, and we are left with
 
 \begin{equation}
@@ -367,38 +366,34 @@ Therefore, the we can neglect those terms, and we are left with
 
 which is simply a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
 
-\hl{I suppose this could stop here. Another couple of lines of text will get to the quasistatic Liouville equation.  However, it does not really make a clear connection to the nondimensionalization }
-
-Splitting the volume into $V_H$ and $\Delta V$ and substituting \ref{eos} we find
+Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eos} we find
 
 \begin{equation}
 \begin{aligned}
 &\int_{V_H} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
-\int_{V_H} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} +  \\
+\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} +  \\
 &\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
-\int_{\Delta V} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 0  \\
+\int_{\Delta V} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 0  \\
 \end{aligned}
 \end{equation}
 
 The first term of this equation is zero due to the hydrostatic equation.  
-The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\alpha \Delta T$.
+The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\Gamma$.
 Removing these, we find
 \begin{equation}
 \begin{aligned}
 \int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 
--\int_{V_H} \rho_0 \alpha T {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }}
+-\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }}
 \end{aligned}
 \end{equation}
 
-This equation may be identified with \ref{disequilibrium}, where the mismatch of the convective moment of intertia with the spin axis is balanced by disequilibrium in the rotational deformation.
-
-\hl{(I am not sure about this strategy for connecting the linear momentum equation with the angular momentum equation.  In particular, I could go much further, and divide $V$ into more pieces: $V = V_S + \Delta V_H + \Delta V_L + \Delta V_D$, where we have, repsectively, the spherical reference volume, the reference hydrostatic volume, the lag between the current figure and the hydrostatic figure, and the deflections of the surface.  This would produce a lot of terms...  The goal here is to show that this set of equations is consistent with the Liouville approach above, and that this set of nondimensional numbers is appropriate.)}
+This equation may be identified with \eqref{disequilibrium}, where the mismatch of the convective moment of intertia with the spin axis is balanced by disequilibrium in the rotational deformation.
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
 The Buckingham Pi theorem (essentially an application of the rank-nullity theorem) allows us to determine the number of nondimensional numbers for this problem.
 We count the number of fundamental units for the problem, in this case mass (kg), length (m), time (s), and temperature (K), as well as the number of parameters in use for this problem.  
-These parameters are listed in Table \ref{parameters}, and subtracting the ...
+These parameters are listed in Table \eqref{parameters}, and subtracting the ...
 
 \begin{table}
 \centering
@@ -464,6 +459,7 @@ $\Omega_0$ & reference rotation rate \\
 $\eta$ & viscosity \\
 $\kappa$ & thermal diffusivity \\
 $g_0$ & reference gravity \\
+$T_0$ & reference temperature \\
 $\delta \rho = \rho_0 \alpha \Delta T$ & buoyancy parameter \\ 
 \end{tabular}
 \end{table}
@@ -477,7 +473,8 @@ Symbol &  Number & Definition & Approximate value \\
 \hline
 Ra & Rayleigh &  $\rho_0 g_0 \alpha \Delta T R^3/\eta \kappa$ & $10^7$\\
 Fr & Froude & $\Omega_0^2 R/g_0$ & $10^{-3}$ \\
-A & Aspect ratio & $R_i/R$ & $0.54$ \\
+A & aspect ratio & $R_i/R$ & $0.54$ \\
+$\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 \end{tabular}
 \end{table}
  
@@ -487,7 +484,7 @@ A & Aspect ratio & $R_i/R$ & $0.54$ \\
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
 We also define a new nondimensional number (which will come in handy in intermediate steps) corresponding to the fractional density changes due to temperature variations: $\Gamma = \alpha \Delta T$.
-With this we may rewrite Equation \ref{simple_milankovitch} in terms of the nondimensional numbers defined above.
+With this we may rewrite Equation \eqref{simple_milankovitch} in terms of the nondimensional numbers defined above.
 The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep[e.g.][]{??}.
 \begin{equation}
 (C-A) \sim I_0 \mathrm{Fr}
@@ -513,7 +510,7 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 
 We support our scaling analyses with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
 \texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
-We performed a number of simulations at different Rayleigh numbers, integrating Equation \ref{eq:liouville} in time.
+We performed a number of simulations at different Rayleigh numbers, integrating Equation \eqref{eq:liouville} in time.
 
 \subsection{An estimate of $\Lambda_{ij}$}
 
@@ -521,7 +518,7 @@ We performed a number of simulations at different Rayleigh numbers, integrating 
 \centering
 \label{misfit}
 \includegraphics[width=0.9\textwidth]{figures/eigengap.pdf}
-\caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayliehg number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
+\caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayleigh number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
 \end{figure}
 
 TODO: Needs work with notational consistency/connecting to previous scaling...
@@ -570,7 +567,7 @@ At low Rayleigh number we expect the spectrum of the temperature field to be dom
 
 At high Rayleigh number we expect there to be a lengthscale which characterizes the smallest length of features in the convecting system.  
 At lengthscales smaller than this diffusion will tend to wipe out heterogeneities, and there will be no power in those modes.  
-Therefore we expect, to a good approximation, that we will be able to cut off the infinite sum in Equation \ref{T_series} at some maximum wavenumber, set by the smallest lengthscale $d$:
+Therefore we expect, to a good approximation, that we will be able to cut off the infinite sum in Equation \eqref{T_series} at some maximum wavenumber, set by the smallest lengthscale $d$:
  
 \begin{equation}
 n_{\mathrm{max}}, l_{\mathrm{max}}, m_{\mathrm{max}} \sim \frac{R}{d}
@@ -608,7 +605,7 @@ With an estimate for the power in the degree-two part of the temperature field, 
 
 \subsection{An estimate of the mismatch $\theta$}
 
-The mismatch between the current axis and the principle axis of the convective moment is perhaps the most important parameter in Equation \ref{scaled_rotation}.  
+The mismatch between the current axis and the principle axis of the convective moment is perhaps the most important parameter in Equation \eqref{scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
 An estimate for $\theta$ must concern the stability of the convective moment of inertia. 
@@ -627,10 +624,10 @@ Then the rotation of the principal axes of the tensor is bounded by
 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
-This is illustrated in Figure \ref{fig:perturb}
+This is illustrated in Figure \eqref{fig:perturb}
 
 
-We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation \ref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
+We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation \eqref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
 
 \begin{equation}
 \lVert \dot{\theta} \rVert \le \frac{ \lVert \dot{\delta} \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
@@ -667,8 +664,8 @@ This essentially corresponds to the hypothesized ``inertial interchange true pol
 
 The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principle axes of the convective moment of inertia. 
-There is a constant competition between growth of the mismatch angle $\theta$ through Equation \ref{eq:grow_perturbation} and its relaxation through Equation \ref{simple_milankovitch}.
-We may plug in the estimate for $\Lambda_{ij}$ into equation \ref{simple_milankovitch} to find the strikingly simple expression
+There is a constant competition between growth of the mismatch angle $\theta$ through Equation \eqref{eq:grow_perturbation} and its relaxation through Equation \eqref{simple_milankovitch}.
+We may plug in the estimate for $\Lambda_{ij}$ into equation \eqref{simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{\mathrm{Fr}} \sin{2 \theta}
 \label{eq:simplest_milankovitch}
@@ -680,7 +677,7 @@ However, we expect that more complicated estimates for $d(\mathrm{Ra})$ will sti
 More important is the observation that the most important parameters are the Froude number, which acts as the brakes on the system, and $\theta(\mathrm{Ra})$.
 Whereas the rest of the expression has at most a weak dependence on $\mathrm{Ra}$, this is expected to be strongly dependent on it.
 
-Indeed, we can identify two endmember behaviors of Equation \ref{eq:simplest_milankovitch}.
+Indeed, we can identify two endmember behaviors of Equation \eqref{eq:simplest_milankovitch}.
 When convection is not sufficiently chaotic to create a large $\theta$ we are in the regime where the planet's rotation axis closely tracks that of the convective moment.
 This is the regime considered in \citet{steinberger1997changes}, \citet{roberts2007cause}, and \citet{zhong2007supercontinent}, and can be considered the ``slow TPW'' regime.
 
