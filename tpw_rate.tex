@@ -68,6 +68,8 @@ Most previous studies coupling mantle convection models to polar wander calculat
 \citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
 Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle.
+We support our analysis with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
+\texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
 
 \section{Rotational dynamics}
 
@@ -161,6 +163,7 @@ The second term represents the lag in the moment of inertia due to the viscous a
 Since the first term represents the fluid limit of rotational deformation, it automatically satisfies Equation \eqref{quasistatic_liouville}, and hence does not contribute to the polar wander problem.
 
 \subsection{The convective moment of inertia}
+\label{sec:convective_moment}
 
 The term on the right-hand side of equation \eqref{disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
 This, as well, may be parameterized using a viscoelastic Love number approach:
@@ -174,9 +177,7 @@ Frequently the simplification is made that the timescale of the surface response
 E_{ij} = (1+k^L_f) C_{ij}
 \end{equation}
 
-..
-..
-(Text on free surface?)
+An alternative to the loading Love number approach to surface deflections is to calculate the surface deflections directly using mantle convection simulations with a true free surface boundary condition.
 
 \subsection{Rate of true polar wander}
 
@@ -277,11 +278,11 @@ These equations are a version of what has been called the ``Milankovitch theorem
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
 
-In order to estimate $\theta$ and $\lambda_i$ we must examine the linear momentum equation.
+In order to estimate $\theta$ and $\lambda_i$ we must examine the dynamics of convection in the planetary interior.
 
 
-\section{Linear momentum equation}
-\label{sec:linear}
+\section{Internal dynamics}
+\label{sec:internal}
 
 Mantle convection and rotational dynamics of planetary bodies are usually considered separately, yet the processes are based on a common set of governing equations. 
 As such, some extra care must be taken to ensure that the equations we consider are self-consistent. 
@@ -320,7 +321,12 @@ This second nondimensional number does not have a uniformly agreed-upon name, bu
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, and they do not affect the overall treatment of this scaling.
 
-Customarily a hydrostatic reference state is defined as the solution to \eqref{navier_stokes} where there is no flow:
+In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
+In addition, we expect deviations in the figure of the planet from its hydrostatic shape, which we denote by $V = V_H + \Delta V$, where $V_H$ is the hydrostatic figure and $\Delta V$ is the deviation.
+The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma = \alpha \Delta T$ is convenient.
+Finally, we define $\mitbf{\Omega} = \Omega_0 \mitbf{\omega}$, where $\mitbf{\omega}$ is a unit vector in the direction of $\mitbf{\Omega}$.
+
+By definition the hydrostatic reference state is a solution to \eqref{navier_stokes} where there is no flow:
 
 \begin{equation}
 \begin{aligned}
@@ -329,21 +335,12 @@ Customarily a hydrostatic reference state is defined as the solution to \eqref{n
 \end{aligned}
 \end{equation}
 
-where $P_0$ is the reference pressure.
-We can define a ``dynamic pressure'' $P^* = P - P_0$.
-
-Nondimensionalizing with the parameters in Table \eqref{nondim} we find
+Nondimensionalizing with the parameters in Table \eqref{nondim} and removing the reference state we find the nondimensional momentum equation:
 \begin{equation}
 \begin{aligned}
  - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times {\bf r}} = 0
 \end{aligned}
 \end{equation}
-
-
-The figure for the planet which is consistent with the hydrostatic state we call $V_H$.
-The actual figure of the planet's mantle, $V$, may have some disequilibrium with this hydrostatic shape: $V = V_H + \Delta V $.
-The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma = \alpha \Delta T$ is convenient.
-
 
 Equation \eqref{navier_stokes} can be transformed into an angular momentum equation by crossing with $\bf r$ and integrating over the volume of the mantle:
 
@@ -387,7 +384,8 @@ Removing these, we find
 \end{aligned}
 \end{equation}
 
-This equation may be identified with \eqref{disequilibrium}, where the mismatch of the convective moment of intertia with the spin axis is balanced by disequilibrium in the rotational deformation.
+This equation may be identified with \eqref{disequilibrium}, where disequilibrium in the rotational deformation (left side) is balanced by a the mismatch of the convective moment of intertia with the spin axis (right side).
+Our goal is to identify characteristic sizes of these quantities, which must be functions of the nondimensional numbers identified in Table \eqref{nondim}.
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
@@ -411,7 +409,8 @@ $g^\prime$ &=& $g_0 \;\; g$
 \end{tabular}
 \end{table}
 
-If we plug these nondimensionalizations into the governing equations we find that the incompressibility constraint remains unchanged.  The temperature equation and equation of state become
+If we plug these nondimensionalizations into the governing equations we find that the incompressibility constraint remains unchanged.  
+The temperature equation and equation of state become
 
 \begin{equation}
 \frac{\partial T}{\partial t} + {\bf v} \cdot \nabla T = \nabla^2 T
@@ -459,6 +458,7 @@ $\Omega_0$ & reference rotation rate \\
 $\eta$ & viscosity \\
 $\kappa$ & thermal diffusivity \\
 $g_0$ & reference gravity \\
+$I_0$ & reference moment of inertia \\
 $T_0$ & reference temperature \\
 $\delta \rho = \rho_0 \alpha \Delta T$ & buoyancy parameter \\ 
 \end{tabular}
@@ -483,17 +483,17 @@ $\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-We also define a new nondimensional number (which will come in handy in intermediate steps) corresponding to the fractional density changes due to temperature variations: $\Gamma = \alpha \Delta T$.
 With this we may rewrite Equation \eqref{simple_milankovitch} in terms of the nondimensional numbers defined above.
-The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep[e.g.][]{??}.
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep{munk1960rotation}.
 \begin{equation}
 (C-A) \sim I_0 \mathrm{Fr}
 \end{equation}
 
 The time constant $T_1$ is a viscous tidal relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
 \begin{equation}
-T_1 \sim \eta / \rho g R = \frac{R^2}{\kappa} \Gamma/\mathrm{Ra}
+T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
+Plugging these scalings into equation \eqref{simple_milankovitch} we find
 
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
@@ -508,9 +508,6 @@ The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensio
 We consider relatively slowly rotating bodies here ($\mathrm{Fr} \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
 In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra})$ and $\theta(\mathrm{Ra})$.
 
-We support our scaling analyses with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
-\texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
-We performed a number of simulations at different Rayleigh numbers, integrating Equation \eqref{eq:liouville} in time.
 
 \subsection{An estimate of $\Lambda_{ij}$}
 
@@ -521,40 +518,34 @@ We performed a number of simulations at different Rayleigh numbers, integrating 
 \caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayleigh number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
 \end{figure}
 
-TODO: Needs work with notational consistency/connecting to previous scaling...
 
-Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure.
+Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure:
 
 \begin{equation}
-C_{ij} = \int_{V_S} \rho_0 \alpha T \left( r_q r_q \delta_{ij} - r_i r_j \right) 
+C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) 
+\label{eq:temperature_fluctuations}
 \end{equation}
 where $V_S$ is the reference spherical volume of the mantle.
+As discussed in Section \ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
+The surface response is a function of the viscosity structure of the planet and the wavelength of the interal load, but the multiplicative factor $(1+k^L_f)$ is generally an order-one parameter, so we neglect it for this scaling.
 
-These internal density loads may be convolved with surface responses to get the convective moment of inertia $\bf E$.
-
-Nondimensionalizing the integral for $E_{ij}$ we find
-
-\begin{equation}
-J_{ij} = I_0 \delta_{ij} + \int_{V_S^\prime} \alpha T^\prime \left( r_q^\prime r_q^\prime \delta_{ij} - r_i^\prime r_j^\prime \right) 
-\end{equation}
-
-
-For thermal convection, the convective part of the moment of inertia $\bf E$ is directly related to the degree-two structure of the temperature field (see Appendix \ref{appendix:moments}).
+For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the quadrupole structure of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
-
-
-The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
-the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is a broadening of the spatial 
-and temporal spectra \citep{mclaughlin1982transition}.  
-
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
-where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of radial polynomials.  
+where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials.  
 \begin{equation} 
-T( r , \theta, \phi, t )  = {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi)
+T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi)
 \label{T_series}
 \end{equation}
+Where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
 
-The quantity $\Lambda_{ij}$ is the normalized degree-two temperature field.  The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $X_{lmn}$ is constrained by
+The transform in Equation \eqref{eq:temperature_fluctuations} is picking out a degree-two spherical harmonic in laterally, and a degree-two polynomial radially.
+We therefore want to estimate the power in a single mode of the temperature expansion, allowing us identify
+\begin{equation}
+\Lambda_{12} \sim \Gamma T_{202}
+\end{equation}
+
+The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $X_{lmn}$ is constrained by
 
 \begin{equation}
 \lVert T(x,y,z, t) \rVert_\infty = \lVert {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \rVert_\infty = 1
@@ -562,17 +553,19 @@ The quantity $\Lambda_{ij}$ is the normalized degree-two temperature field.  The
 
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
 We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
+The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
+the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is a broadening of the spatial 
+and temporal spectra \citep{mclaughlin1982transition}.  
 
-At low Rayleigh number we expect the spectrum of the temperature field to be dominated by only a few low-degree modes (possibly, but not necessarily degree-two).
+At low Rayleigh number we expect the spectrum of the temperature field to be dominated by only a few low-degree modes which are largely influenced by the aspect ratio.
+This spectrum may or may not have a lot of power in degree-two, does not depend strongly on time.
 
 At high Rayleigh number we expect there to be a lengthscale which characterizes the smallest length of features in the convecting system.  
 At lengthscales smaller than this diffusion will tend to wipe out heterogeneities, and there will be no power in those modes.  
 Therefore we expect, to a good approximation, that we will be able to cut off the infinite sum in Equation \eqref{T_series} at some maximum wavenumber, set by the smallest lengthscale $d$:
- 
 \begin{equation}
 n_{\mathrm{max}}, l_{\mathrm{max}}, m_{\mathrm{max}} \sim \frac{R}{d}
 \end{equation}
-
 The total number of modes that are accessible to the system are therefore 
 
 \begin{equation}
@@ -601,6 +594,9 @@ With an estimate for the power in the degree-two part of the temperature field, 
 \begin{equation}
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
+
+Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
+Nevertheless, at high Rayleigh number the expectation is that the power is distributed across many length scales.
 
 
 \subsection{An estimate of the mismatch $\theta$}
@@ -638,7 +634,7 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ by d
 \centering
 \label{fig:perturb}
 \includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
-\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
+\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
 \end{figure}
 
 
@@ -650,6 +646,7 @@ This is consistent with the result of \citet{richards1999polar}.
 
 In the limit that the eigengap becomes zero, the rotation of the pinciple axes can be arbitrary. 
 This essentially corresponds to the hypothesized ``inertial interchange true polar wander'' \citep{kirschvink1997evidence}.
+We suggest, then, that a more vigorously convecting planet is much more likely to experience rapid TPW events.
 
 \begin{figure}
 \centering
@@ -670,8 +667,11 @@ We may plug in the estimate for $\Lambda_{ij}$ into equation \eqref{simple_milan
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{\mathrm{Fr}} \sin{2 \theta}
 \label{eq:simplest_milankovitch}
 \end{equation}
-Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the scaling. 
-This is somewhat of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
+Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the prefactor in the scaling. 
+At high Rayleigh numbers response timescales for relaxation of the mismatch angle go down.
+At the same time, however, coherence in the temperature structure goes down, reducing the amount of power in the degree-two part of the field responsible for driving TPW.
+That these two effects cancel is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
+Scalings for lengthscales of convection in fluids with temperature dependent viscosity \citep[e.g.][]{solomatov1995scaling} or pseudoplastic rheology \citep[e.g.][]{korenaga2010scaling} have different functional dependencies on $\mathrm{Ra}$ or additional nondimensional parameters.
 However, we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
 
 More important is the observation that the most important parameters are the Froude number, which acts as the brakes on the system, and $\theta(\mathrm{Ra})$.
@@ -684,8 +684,6 @@ This is the regime considered in \citet{steinberger1997changes}, \citet{roberts2
 When convection is more chaotic, however, there may be large excursions in $\theta$, which can drastically increase the wander rate.  
 If $\theta=90^\circ$, this corresponds to IITPW \citep{kirschvink1997evidence}.  
 This, however, is a special case in the large $\theta$, ``fast TPW'' regime.
-
-
 
 \section{Conclusion}
 We have developed a framework for discussing the rates of true polar wander in terms of a small number of nondimensional numbers.
@@ -776,8 +774,6 @@ which shows the connection between the degree-two component of the density field
 \section {TODO}
 
 \begin{enumerate}
-\item Make notation everywhere consistent
-\item More discussion of Davis+Kahan?
 \item Make better figures
 \item Integrate numerical results
 \item Make the argument about degree-two scaling much sharper
