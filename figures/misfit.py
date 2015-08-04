@@ -70,8 +70,4 @@ ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=3, prune=None))
 plt.xlabel(r"Time")
 plt.ylabel(r"Angle ($^\circ$)")
 
-
-
-
 plt.savefig("misfit.pdf", bbox_inches='tight')
-plt.show()
