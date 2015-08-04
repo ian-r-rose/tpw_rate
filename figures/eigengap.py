@@ -77,6 +77,7 @@ def get_spin_spectrum(text_file):
 output_files = [f for f in glob.glob("statistics_*")]
 sort_key = lambda s: float(s.split('_')[1])
 output_files.sort(key=sort_key)
+output_files.remove('statistics_50')
 print output_files
 
 amplitudes = []
