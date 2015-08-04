@@ -56,7 +56,7 @@ Convection in a planetary mantle continuously redistributes mass, which can chan
 
 TPW was first considered in detail by \citet{darwin1887influence}, and the theory has been subsequently developed by many \citep[e.g.][]{munk1960rotation, goldreich1969some, ricard1993polar}. 
 Despite this, the ability of internal mass anomalies to drive large-scale TPW remains controversial. 
-Paleomagnetic data have been interpreted to requre up to $\sim 1^\circ$/Myr rates of TPW \citep{mitchell2011sutton}, but the ability of the mantle to respond at such rates has been questioned \citep{tsai2007theoretical}.
+Paleomagnetic data have been interpreted to require up to $\sim 1^\circ$/Myr rates of TPW \citep{mitchell2011sutton}, but the ability of the mantle to respond at such rates has been questioned \citep{tsai2007theoretical}.
 
 The primary uncertainties in assigning a maximum TPW rate to a convecting planet are the size of convective anomalies, which drive the rotational adjustment, and the viscosity structure of the mantle, which retards it. 
 These two uncertainties are not unrelated: they are both expected to be functions of the geometric and material properties of the mantle.
@@ -82,7 +82,7 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 \end{equation}
 
 known as Euler's equations, where ${\bf H} = {\bf I} \cdot {\bf \Omega}$ is the angular momentum vector, $\bf I$ is the moment of inertia tensor, and $\bf \Omega$ is the angular velocity.
-On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be as well.
+On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be also vary with time.
 In this case Equation \eqref{eq:euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
 For a slowly convecting fluid such as a planetary mantle the inertial term $\partial {\bf H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
@@ -92,22 +92,19 @@ For a slowly convecting fluid such as a planetary mantle the inertial term $\par
 
 Note that solving Equation \eqref{eq:quasistatic_liouville} is equivalent to solving an eigenvalue problem for ${\bf I}$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
-The moment of inertia tensor above includes all contributions to the mass structure of the planet, including
-\begin{itemize}
-\item the spherically symmetric mass distribution
-\item the rotational deformation
-\item internal density anomalies
-\item surface deflections due to internal density anomalies
-\end{itemize}
+The moment of inertia tensor in \eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
+of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
+Here we are interested in the moment of inertia due to mantle convection, and thus neglect the contributions of surface
+density anomalies (though these can be quite important, \hl{ citations for Glaciers, Tharsis, etc} ).
 
-The moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
+For mantle convection problems the moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
 
 \begin{equation}
 I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 \label{eq:separation}
 \end{equation}
 
-wher $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
+where $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
 If we plug this decomposition into Equation \eqref{eq:quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
 
 \begin{equation}
@@ -145,7 +142,7 @@ k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 \end{equation}
 
 where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
-The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $C_{ij}$.
+The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$.
 
 \citet{ricard1993polar} obtain an approximation to Equation \eqref{eq:viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
 This introduces a new parameter, termed $T_1$, which can be seen as a weighted tidal relaxation time for the system.  
@@ -182,7 +179,7 @@ An alternative to the loading Love number approach to surface deflections is to 
 \subsection{Rate of true polar wander}
 
 We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
-A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d/dt (\Omega^2) = 2 {\Omega_i} \dot{ \Omega}_i = 0)$
+A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation \eqref{eq:rotational_deformation} into Equation \eqref{eq:disequilibrium} we find
 
 \begin{equation}
@@ -277,9 +274,8 @@ Without loss of generality we may choose the coordinate system such that $\phi=0
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
-
-In order to estimate $\theta$ and $\lambda_i$ we must examine the dynamics of convection in the planetary interior.
-
+Both $\theta$ and $\lambda_i$ depend upon the dynamics of the convecting planetary mantle.
+In order to derive estimates for them, we must consider those dynamics.
 
 \section{Internal dynamics}
 \label{sec:internal}
@@ -313,10 +309,10 @@ In addition we use the simple equation of state
 where $\bf u$ is the velocity, $P$ is the pressure, and $T$ is the temperature.
 The other parameters are defined in Table \ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
-Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it.
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it.
 Convenient choices for these numbers are listed in Table \ref{tab:nondim}, along with approximate Earth-like values for them.
 
-In particular, the most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
+In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
 This second nondimensional number does not have a uniformly agreed-upon name, but has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, and they do not affect the overall treatment of this scaling.
@@ -361,7 +357,7 @@ Therefore, the we can neglect those terms, and we are left with
 \end{aligned}
 \end{equation}
 
-which is simply a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
+which is a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
 
 Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eq:eos} we find
 
@@ -384,7 +380,7 @@ Removing these, we find
 \end{aligned}
 \end{equation}
 
-This equation may be identified with \eqref{eq:disequilibrium}, where disequilibrium in the rotational deformation (left side) is balanced by a the mismatch of the convective moment of intertia with the spin axis (right side).
+This equation may be identified with \eqref{eq:disequilibrium}, where disequilibrium in the rotational deformation (left side) is balanced by the mismatch of the convective moment of intertia with the spin axis (right side).
 Our goal is to identify characteristic sizes of these quantities, which must be functions of the nondimensional numbers identified in Table \ref{tab:nondim}.
 
 \ifdetail
@@ -522,7 +518,7 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure:
 
 \begin{equation}
-C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) 
+C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) dV
 \label{eq:temperature_fluctuations}
 \end{equation}
 where $V_S$ is the reference spherical volume of the mantle.
@@ -539,13 +535,13 @@ T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}
 \end{equation}
 Where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
 
-The transform in Equation \eqref{eq:temperature_fluctuations} is picking out a degree-two spherical harmonic in laterally, and a degree-two polynomial radially.
+The integral in Equation \eqref{eq:temperature_fluctuations} is picking out a degree-two spherical harmonic in the lateral dimensions, and a degree-two polynomial in radius.
 We therefore want to estimate the power in a single mode of the temperature expansion, allowing us identify
 \begin{equation}
 \Lambda_{12} \sim \Gamma T_{202}
 \end{equation}
 
-The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $X_{lmn}$ is constrained by
+The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
 \begin{equation}
 \lVert T(x,y,z, t) \rVert_\infty = \lVert {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \rVert_\infty = 1
@@ -560,16 +556,17 @@ and temporal spectra \citep{mclaughlin1982transition}.
 At low Rayleigh number we expect the spectrum of the temperature field to be dominated by only a few low-degree modes which are largely influenced by the aspect ratio.
 This spectrum may or may not have a lot of power in degree-two, does not depend strongly on time.
 
-At high Rayleigh number we expect there to be a lengthscale which characterizes the smallest length of features in the convecting system.  
-At lengthscales smaller than this diffusion will tend to wipe out heterogeneities, and there will be no power in those modes.  
-Therefore we expect, to a good approximation, that we will be able to cut off the infinite sum in Equation \eqref{eq:T_series} at some maximum wavenumber, set by the smallest lengthscale $d$:
+At high Rayleigh number we expect the shortest lengthscales to be limited by the effects of thermal diffusion,
+which tends to wipe out thermal heterogeneity at small scales.  Consequently, there will be no power in modes
+with shorter lenghtscales than that allowed by diffusion. 
+Therefore we expect, to a good approximation, that the infinite sum in Equation \eqref{eq:T_series} can be truncated at some maximum wavenumber, set by the smallest lengthscale $d$:
 \begin{equation}
 n_{\mathrm{max}}, l_{\mathrm{max}}, m_{\mathrm{max}} \sim \frac{R}{d}
 \end{equation}
 The total number of modes that are accessible to the system are therefore 
 
 \begin{equation}
-N_{\mathrm{modes}} = n_{\mathrm{max}} \times l_{\mathrm{max}} \times n_{\mathrm{max}} \sim \left( \frac{R}{d} \right)^{3}
+N_{\mathrm{modes}} = n_{\mathrm{max}} \times l_{\mathrm{max}} \times m_{\mathrm{max}} \sim \left( \frac{R}{d} \right)^{3}
 \end{equation}
 
 The value of each $T_{lmn}(t)$ will in general be some complex function of time, but for a given style of convection we expect there to be some average value.
@@ -585,9 +582,14 @@ The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $
 
 \begin{equation}
 T_{\mathrm{degree 2}}(t) \sim \mathrm{Ra}^{-1}
+\label{eq:degree_two_of_ra}
 \end{equation}
+For two-dimensional simulations there is a reduced dimensionality when calculating the number of modes,
+so $N_\mathrm{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\mathrm{degree2}} \sim \mathrm{Ra}^{-2/3}$, which is used in the simulations shown in Figure~\ref{fig:eigengap}.
+This result has a simple interpretation.
+As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.
+The total power in the temperature field is spread across a larger spectrum, leaving less total power for the degree-two part, which is what drives TPW.
 
-This result has a simple interpretation.  As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.  The total power in the temperature field is spread across a larger spectrum, leaving less total power for the degree-two part, which is what drives TPW.
 
 With an estimate for the power in the degree-two part of the temperature field, we may finally estimate $\Lambda_{ij}$:
 
