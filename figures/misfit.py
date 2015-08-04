@@ -6,7 +6,12 @@ import numpy as np
 import scipy.signal as signal
 import scipy.interpolate as interp
 
-plt.style.use(['ian'])
+try:
+  plt.style.use('ian')
+except AttributeError:
+  print "old matplotlib version?"
+except ValueError:
+  print "Cannot find the requested stylesheet"
 
 data = np.loadtxt('statistics_500', skiprows=50, usecols=(1,17,18,19,20))
 

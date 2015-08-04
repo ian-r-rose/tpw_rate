@@ -9,7 +9,12 @@ import matplotlib.cm as cm
 import matplotlib.ticker
 import glob
 
-plt.style.use('ian')
+try:
+  plt.style.use('ian')
+except AttributeError:
+  print "old matplotlib version?"
+except ValueError:
+  print "Cannot find the requested stylesheet"
 
 #c = ['#0A5F02', '#1c567a', '#814292', '#d7383b', '#fdae61', '#c0f8b8']
 #c = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'] 
