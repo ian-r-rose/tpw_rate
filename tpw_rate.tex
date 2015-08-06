@@ -420,7 +420,7 @@ We may furthermore define a hydrostatic reference state where the density is the
 
 \begin{equation}
  \rho_0{\bf \Omega \times \Omega \times r}= - \nabla P_0 + \rho_0 {\bf g}
-\end{equation}
+
 
 Subtracting this from the momentum equation and defining a dynamic pressure $P^* = P - P_0$, we find
 
@@ -660,6 +660,7 @@ We suggest, then, that a more vigorously convecting planet is much more likely t
 
 
 \section{Discussion}
+\label{sec:discussion}
 
 The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principle axes of the convective moment of inertia. 
@@ -674,7 +675,12 @@ At high Rayleigh numbers response timescales for relaxation of the mismatch angl
 At the same time, however, coherence in the temperature structure goes down, reducing the amount of power in the degree-two part of the field responsible for driving TPW.
 That these two effects cancel is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
 Scalings for lengthscales of convection in fluids with temperature dependent viscosity \citep[e.g.][]{solomatov1995scaling} or pseudoplastic rheology \citep[e.g.][]{korenaga2010scaling} have different functional dependencies on $\mathrm{Ra}$ or additional nondimensional parameters.
-However, we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
+However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d/R \sim \mathrm{Ra}^{-\beta}$.
+With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
+\begin{equation}
+\dot{\theta} \propto \mathrm{Ra}^{1-3\beta}
+\end{equation}
+In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
 
 More important is the observation that the most important parameters are the Froude number, which acts as the brakes on the system, and $\theta(\mathrm{Ra})$.
 Whereas the rest of the expression has at most a weak dependence on $\mathrm{Ra}$, this is expected to be strongly dependent on it.
@@ -687,9 +693,20 @@ When convection is more chaotic, however, there may be large excursions in $\the
 If $\theta=90^\circ$, this corresponds to IITPW \citep{kirschvink1997evidence}.  
 This, however, is a special case in the large $\theta$, ``fast TPW'' regime.
 
-\section{Conclusion}
-We have developed a framework for discussing the rates of true polar wander in terms of a small number of nondimensional numbers.
+Thus far we have restricted our discussion to planets with lithospheres lacking long-term elastic strength.
+For this case the long-time limit of the planetary figure is coaxial with the convective 
+moment of inertia. This assumption is not necessarily true in all cases.
+Earth's lithosphere is pervasively fractured and hydrated, and may not have strength on geologic timescales.
+However, a planet with a stagnant lid (such as Mars) may have some strength, preventing the figure of the planet 
+from reaching the fluid limit of Equation~\eqref{eq:fluid_love}.
 
+The theory of TPW response for the case of elastic lithospheres has been developed in, among other places, 
+\citet{matsuyama2006rotational}, \citet{creveling2012mechanisms}, and \citet{chan2014time}.
+The formalism developed in Section~\ref{sec:scaling} can still be applied to this case, 
+though the response to internal variations in the moment of inertia becomes more limited.
+
+\section{Conclusion}
+We have developed a framework for approximating the rates of true polar wander in terms of a small number of nondimensional numbers.
 
 \begin{acknowledgments}
 \end{acknowledgments}
@@ -776,10 +793,7 @@ which shows the connection between the degree-two component of the density field
 \section {TODO}
 
 \begin{enumerate}
-\item Make better figures
-\item Integrate numerical results
 \item Make the argument about degree-two scaling much sharper
-\item Discuss elastic lithosphere, Creveling
 \item Discuss high-viscosity lower mantle
 \item Earth-like parameters
 \end{enumerate}
