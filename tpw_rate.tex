@@ -458,7 +458,6 @@ The time constant $T_1$ is a viscous relaxation time of the planetary mantle. It
 T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
 Plugging these scalings into equation \eqref{eq:simple_milankovitch} we find
-
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
 \label{eq:scaled_rotation}
@@ -477,9 +476,9 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 
 \begin{figure*}
 \centering
-\label{fig:eigengap}
 \includegraphics[width=0.9\textwidth]{figures/eigengap.pdf}
 \caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayleigh number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
+\label{fig:eigengap}
 \end{figure*}
 
 
@@ -508,13 +507,11 @@ We therefore want to estimate the power in a single mode of the temperature expa
 \begin{equation}
 \Lambda_{12} \sim \Gamma T_{202}
 \end{equation}
-
 The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
 \begin{equation}
-\lVert T(x,y,z, t) \rVert_\infty = \lVert {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \rVert_\infty = 1
+\max \left( T(x,y,z, t) \right) = \max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1
 \end{equation}
-
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
 We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
 The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
@@ -536,7 +533,6 @@ The total number of modes that are accessible to the system are therefore
 \begin{equation}
 N_{\mathrm{modes}} = n_{\mathrm{max}} \times l_{\mathrm{max}} \times m_{\mathrm{max}} \sim \left( \frac{R}{d} \right)^{3}
 \end{equation}
-
 The value of each $T_{lmn}(t)$ will in general be some complex function of time, but for a given style of convection we expect there to be some average value.
 For chaotic flow the power should be spread out amongst the modes accessible to it.
 We may make the hypothesis that each of the modes are roughly as likely as any of the others, which implies
@@ -552,7 +548,7 @@ The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $
 T_{\mathrm{degree 2}}(t) \sim \mathrm{Ra}^{-1}
 \label{eq:degree_two_of_ra}
 \end{equation}
-For two-dimensional simulations there is a reduced dimensionality when calculating the number of modes,
+For two-dimensional simulations shown below there is a reduced dimensionality when calculating the number of modes,
 so $N_\mathrm{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\mathrm{degree2}} \sim \mathrm{Ra}^{-2/3}$, which is used in the simulations shown in Figure~\ref{fig:eigengap}.
 This result has a simple interpretation.
 As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.
@@ -560,7 +556,6 @@ The total power in the temperature field is spread across a larger spectrum, lea
 
 
 With an estimate for the power in the degree-two part of the temperature field, we may finally estimate $\Lambda_{ij}$:
-
 \begin{equation}
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
@@ -602,9 +597,9 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ by d
 
 \begin{figure*}
 \centering
-\label{fig:perturb}
 \includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
 \caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
+\label{fig:perturb}
 \end{figure*}
 
 
@@ -620,9 +615,9 @@ We suggest, then, that a more vigorously convecting planet is much more likely t
 
 \begin{figure*}
 \centering
-\label{fig:misfit}
 \includegraphics[width=0.9\textwidth]{figures/misfit.pdf}
 \caption{Top: Time series of principle moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Bottom: Time series of spin axis and mismatch angle $\theta$.  When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger.}
+\label{fig:misfit}
 \end{figure*}
 
 
@@ -667,8 +662,8 @@ a less stable $\theta(t)$, and thus more TPW and more frequent ``fast TPW'' even
 Thus far we have restricted our discussion to planets with lithospheres lacking long-term elastic strength.
 For this case the long-time limit of the planetary figure is coaxial with the convective 
 moment of inertia. This assumption is not necessarily true in all cases.
-Earth's lithosphere is pervasively fractured and hydrated, and may not have strength on geologic timescales.
-However, a planet with a stagnant lid (such as Mars) may have some strength, preventing the figure of the planet 
+Earth's lithosphere is pervasively fractured and hydrated, and may not have much strength when subjected to rotational changes on geologic timescales.
+However, a planet with a stagnant lid (such as Mars) may have considerable strength, preventing the figure of the planet 
 from reaching the fluid limit of Equation~\eqref{eq:fluid_love}.
 
 The theory of TPW response for the case of elastic lithospheres has been developed in, among other places, 
