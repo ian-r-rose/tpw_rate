@@ -67,9 +67,7 @@ These questions suggest that an approach rooted in dimensional analysis and flui
 Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
 \citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
-Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle.
-We support our analysis with numerical simulations of 2D mantle convection using the finite element code \texttt{Aspect} \citep{kronbichler2012high}, based on the \texttt{deal.II} library \citep{dealII81}.  
-\texttt{Aspect} provides modern numerical methods, flexible geometry, and powerful support for integrating user-defined modules and postprocessors.
+Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle,  which we support with numerical simulations.
 
 \section{Rotational dynamics}
 
@@ -80,7 +78,6 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 \frac{d {\bf H}}{dt} + {\bf \Omega} \times {\bf H} = 0
 \label{eq:euler}
 \end{equation}
-
 known as Euler's equations, where ${\bf H} = {\bf I} \cdot {\bf \Omega}$ is the angular momentum vector, $\bf I$ is the moment of inertia tensor, and $\bf \Omega$ is the angular velocity.
 On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be also vary with time.
 In this case Equation \eqref{eq:euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
@@ -89,7 +86,6 @@ For a slowly convecting fluid such as a planetary mantle the inertial term $\par
 {\bf \Omega } (t)\times ( {\bf I}(t) \cdot {\bf \Omega }(t) ) = 0
 \label{eq:quasistatic_liouville}
 \end{equation}
-
 Note that solving Equation \eqref{eq:quasistatic_liouville} is equivalent to solving an eigenvalue problem for ${\bf I}$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor in \eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
@@ -98,40 +94,32 @@ Here we are interested in the moment of inertia due to mantle convection, and th
 density anomalies (though these can be quite important, \hl{ citations for Glaciers, Tharsis, etc} ).
 
 For mantle convection problems the moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
-
 \begin{equation}
 I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 \label{eq:separation}
 \end{equation}
-
 where $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
 If we plug this decomposition into Equation \eqref{eq:quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
-
 \begin{equation}
 {\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf E} \cdot {\bf \Omega} )
 \label{eq:disequilibrium}
 \end{equation}
-
 This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches of the convective part of the moment of inertia ($\bf E$) and the rotational deformation part of the moment of inertia ($\bf J$).
 Our goal is to characterize this balance from a perspective of scaling and fluid dynamics.
 
 \subsection{Rotational deformation}
 
 The part of the moment of inertia due to the elastic rotational deformation is traditionally related to the degree-two part of the gravity field via MacCullagh's formula \citep{munk1960rotation}:
-
 \begin{equation}
 J_{ij} = \frac{k a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right)
 \label{eq:elastic_deformation}
 \end{equation}
-
 where $k$ is an elastic Love number, $a$ is the semimajor axis of the planet, and $G$ is the gravitational constant.
 This result may be extended to a viscoelastic rheology via the viscoelastic correspondence principle \citep[e.g.][]{peltier1974impulse}:
-
 \begin{equation}
 J_{ij} = \frac{k(t) a^5}{3 G} * \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right)
 \label{eq:viscoelastic_deformation}
 \end{equation}
-
 where $k$ is now a time-dependent viscoelastic Love number which is convolved with the time-dependent rotation vector.
 
 The infinite-time limit of Equation \eqref{eq:viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
@@ -139,20 +127,17 @@ The infinite-time limit of Equation \eqref{eq:viscoelastic_deformation} allows u
 k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 \label{eq:fluid_love}
 \end{equation}
-
 where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
 The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$.
 
 \citet{ricard1993polar} obtain an approximation to Equation \eqref{eq:viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
-This introduces a new parameter, termed $T_1$, which can be seen as a weighted tidal relaxation time for the system.  
+This introduces a new parameter, termed $T_1$, which can be seen as a weighted relaxation time for the system.  
 This simple approximation in the Laplace domain allows for an analytical transformation back into the time domain, and neglecting second order terms in $\dot{\Omega}$ we find:
-
 \begin{equation}
 J_{ij} = \frac{k_f a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right) -
  \frac{k_f a^5 T_1}{3G} \left(\dot{\Omega}_i \Omega_j + \Omega_i \dot{\Omega}_j - \frac{2}{3} \Omega_q \dot{\Omega}_q \delta_{ij} \right)
 \label{eq:rotational_deformation}
 \end{equation}
-
 The two terms of this equation have simple interpretations.  
 The first term corresponds to the fluid limit of rotational deformation (in the absence of any long-term elastic strength).  
 The second term represents the lag in the moment of inertia due to the viscous adjustment of the rotational bulge, where $T_1$ is the characteristic time constant for this adjustment.
@@ -172,7 +157,6 @@ Frequently the simplification is made that the timescale of the surface response
 \begin{equation}
 E_{ij} = (1+k^L_f) C_{ij}
 \end{equation}
-
 An alternative to the loading Love number approach to surface deflections is to calculate the surface deflections directly using mantle convection simulations with a true free surface boundary condition.
 
 \subsection{Rate of true polar wander}
@@ -180,24 +164,19 @@ An alternative to the loading Love number approach to surface deflections is to 
 We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation \eqref{eq:rotational_deformation} into Equation \eqref{eq:disequilibrium} we find
-
 \begin{equation}
 \frac{k_f a^5 T_1}{3G}{\bf \Omega} \times {\bf \dot{\Omega} } = {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
 \label{eq:liouville}
 \end{equation}
-
 Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation \eqref{eq:fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
 \begin{equation}
  \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
 \end{equation}
-
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
 If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
-
 \ifdetail
 
 And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
-
 \begin{equation}
 \begin{aligned}
  & \cos{\theta}\cos{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \dot{\phi} = \\
@@ -208,9 +187,7 @@ And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be den
   &A \cos{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
 \end{aligned}
 \end{equation}
-
 Now multiply the top equation by $\cos{\phi}$ and the second equation by $\sin{\phi}$ and add them together to get
-
 \begin{equation}
 \begin{aligned}
  & \cos{\theta}\cos^2{\phi} \dot{\theta}  - \sin{\theta}\sin{\phi} \cos{\phi} \dot{\phi} + \cos{\theta}\sin^2{\phi} \dot{\theta}  + \sin{\theta}\cos{\phi} \sin{\phi} \dot{\phi} = \\
@@ -221,9 +198,7 @@ Now multiply the top equation by $\cos{\phi}$ and the second equation by $\sin{\
   &A \sin{\theta} \left[ - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
 \end{aligned}
 \end{equation}
-
 Now multiply the above by $\cos{\theta}$ and the third equation by $-\sin{\theta}$ and add them to get
-
 \begin{equation}
 \begin{aligned}
  & \cos^2{\theta}\dot{\theta} + \sin^2{\theta} \dot{\theta} =  
@@ -232,9 +207,7 @@ Now multiply the above by $\cos{\theta}$ and the third equation by $-\sin{\theta
   &A \cos{\theta} \sin{\theta} \left[ \lambda_3 - \lambda_1 \sin^2{\theta}\cos^2{\phi} - \lambda_2 \sin^2{\theta}\sin^2{\phi} - \lambda_3 \cos^2{\theta} \right] \\
 \end{aligned}
 \end{equation}
-
 After a lot of cancellation, we find
-
 \begin{equation}
 \begin{aligned}
  \dot{\theta} &= A \sin{\theta} \cos{\theta} \left[ - \lambda_3 + \lambda_1 \cos^2{\phi} + \lambda_2 \sin^2{\phi} \right] \\
@@ -242,9 +215,7 @@ After a lot of cancellation, we find
               &= -\frac{A}{2} \sin{2 \theta} \left[ (\lambda_3 - \lambda_1) \cos^2{\phi} + (\lambda_3 - \lambda_2) \sin^2{\phi} \right] \\
 \end{aligned}
 \end{equation}
-
 Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equation by $\cos{\phi}$ and add them to get
-
 \begin{equation}
 \begin{aligned}
  & \sin{\theta} \dot{\phi} = A \sin{\theta}\cos{\phi}\sin{\phi} \left( \lambda_2 - \lambda_1 \right ) \\
@@ -254,8 +225,6 @@ Likewise we may multiply the first equation by $-\sin{\phi}$ and the second equa
 
 \else
 \fi
-
-
 \begin{equation}
 \begin{aligned}
 \dot{\theta} &= - \frac{1}{(C-A)T_1} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
@@ -269,7 +238,6 @@ Without loss of generality we may choose the coordinate system such that $\phi=0
 \dot{\theta} = - \frac{1}{(C-A)T_1} (\lambda_3-\lambda_1) \sin{2 \theta}
 \label{eq:simple_milankovitch}
 \end{equation}
-
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
@@ -341,18 +309,19 @@ Equation \eqref{eq:navier_stokes} can be transformed into an angular momentum eq
 
 \begin{equation}
 \begin{aligned}
--\int_V {\bf r} \times \nabla P + \int_V \eta {\bf r} \times \nabla^2 {\bf u} - \int_V \rho {\bf r \times g} + \int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} &= 0 \\
+-\int_V {\bf r} \times \nabla P \,dV + \int_V \eta {\bf r} \times \nabla^2 {\bf u} \,dV - \int_V \rho {\bf r \times g} \,dV 
+   + \int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV &= 0 \\
 \end{aligned}
 \end{equation}
 
 
 The first three terms represent pressure, viscous torques, and gravitational torques on the mantle.  
 Convection in the outer core, atmospheres, and oceans is not strong enough to provide significant pressure and viscous torques over geologic timescales, and a self-gravitating body cannot self-torque \citep{braginsky1995equations}.
-Therefore, the we can neglect those terms, and we are left with
+Therefore we can neglect those terms, and we are left with
 
 \begin{equation}
 \begin{aligned}
-\int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} &= 0 \\
+\int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV &= 0 \\
 \end{aligned}
 \end{equation}
 
@@ -362,10 +331,10 @@ Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eq:eos} w
 
 \begin{equation}
 \begin{aligned}
-&\int_{V_H} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
-\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} +  \\
-&\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} + 
-\int_{\Delta V} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 0  \\
+&\int_{V_H} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV + 
+\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV +  \\
+&\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV + 
+\int_{\Delta V} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV = 0  \\
 \end{aligned}
 \end{equation}
 
@@ -374,8 +343,8 @@ The fourth term is negligible due to being second order in the smallness paramet
 Removing these, we find
 \begin{equation}
 \begin{aligned}
-\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} = 
--\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }}
+\int_{\Delta V} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV = 
+-\int_{V_H} \rho_0 \alpha (T-T_0) {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV
 \end{aligned}
 \end{equation}
 
@@ -484,7 +453,7 @@ The difference in the polar and equatorial moments of the hydrostatic planet $(C
 (C-A) \sim I_0 \mathrm{Fr}
 \end{equation}
 
-The time constant $T_1$ is a viscous tidal relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
+The time constant $T_1$ is a viscous relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
 \begin{equation}
 T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
@@ -517,7 +486,7 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure:
 
 \begin{equation}
-C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) dV
+C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) \,dV
 \label{eq:temperature_fluctuations}
 \end{equation}
 where $V_S$ is the reference spherical volume of the mantle.
@@ -527,12 +496,12 @@ The surface response is a function of the viscosity structure of the planet and 
 For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the quadrupole structure of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
-where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials.  
+where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials:
 \begin{equation} 
 T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi)
 \label{eq:T_series}
 \end{equation}
-Where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
+where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
 
 The integral in Equation \eqref{eq:temperature_fluctuations} is picking out a degree-two spherical harmonic in the lateral dimensions, and a degree-two polynomial in radius.
 We therefore want to estimate the power in a single mode of the temperature expansion, allowing us identify
