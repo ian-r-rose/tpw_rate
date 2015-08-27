@@ -7,6 +7,7 @@ import scipy.interpolate as interp
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import matplotlib.ticker
+from itertools import cycle
 import glob
 
 try:
@@ -77,7 +78,6 @@ def get_spin_spectrum(text_file):
 output_files = [f for f in glob.glob("statistics_*")]
 sort_key = lambda s: float(s.split('_')[1])
 output_files.sort(key=sort_key)
-output_files.remove('statistics_50')
 print output_files
 
 amplitudes = []
@@ -86,7 +86,10 @@ Rayleighs = []
 
 #plt.subplots_adjust(wspace=0.0, hspace=0.0)
 
-for f, i in zip( output_files, range(len(output_files)) ):
+colors = cycle(plt.rcParams['axes.color_cycle'])
+ax = plt.subplot(1,2,1)
+
+for i,f in enumerate(output_files):
 
   delta_T = float(f.split('_')[1])
   alpha = alpha_0
@@ -103,18 +106,21 @@ for f, i in zip( output_files, range(len(output_files)) ):
   amplitudes.append(diff.mean())
   timescales.append(peak)
 
-  ax = plt.subplot(1,2,1)
-  ax.plot(times, diff,  label=r'$\mathrm{Ra} = %.1f \times 10^{%i}$' % ( Ra/np.power(10., np.floor(np.log10(Ra))) , np.floor(np.log10(Ra))))
-  ax.set_xlim(0,7)
-  ax.set_ylim(0, 1.0e-4)
-  ax.set_xlabel("Time (Gyr)")
-  ax.set_ylabel(r'Relative moment $(\lambda_2-\lambda_1)/I_0$')
+  #plot a subset of the timeseries (plotting all of them got too busy)
+  if f in ['statistics_50', 'statistics_200', 'statistics_500']:
+    ax.plot(times, diff, next(colors),\
+            label=r'$\mathrm{Ra} = %.1f \times 10^{%i}$' % ( Ra/np.power(10., np.floor(np.log10(Ra))) , np.floor(np.log10(Ra))))
+  else:
+    next(colors)
 
 
 
-plt.legend(loc="upper right")
+ax.set_xlim(0,4)
+ax.set_ylim(0, 8.0e-5)
+ax.set_xlabel("Time (Gyr)")
+ax.set_ylabel(r'$(\lambda_2-\lambda_1)/I_0$')
+ax.legend(loc="upper right")
 print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
-print np.polyfit(np.log(Rayleighs[3:]), np.log(timescales[3:]),1)
 
 ax = plt.subplot(122)
 ax.grid(False)
