@@ -170,6 +170,7 @@ Substituting Equation \eqref{eq:rotational_deformation} into Equation \eqref{eq:
 Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation \eqref{eq:fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
 \begin{equation}
  \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
+\label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
 If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
@@ -380,7 +381,7 @@ We may furthermore define a hydrostatic reference state where the density is the
 
 \begin{equation}
  \rho_0{\bf \Omega \times \Omega \times r}= - \nabla P_0 + \rho_0 {\bf g}
-
+\end{equation}
 
 Subtracting this from the momentum equation and defining a dynamic pressure $P^* = P - P_0$, we find
 
@@ -484,7 +485,7 @@ where $V_S$ is the reference spherical volume of the mantle.
 As discussed in Section \ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
 The surface response is a function of the viscosity structure of the planet and the wavelength of the interal load, but the multiplicative factor $(1+k^L_f)$ is generally an order-one parameter, so we neglect it for this scaling.
 
-For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the quadrupole structure of the temperature field (see Appendix \ref{appendix:moments}).
+For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-twoo part of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
 where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials:
@@ -494,10 +495,10 @@ T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}
 \end{equation}
 where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
 
-The integral in Equation \eqref{eq:temperature_fluctuations} is picking out a degree-two spherical harmonic in the lateral dimensions, and a degree-two polynomial in radius.
+The integral in Equation \eqref{eq:temperature_fluctuations} is picking out degree-two spherical harmonics in the lateral dimensions, and low order polynomials in radius.
 We therefore want to estimate the power in a single mode of the temperature expansion, allowing us identify
 \begin{equation}
-\Lambda_{12} \sim \Gamma T_{202}
+\Lambda_{12} \sim \Gamma T_{\mathrm{degree \textendash two}}
 \end{equation}
 The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
@@ -530,19 +531,23 @@ For chaotic flow the power should be spread out amongst the modes accessible to 
 We may make the hypothesis that each of the modes are roughly as likely as any of the others, which implies
 
 \begin{equation}
-T_{\mathrm{degree 2}}(t) \sim \frac{1}{N_{\mathrm{modes}}} \sim \left( \frac{d}{R}\right)^3
+T_{\mathrm{degree \textendash two}}(t) \sim \frac{1}{N_{\mathrm{modes}}} \sim \left( \frac{d}{R}\right)^3
 \end{equation}
 
 Any of a number of scaling laws can provide an estimate for the characteristic length scale of a convecting system which may depending on rheology, geometry, or density structure.
 The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $d/R \sim \mathrm{Ra}^{-1/3}$, thus furnishing us with an estimate of the power in the degree-two part of the field as a function of Rayleigh number:
 
 \begin{equation}
-T_{\mathrm{degree 2}}(t) \sim \mathrm{Ra}^{-1}
+T_{\mathrm{degree \textendash two}}(t) \sim \mathrm{Ra}^{-1}
 \label{eq:degree_two_of_ra}
 \end{equation}
 
-For two-dimensional simulations shown below there is a reduced dimensionality when calculating the number of modes,
-so $N_\mathrm{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\mathrm{degree2}} \sim \mathrm{Ra}^{-2/3}$, which is used in the simulations shown in Figure~\ref{fig:eigengap}.
+We performed a series of numerical simulations of mantle convection at different Rayleigh numbers to test this scaling.
+We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII81}. 
+In order to test a wide range of Rayleigh numbers, we ran the simulations in a 2D annulus, tracking the eigenvalues of the 
+moment of inertia tensor and integrating Equation~\eqref{eq:liouville_ode} in time.
+For the 2D simulations there is a reduced dimensionality when calculating the number of modes,
+so $N_\mathrm{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\mathrm{degree\textendash two}} \sim \mathrm{Ra}^{-2/3}$, which is used in the simulations shown in Figure~\ref{fig:eigengap}.
 This result has a simple interpretation.
 As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.
 The total power in the temperature field is spread across a larger spectrum, leaving less total power for the degree-two part, which is what drives TPW.
@@ -578,8 +583,7 @@ Then the rotation of the principal axes of the tensor is bounded by
 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
-This is illustrated in Figure \ref{fig:perturb}
-
+This is illustrated schematically in Figure \ref{fig:perturb}
 
 We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation \eqref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
 
@@ -595,7 +599,6 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ by d
 \label{fig:perturb}
 \end{figure*}
 
-
 Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator of these equations is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
 Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
 Additionally, the timescale of fluctuations in these values goes down. 
@@ -603,16 +606,28 @@ Overall, this makes the principle axes of high Rayleigh number systems much less
 This is consistent with the result of \citet{richards1999polar}.
 
 In the limit that the eigengap becomes zero, the rotation of the pinciple axes can be arbitrary. 
-This essentially corresponds to the hypothesized ``inertial interchange true polar wander'' \citep{kirschvink1997evidence}.
-We suggest, then, that a more vigorously convecting planet is much more likely to experience rapid TPW events.
+This essentially corresponds to the hypothesized ``inertial interchange true polar wander'' \citep{kirschvink1997evidence}, where 
+the mismatch angle is $90^\circ$. However, the eigengap does not need to be zero for there to be large displacements polar wander, 
+and if it does go to zero, the wander does not need to be $90^\circ$.
+
+Figure~\ref{fig:misfit} shows a representative timeseries for annular convection, where 
+we track the eigenvalues of the moment of inertia and integrate Equation~\eqref{eq:liouville_ode} in time.
+Since it is a 2D model, the spin axis may be represented by a single angle.
+When the eigengap gets small, the misfit angle becomes much larger, and the rate of polar wander becomes much faster.
+At $\sim$1 Gyr the eigengap goes to zero, and the misfit angle goes to approximately $90^\circ$, 
+an IITPW event. But there are several other events where the eigengap becomes small, and there are 
+still large TPW events associated with them.
+
+We suggest, then, that $90^\circ$ IITPW events are simply a special case of a broad class of events which can occur
+when the principal moments are close to each other.  Furthermore, a more vigorously convecting planet is much more likely to experience rapid TPW events
+as it has a lower characteristic gap between principal moments and the gap is much more likely to go to zero.
 
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/misfit.pdf}
-\caption{Top: Time series of principle moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Bottom: Time series of spin axis and mismatch angle $\theta$.  When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger.}
+\caption{Top: Time series of principle moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Bottom: Time series of spin axis and mismatch angle $\theta$.  When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger. At $\sim$1 Gyr the gap goes to zero and there is a nearly $90^\circ$ TPW event. However, there are several other large TPW events which happen when the eigengap is small.}
 \label{fig:misfit}
 \end{figure*}
-
 
 
 \section{Discussion}
@@ -692,81 +707,69 @@ on other planetary bodies.
 
 We may explicitly draw a connection between the moment of inertia of a rotating object and it's degree-two density structure.  The moment of inertia tensor may be written in index notation
 \begin{equation}
-I_{ij} = \int_V \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) d^3 {\bf r}
+I_{ij} = \int_V \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) dV
 \label{eq:inertia}
 \end{equation}
-
-where $\bf r$ is the Eulerian coordinate, $\rho$ is the density, and $V$ is the volume of the material.  The degree-two density structure may be expressed as a quadrupole-moment tensor (cf. \citet{jackson1998classical}):
-
+where $\bf r$ is the Eulerian coordinate, $\rho$ is the density, and $V$ is the volume of the material.  
+It is useful to enter the principal axes of the moment of inertia:
 \begin{equation}
-Q_{ij} = \int_V \rho \left( 3 r_i r_j - r_q r_q \delta_{ij} \right) d^3 {\bf r}
+{\bf I} = \bf{1} \begin{bmatrix}
+\lambda_1 \\ \lambda_2 \\ \lambda_3
+\end{bmatrix} = 
+{\bf 1} \begin{bmatrix}
+\int_V \rho (y^2+z^z) dV\\
+\int_V \rho (x^2+z^2) dV\\
+\int_V \rho (x^2+y^2) dV
+\end{bmatrix}
 \end{equation}
-
-The commutator of these tensors, $\bf QI - IQ$, is zero, indicating that they may be simultaneously diagonalized.  
-
-\ifdetail
-We may demonstrate that the commutator is zero by using the definition of the commutator and expanding:
-\begin{equation} 
+where $\bf 1$ is the identity matrix, and $\lambda_1$, $\lambda_2$, and $\lambda_3$ are the principal moments.
+From equation~\eqref{eq:milankovitch} we see that the important quantities are the differences between the 
+principal moments, $(\lambda_3-\lambda_1)$, $(\lambda_3-\lambda_2)$ and $(\lambda_2-\lambda_1)$.
+These quantities may be rewritten in terms of degree-two real sperical harmonics \citep[e.g.][]{dahlen1999theoretical}.
+The relevant (fully normalized) harmonics are, in Cartesian coordinates:
+\begin{equation}
 \begin{aligned}
-{\bf IQ-QI} = &I_{ik} Q_{kj} - Q_{ik} I_{kj} \\
- = &\int_V \rho \left( r_q r_q \delta_{ik} - r_i r_k \right) d^3 {\bf r} \int_V \rho \left( 3 r_k r_j - r_q r_q \delta_{kj} \right) d^3 {\bf r} \\
- &- \int_V \rho \left( r_q r_q \delta_{kj} - r_k r_j \right) d^3 {\bf r} \int_V \rho \left( 3 r_i r_k - r_q r_q \delta_{ik} \right) d^3 {\bf r} \\
- = &3 \delta_{ik} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_k r_j d^3 {\bf r} \\
- &-\delta_{kj} \delta_{ik} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- &-3 \int_V \rho r_i r_k d^3 {\bf r} \int_V \rho r_k r_j d^3 {\bf r} \\
- &+\delta_{kj} \int_V \rho r_i r_k d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- - &3 \delta_{kj} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_k d^3 {\bf r} \\
- &+\delta_{ik} \delta_{kj} \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- &+3 \int_V \rho r_k r_j d^3 {\bf r} \int_V \rho r_i r_k d^3 {\bf r} \\
- &-\delta_{ik} \int_V \rho r_k r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- = \;&3 \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_j d^3 {\bf r} \\
- &+ \int_V \rho r_i r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- - &3 \int_V \rho r_q r_q d^3 {\bf r} \int_V \rho r_i r_j d^3 {\bf r} \\
- &- \int_V \rho r_i r_j d^3 {\bf r} \int_V \rho r_q r_q d^3 {\bf r} \\
- & = 0
+Y_{20} &= \frac{1}{4} \sqrt{\frac{ 5}{\pi}} \frac{ 2 z^2 - x^2 - y^2}{r^2} \\ 
+Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}
 \end{aligned}
 \end{equation}
-\else
+Solving for $( \lambda_i - \lambda_j )$ in terms of these harmonics, we find
+\ifdetail
+It is useful to define unnormalized verions of the spherical harmonics as intermediate products:
+\begin{equation}
+\begin{aligned}
+Y_{20}^* &= 2 z^2 - x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{5} } r^2 Y_{20} \\ 
+Y_{22}^* &= x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{15} } r^2 Y_{22}
+\end{aligned}
+\end{equation}
+These make it easy to rewrite the differences between the $\lambda_n$:
+\begin{equation}
+\begin{aligned}
+(\lambda_2 - \lambda_1) &= \int_V \rho Y_{22}^* \, dV \\
+(\lambda_3 - \lambda_1) &= \frac{1}{2} \int_V  \rho \left( Y_{22}^* - Y_{20}^* \right) dV \\
+(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV \\
+\end{aligned}
+\end{equation}
+We may split this into integrations in radius and integrations over the surface of a sphere
+\begin{equation}
+\begin{aligned}
+(\lambda_2 - \lambda_1) &= \int_V \rho Y_{22}^* \, dV \\
+(\lambda_3 - \lambda_1) &= \frac{1}{2} \int_V  \rho \left( Y_{22}^* - Y_{20}^* \right) dV \\
+(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV \\
+\end{aligned}
+\end{equation}
+Substituting back in for the normalized spherical harmonics we find
 \fi
-
-We may therefore go into the principle coordinate system of both tensors to find
 \begin{equation}
-{\bf I} = {\bf 1} \begin{bmatrix}
-\int_V \rho (y^2+z^z)\\
-\int_V \rho (x^2+z^2) \\
-\int_V \rho (x^2+y^2) 
-\end{bmatrix}
+\begin{aligned}
+(\lambda_2 - \lambda_1) &= 4 \sqrt{\frac{\pi}{15} } \int_V   \rho r^2  Y_{22} \,dV \\
+(\lambda_3 - \lambda_1) &= 2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV \\
+(\lambda_3 - \lambda_2) &= -2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV \\
+\end{aligned}
 \end{equation}
-
-\begin{equation}
-{\bf Q} = {\bf 1} \begin{bmatrix}
-\int_V \rho (2 x^2 - y^2 - z^z)\\
-\int_V \rho (2 y^2 - x^2 -z^2)\\
-\int_V \rho (2 z^2 - x^2 - y^2) 
-\end{bmatrix}
-\end{equation}
-
-where $\bf 1$ is the identity matrix.  If we let the diagonal elements of $\bf I$ be $\lambda_1, \lambda_2, \lambda_3$, we may rewrite $\bf Q$ as
-
-\begin{equation}
-{\bf Q} = {\bf 1} \begin{bmatrix}
-(\lambda_2-\lambda_1) + (\lambda_3-\lambda_1)\\
-(\lambda_1-\lambda_2) + (\lambda_3-\lambda_2)\\
-(\lambda_1-\lambda_3) + (\lambda_2-\lambda_3)\\
-\end{bmatrix}
-\label{eq:maccullagh}
-\end{equation}
-
-which shows the connection between the degree-two component of the density field and the principle moments of inertia.  This may be seen as a form of MacCullagh's formula \citep{munk1960rotation}.
-
-
-\section {TODO}
-
-\begin{enumerate}
-\item Make the argument about degree-two scaling much sharper
-\item Discuss high-viscosity lower mantle
-\item Earth-like parameters
-\end{enumerate}
+Up to the normalization constants, these expressions are idential to multipole expansions, 
+picking out the degree-two part of the density field laterally, and low-order polynomials radially.
+When density is a function of temperature, then we may directly identify this with the same expansion of the temperature field.
 
 \label{lastpage}
 

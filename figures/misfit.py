@@ -49,7 +49,7 @@ spin[pos] = np.nan
 fig = plt.figure()
 ax = fig.add_subplot(211)
 
-ax.plot(time, eigdiff, label=r'$(\lambda_1-\lambda_2)/I_0$')
+ax.plot(time, eigdiff, label=r'$(\lambda_2-\lambda_1)/I_0$')
 plt.xlim(tmin, tmax)
 plt.ylim(0., 2.e-5)
 ax.legend(loc='upper right')
