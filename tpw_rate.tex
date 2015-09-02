@@ -23,8 +23,8 @@
 
 %in case I want to add detail to any derivation
 \newif\ifdetail
-\detailfalse
-%\detailtrue
+%\detailfalse
+\detailtrue
 
 \begin{document}
 
@@ -70,8 +70,10 @@ Most previous studies coupling mantle convection models to polar wander calculat
 Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle,  which we support with numerical simulations.
 
 \section{Rotational dynamics}
+\label{sec:rotational_dynamics}
 
 \subsection{The Liouville equation}
+\label{sec:liouville}
 Conservation of angular momentum for a torque-free system in a rotating reference frame requires
 
 \begin{equation}
@@ -86,7 +88,7 @@ For a slowly convecting fluid such as a planetary mantle the inertial term $\par
 {\bf \Omega } (t)\times ( {\bf I}(t) \cdot {\bf \Omega }(t) ) = 0
 \label{eq:quasistatic_liouville}
 \end{equation}
-Equation \eqref{eq:quasistatic_liouville} indicates that ${\bf \Omega}$ and ${\bf I}$ are parallel, so a solution for ${\bf \Omega}(t)$ is equivalent to solving an eigenvalue problem for ${\bf I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
+Equation \eqref{eq:quasistatic_liouville} indicates that ${\bf \Omega}$ and ${\bf H}$ are parallel, so a solution for ${\bf \Omega}(t)$ is equivalent to solving an eigenvalue problem for ${\bf I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor in \eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
@@ -150,15 +152,16 @@ This, as well, may be parameterized using a viscoelastic Love number approach:
 \begin{equation} 
 {\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}
 \end{equation}
-
 where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, and $C_{ij}$ is the moment of inertia without that response.
 Frequently the simplification is made that the timescale of the surface response is quick compared to the true polar wander timescale, and we may use the fluid limit geoid kernels \citep[e.g.][]{richards1984geoid}:  
 \begin{equation}
 E_{ij} = (1+k^L_f) C_{ij}
 \end{equation}
 An alternative to the loading Love number approach to surface deflections is to calculate the surface deflections directly using mantle convection simulations with a true free surface boundary condition.
+We have recently implemented the ability to conduct simulations with a free surface in the CIG sponsored mantle convection software \texttt{ASPECT} \citep{rose2015free}.
 
 \subsection{Rate of true polar wander}
+\label{sec:tpw_rate}
 
 We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
@@ -276,7 +279,8 @@ In addition we use the simple equation of state
 where $\bf u$ is the velocity, $P$ is the pressure, and $T$ is the temperature.
 The other parameters are defined in Table \ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
-Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it.
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it
+(a fifth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
 Convenient choices for these numbers are listed in Table \ref{tab:nondim}, along with approximate Earth-like values for them.
 
 In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
@@ -319,11 +323,27 @@ Therefore we can neglect those terms, and we are left with
 \begin{equation}
 \begin{aligned}
 \int_V \rho {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV &= 0 \\
+\label{eq:quasistatic_angular_momentum}
 \end{aligned}
 \end{equation}
-which is a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
+which may be rewritten via the Jacobi identity to find
+\ifdetail
+\begin{equation}
+\begin{aligned}
+- \int_V \rho (\mitbf{\Omega}\times \mathbf{r}) \times ( \mathbf{r} \times \mitbf{\Omega} ) \,dV + 
+- \int_V \rho \mitbf{\Omega}\times(\mitbf{\Omega}\times \mathbf{r}) \times \mathbf{r} \,dV &= 0 \\
+\end{aligned}
+\end{equation}
+\fi
+\begin{equation}
+\begin{aligned}
+ \mitbf{\Omega} \times \int_V \rho \mathbf{r} \times (\mitbf{\Omega}\times \mathbf{r}) \,dV &= 0 \\
+\end{aligned}
+\end{equation}
+This can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
+and is a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
 
-Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eq:eos} we find
+Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eq:eos} into \eqref{eq:quasistatic_angular_momentum}, we find
 \begin{equation}
 \begin{aligned}
 &\int_{V_H} \rho_0 {\bf r \times \mitbf{\Omega} \times \mitbf{\Omega} \times {\bf r }} \,dV + 
@@ -414,16 +434,18 @@ $R$ & outer radius \\
 $\Omega_0$ & reference rotation rate \\
 $\eta$ & viscosity \\
 $\kappa$ & thermal diffusivity \\
+$\alpha$ &  thermal expansivity \\ 
 $g_0$ & reference gravity \\
 $I_0$ & reference moment of inertia \\
 $T_0$ & reference temperature \\
-$\delta \rho = \rho_0 \alpha \Delta T$ & buoyancy parameter \\ 
+$\rho_0$ & reference density \\ 
+$\Delta T$ & temperature drop across mantle
 \end{tabular}
 \end{table}
 
 \begin{table}
 \centering
-\caption{Nondimensional numbers with approximate Earthlike values}
+\caption{Nondimensional numbers with approximate Earth-like values}
 \label{tab:nondim}
 \begin{tabular}{@{}lcccc}
 Symbol &  Number & Definition & Approximate value \\
@@ -438,9 +460,14 @@ $\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 \section{Scaling}
 \label{sec:scaling}
 
+Having drawn the connection between the angular momentum equation (Section~\ref{sec:rotational_dynamics}) and the linear momentum 
+equation (Section~\ref{sec:internal}), we would like to apply insights from fluid dynamics and scaling of the 
+linear momentum equation to the problem of TPW. We would therefore like to rewrite Equation~\eqref{eq:simple_milankovitch}
+in terms of the nondimensional numbers identified in Section~\ref{sec:internal}.
+Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$, and $\theta$. 
+
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-With this we may rewrite Equation \eqref{eq:simple_milankovitch} in terms of the nondimensional numbers defined above.
 The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep{munk1960rotation}.
 \begin{equation}
 (C-A) \sim I_0 \mathrm{Fr}
@@ -485,7 +512,7 @@ where $V_S$ is the reference spherical volume of the mantle.
 As discussed in Section \ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
 The surface response is a function of the viscosity structure of the planet and the wavelength of the interal load, but the multiplicative factor $(1+k^L_f)$ is generally an order-one parameter, so we neglect it for this scaling.
 
-For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-twoo part of the temperature field (see Appendix \ref{appendix:moments}).
+For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-two part of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
 where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials:
@@ -494,11 +521,14 @@ T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}
 \label{eq:T_series}
 \end{equation}
 where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
-
-The integral in Equation \eqref{eq:temperature_fluctuations} is picking out degree-two spherical harmonics in the lateral dimensions, and low order polynomials in radius.
-We therefore want to estimate the power in a single mode of the temperature expansion, allowing us identify
+Inserting the temperature expansion~\eqref{eq:T_series} into~\eqref{eq:temperature_fluctuations} results in 
+a prefactor of the nondimensional number $\Gamma = \alpha \Delta T$.
+Orthogonality of the basis functions for the expansion results in the integral picking out degree-two 
+spherical harmonics in the lateral dimensions, and only having power in the lowest few radial functions $R_n(r)$.
+Therefore, of the entire temperature spectrum, only a few of the modes matter for TPW.
+We want to estimate the power in a single mode of the temperature expansion, allowing us identify
 \begin{equation}
-\Lambda_{12} \sim \Gamma T_{\mathrm{degree \textendash two}}
+\Lambda_{31} \sim \Gamma T_{\mathrm{degree \textendash two}}
 \end{equation}
 The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
@@ -512,7 +542,7 @@ the style of convection changes from steady/quasisteady to chaotic.  Accompanyin
 and temporal spectra \citep{mclaughlin1982transition}.  
 
 At low Rayleigh number we expect the spectrum of the temperature field to be dominated by only a few low-degree modes which are largely influenced by the aspect ratio.
-This spectrum may or may not have a lot of power in degree-two, does not depend strongly on time.
+This spectrum may or may not have a lot of power in degree-two, and does not depend strongly on time.
 
 At high Rayleigh number we expect the shortest lengthscales to be limited by the effects of thermal diffusion,
 which tends to wipe out thermal heterogeneity at small scales.  Consequently, there will be no power in modes
@@ -543,7 +573,8 @@ T_{\mathrm{degree \textendash two}}(t) \sim \mathrm{Ra}^{-1}
 \end{equation}
 
 We performed a series of numerical simulations of mantle convection at different Rayleigh numbers to test this scaling.
-We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII81}. 
+We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII81}.
+which allows for flexible implementation of 
 In order to test a wide range of Rayleigh numbers, we ran the simulations in a 2D annulus, tracking the eigenvalues of the 
 moment of inertia tensor and integrating Equation~\eqref{eq:liouville_ode} in time.
 For the 2D simulations there is a reduced dimensionality when calculating the number of modes,
@@ -557,7 +588,6 @@ With an estimate for the power in the degree-two part of the temperature field, 
 \begin{equation}
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
-
 Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
 Nevertheless, at high Rayleigh number the expectation is that the power is distributed across many length scales.
 
@@ -580,7 +610,6 @@ Then the rotation of the principal axes of the tensor is bounded by
 \lVert \sin(2 \theta) \rVert \le \frac{ 2 \lVert \delta \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
 \label{eq:kahan}
 \end{equation} 
-
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
 This is illustrated schematically in Figure \ref{fig:perturb}
@@ -735,6 +764,7 @@ Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}
 \end{equation}
 Solving for $( \lambda_i - \lambda_j )$ in terms of these harmonics, we find
 \ifdetail
+
 It is useful to define unnormalized verions of the spherical harmonics as intermediate products:
 \begin{equation}
 \begin{aligned}
@@ -750,14 +780,6 @@ These make it easy to rewrite the differences between the $\lambda_n$:
 (\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV \\
 \end{aligned}
 \end{equation}
-We may split this into integrations in radius and integrations over the surface of a sphere
-\begin{equation}
-\begin{aligned}
-(\lambda_2 - \lambda_1) &= \int_V \rho Y_{22}^* \, dV \\
-(\lambda_3 - \lambda_1) &= \frac{1}{2} \int_V  \rho \left( Y_{22}^* - Y_{20}^* \right) dV \\
-(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV \\
-\end{aligned}
-\end{equation}
 Substituting back in for the normalized spherical harmonics we find
 \fi
 \begin{equation}
@@ -765,11 +787,46 @@ Substituting back in for the normalized spherical harmonics we find
 (\lambda_2 - \lambda_1) &= 4 \sqrt{\frac{\pi}{15} } \int_V   \rho r^2  Y_{22} \,dV \\
 (\lambda_3 - \lambda_1) &= 2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV \\
 (\lambda_3 - \lambda_2) &= -2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV \\
+\label{eq:degree_two_moments}
 \end{aligned}
 \end{equation}
 Up to the normalization constants, these expressions are idential to multipole expansions, 
 picking out the degree-two part of the density field laterally, and low-order polynomials radially.
 When density is a function of temperature, then we may directly identify this with the same expansion of the temperature field.
+We can insert the equation of state~\eqref{eq:eos} into Equation~\eqref{eq:degree_two_moments} and integrate over a reference spherical volume $V_S$.
+This allows us to drop the terms which integrate to zero due to the orthogonality of spherical harmonics, and we are left with:
+\begin{equation}
+\begin{aligned}
+(\lambda_2 - \lambda_1) &= -4 \sqrt{\frac{\pi}{15} } \alpha \rho_0 \int_{V_S} T r^2  Y_{22} \,dV \\
+(\lambda_3 - \lambda_1) &= -2 \sqrt{ \frac{\pi}{15} } \alpha \rho_0 \int_{V_S} T r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV \\
+(\lambda_3 - \lambda_2) &= 2 \sqrt{ \frac{\pi}{15} } \alpha \rho_0 \int_{V_S}  T r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV \\
+\label{eq:degree_two_moments}
+\end{aligned}
+\end{equation}
+We would like to normalize the differences in eigenvalues by the reference momentn $I_0$,
+which can also be written in terms of real spherical harmonics:
+\ifdetail
+\begin{equation}
+\begin{aligned}
+\int_{V_S} \rho_0 \frac{2 r^2 - Y_{20}^*}{3} &= \int_{V_S} \rho_0 (x^2 + y^2) dV = I_0 \\
+\end{aligned}
+\end{equation}
+\begin{equation}
+I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \left(1 - 2 \sqrt{\frac{\pi}{5}} Y_{20}\right) \,dV
+\end{equation}
+\fi
+\begin{equation}
+I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV
+\end{equation}
+with this we can write expressions for $\Lambda_{ij}$:
+\begin{equation}
+\begin{aligned}
+\Lambda_{21} &= \alpha \Delta T \frac{-6 \sqrt{\frac{\pi}{15} } \int_{V_S} T^\prime r^2  Y_{22} \,dV}{\int_{V_S} r^2 \, dV} \\
+\Lambda_{31} &= \alpha \Delta T \frac{-3 \sqrt{ \frac{\pi}{15} } \int_{V_S} T^\prime r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV}{\int_{V_S} r^2 \, dV}\\
+\Lambda_{32} &= \alpha \Delta T \frac{3 \sqrt{ \frac{\pi}{15} }  \int_{V_S}  T^\prime r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV}{\int_{V_S} r^2 \, dV} \\
+\end{aligned}
+\end{equation}
+
 
 \label{lastpage}
 
