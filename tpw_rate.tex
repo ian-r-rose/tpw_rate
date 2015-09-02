@@ -526,7 +526,7 @@ a prefactor of the nondimensional number $\Gamma = \alpha \Delta T$.
 Orthogonality of the basis functions for the expansion results in the integral picking out degree-two 
 spherical harmonics in the lateral dimensions, and only having power in the lowest few radial functions $R_n(r)$.
 Therefore, of the entire temperature spectrum, only a few of the modes matter for TPW.
-We want to estimate the power in a single mode of the temperature expansion, allowing us identify
+We want to estimate the power in those few modes, which we denote by $T_{\mathrm{degree \textendash two}}$: 
 \begin{equation}
 \Lambda_{31} \sim \Gamma T_{\mathrm{degree \textendash two}}
 \end{equation}
@@ -589,7 +589,9 @@ With an estimate for the power in the degree-two part of the temperature field, 
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
 \end{equation}
 Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
-Nevertheless, at high Rayleigh number the expectation is that the power is distributed across many length scales.
+Present day Earth seems to have a fairly ``red'' spectrum, with large low-degree seismic anomalies due to 
+Cenozoic subduction history and the lower mantle LLSVPs \citep{dziewonski2010mantle}.
+Nevertheless, at high Rayleigh number the expectation is that the power will be distributed across many length scales.
 
 
 \subsection{An estimate of the mismatch $\theta$}
@@ -695,6 +697,20 @@ This, however, is a special case in the large $\theta$, ``fast TPW'' regime.
 As an example, we may consider the early Earth, when the mantle was presumably hotter and less viscous, leading to a 
 higher Rayleigh number. We would then predict that convection was more vigorous, leading to 
 a less stable $\theta(t)$, and thus more TPW and more frequent ``fast TPW'' events.
+
+For Cenozoic Earth we can substitute direct estimates of the important parameters into Equation~\eqref{eq:simple_milankovitch}.
+Typical values for the time constant $T_1$ are of order $30 \, \mathrm{kyr}$.
+Estimates of the present day non-hydrostatic moment of inertia (due to mantle density anomalies)
+are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia is $10^{-3} I_0$ \citep{chambat2001mean}.
+The largest question is whether convection is sufficiently chaotic to enter the large $\theta$ regime. 
+\citet{richards1997explanation} have argued that the convective planform of Earth has been stable for the last
+few hundred million years. On the other hand, we know that there have been large reorganizations of that planform 
+during Earth history, so this may not hold in general \citep{evans2003true}.
+If the mismatch angle can become large, then we may estimate the maximum polar wander wander rate
+\begin{equation}
+\max ( \dot{\theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 90^\circ / \mathrm{Myr}
+\end{equation}
+which is similar to the timescales discussed by \citet{cambiotti2011new}.
 
 Thus far we have restricted our discussion to planets with lithospheres lacking long-term elastic strength.
 For this case the long-time limit of the planetary figure is coaxial with the convective 
@@ -803,8 +819,7 @@ This allows us to drop the terms which integrate to zero due to the orthogonalit
 \label{eq:degree_two_moments}
 \end{aligned}
 \end{equation}
-We would like to normalize the differences in eigenvalues by the reference momentn $I_0$,
-which can also be written in terms of real spherical harmonics:
+We would like to normalize the differences in eigenvalues by the reference moment $I_0$:
 \ifdetail
 \begin{equation}
 \begin{aligned}
@@ -818,7 +833,7 @@ I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \left(1 - 2 \sqrt{\frac{\pi}{5}} Y_{20}\
 \begin{equation}
 I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV
 \end{equation}
-with this we can write expressions for $\Lambda_{ij}$:
+\ifdetail
 \begin{equation}
 \begin{aligned}
 \Lambda_{21} &= \alpha \Delta T \frac{-6 \sqrt{\frac{\pi}{15} } \int_{V_S} T^\prime r^2  Y_{22} \,dV}{\int_{V_S} r^2 \, dV} \\
@@ -826,7 +841,19 @@ with this we can write expressions for $\Lambda_{ij}$:
 \Lambda_{32} &= \alpha \Delta T \frac{3 \sqrt{ \frac{\pi}{15} }  \int_{V_S}  T^\prime r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV}{\int_{V_S} r^2 \, dV} \\
 \end{aligned}
 \end{equation}
-
+\begin{equation}
+\begin{aligned}
+\Lambda_{21} &= \Gamma \frac{-6 \sqrt{\frac{\pi}{15} } \int_{V_S^\prime} T^\prime {r^\prime}^2  Y_{22} \,dV^\prime}{\int_{V_S^\prime} {r^\prime}^2 \,dV^\prime} \\
+\Lambda_{31} &= \Gamma \frac{-3 \sqrt{ \frac{\pi}{15} } \int_{V_S^\prime} T^\prime {r^\prime}^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV^\prime}{\int_{V_S} {r^\prime}^2 \, dV^\prime}\\
+\Lambda_{32} &= \Gamma \frac{3 \sqrt{ \frac{\pi}{15} }  \int_{V_S^\prime}  T^\prime {r^\prime}^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV^\prime}{\int_{V_S} {r^\prime}^2 \, dV^\prime} \\
+\end{aligned}
+\end{equation}
+\fi
+Dividing by $I_0$ and nodimensionalizing the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
+degree-two coefficients for the temperature field, which we abbreviate as $T_{\mathrm{degree \textendash two}}$:
+\begin{equation}
+\Lambda_{ij} \sim \Gamma T_{\mathrm{degree \textendash two}}
+\end{equation}
 
 \label{lastpage}
 
