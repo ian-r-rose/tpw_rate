@@ -49,13 +49,13 @@ spin[pos] = np.nan
 fig = plt.figure()
 ax = fig.add_subplot(211)
 
-ax.plot(time, eigdiff, label=r'$(\lambda_2-\lambda_1)/I_0$')
+ax.plot(time, eigdiff, label=r'$\Lambda_{21} = (\lambda_2-\lambda_1)/I_0$')
 plt.xlim(tmin, tmax)
 plt.ylim(0., 2.e-5)
 ax.legend(loc='upper right')
 ax.xaxis.set_major_formatter(matplotlib.ticker.NullFormatter())
 ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=4, prune=None))
-plt.ylabel('Relative moment')
+plt.ylabel(r'Eigengap $\Lambda_{21}')
 
 ax = fig.add_subplot(212)
 
@@ -67,7 +67,7 @@ plt.xlim(tmin, tmax)
 plt.ylim(0., 180.)
 ax.legend(loc='upper right')
 ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=3, prune=None))
-plt.xlabel(r"Time")
+plt.xlabel(r"Time (Gyr)")
 plt.ylabel(r"Angle ($^\circ$)")
 
 plt.savefig("misfit.pdf", bbox_inches='tight')

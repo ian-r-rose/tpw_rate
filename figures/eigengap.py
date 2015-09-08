@@ -38,6 +38,7 @@ frac = 50
 
 def get_spin_spectrum(text_file):
 
+  print text_file
   #load the data
   data = np.loadtxt(text_file,skiprows=50, usecols=(1,17,18,19,20))
   #get rid of duplicate times (why might these exist?)
@@ -47,10 +48,11 @@ def get_spin_spectrum(text_file):
       stats.append(data[i,:])
   stats = np.array(stats) 
         
-  eig1tck = interp.splrep(stats[:,0],stats[:,3], k=3 )
-  eig2tck = interp.splrep(stats[:,0],stats[:,4], k=3)
-  axistck = interp.splrep(stats[:,0],stats[:,1], k=3)
-  mismatchtck = interp.splrep(stats[:,0],stats[:,2], k=3)
+  s = 3.e51 #magic number for some slight smoothing
+  eig1tck = interp.splrep(stats[:,0],stats[:,3], k=3, s=s)
+  eig2tck = interp.splrep(stats[:,0],stats[:,4], k=3, s=s)
+  axistck = interp.splrep(stats[:,0],stats[:,1], k=3, s=s)
+  mismatchtck = interp.splrep(stats[:,0],stats[:,2], k=3, s=s)
 
   times = np.linspace(stats[0,0], stats[-1,0], len(stats[:,0]))
   lambda1 = interp.splev(times, eig1tck, der=0)
@@ -58,20 +60,12 @@ def get_spin_spectrum(text_file):
   axis = interp.splev(times, axistck, der=0)
   mismatch = interp.splev(times, mismatchtck, der=0)
 
-  # nondimensionalize
+  # normalize
   diff = (lambda1-lambda2)/( np.mean(lambda1 + lambda2)/2.0 )
+  # convert to Gyr
   times = times/1.e9 #* kappa / D / D
  
-  frequency = times[-1]/len(times)
-  autocorr = lambda x: np.correlate(x,x, mode='same')
-  psd = lambda x : signal.welch(x,  fs=frequency,scaling='spectrum', return_onesided=True, nfft=100, nperseg=10)
-
-  acorrdiff = autocorr(diff)
-  p = psd(diff)
-  peak = p[0][np.argmax(p[1])]
-  print text_file, peak
-
-  return times, diff, acorrdiff, peak
+  return times, diff
 
 
 
@@ -81,7 +75,6 @@ output_files.sort(key=sort_key)
 print output_files
 
 amplitudes = []
-timescales = []
 Rayleighs = []
 
 #plt.subplots_adjust(wspace=0.0, hspace=0.0)
@@ -97,14 +90,13 @@ for i,f in enumerate(output_files):
   Ra = rho * g * alpha * delta_T * D * D * D / eta / kappa
 
 
-  times, diff, acorrdiff, peak = get_spin_spectrum(f)
+  times, diff = get_spin_spectrum(f)
   tmax = times[-1]
   tmin = times[0]
   times = times-tmin
   
   Rayleighs.append(Ra)
   amplitudes.append(diff.mean())
-  timescales.append(peak)
 
   #plot a subset of the timeseries (plotting all of them got too busy)
   if f in ['statistics_50', 'statistics_200', 'statistics_500']:
@@ -117,7 +109,7 @@ for i,f in enumerate(output_files):
 
 ax.set_xlim(0,4)
 ax.set_ylim(0, 8.0e-5)
-ax.set_xlabel("Time (Gyr)")
+ax.set_xlabel(r'Time (Gyr)')
 ax.set_ylabel(r'$(\lambda_2-\lambda_1)/I_0$')
 ax.legend(loc="upper right")
 print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
@@ -139,8 +131,8 @@ ax.scatter(Rayleighs, np.array(amplitudes), c = clist, s=100)
 
 ax.set_ylim(3.0e-6, 3e-4)
 ax.set_xlim(1.e6, 4.0e8)
-ax.set_xlabel("Rayleigh number")
-ax.set_ylabel("Average relative moment")
+ax.set_xlabel(r'Rayleigh number')
+ax.set_ylabel(r'Average eigengap')
 
 fig = plt.gcf()
 fig.set_size_inches(12.0,6.0)
