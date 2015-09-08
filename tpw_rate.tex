@@ -88,7 +88,7 @@ For a slowly convecting fluid such as a planetary mantle the inertial term $\par
 \label{eq:quasistatic_liouville}
 \end{equation}
 Equation~\eqref{eq:quasistatic_liouville} indicates that $\mitbf{\Omega}$ and $\mathbf{H}$ are parallel, so a solution for $\mitbf{\Omega}(t)$ is equivalent to solving an eigenvalue problem for $\mathbf{I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
-In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
+In practice, this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor in~\eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
 Here we are interested in contributions from mantle convection, so we neglect other processes.
@@ -245,7 +245,7 @@ Without loss of generality we may choose the coordinate system such that $\phi=0
 \end{equation}
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
 Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
-They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
 Both $\theta$ and $\lambda_i$ depend upon the dynamics of the convecting planetary mantle.
 In order to derive estimates for them, we must consider those dynamics.
 
@@ -345,7 +345,7 @@ which may be rewritten via the Jacobi identity to find
 \end{aligned}
 \end{equation}
 This can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
-and is a statement that a quasistatic body will rotate around the principle axis of its total moment of inertia.
+and is a statement that a quasistatic body will rotate around the principal axis of its total moment of inertia.
 
 Splitting the volume into $V_H$ and $\Delta V$ and substituting~\eqref{eq:eos} into~\eqref{eq:quasistatic_angular_momentum}, we find
 \begin{equation}
@@ -486,7 +486,7 @@ Plugging these scalings into Equation~\eqref{eq:simple_milankovitch} we find
 \end{equation}
 
 At this point we do not have estimates for the characteristic magnitudes of $\Lambda_{ij}$ or $\theta$, both of which are crucial for predicting characteristic rates of TPW.
-They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
 
 
 The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
@@ -600,7 +600,7 @@ Nevertheless, at high Rayleigh number the expectation is that the power will be 
 \subsection{An estimate of the mismatch $\theta$}
 \label{sec:theta}
 
-The mismatch between the current axis and the principle axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
+The mismatch between the current axis and the principal axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
 An estimate for $\theta$ must concern the stability of the convective moment of inertia. 
@@ -617,7 +617,7 @@ Then the rotation of the principal axes of the tensor is bounded by
 \label{eq:kahan}
 \end{equation} 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
-If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principle axes.
+If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principal axes.
 This is illustrated schematically in Figure \ref{fig:perturb}
 
 We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
@@ -630,14 +630,14 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ by d
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
-\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principle axes on the left, but a large one on the right.}
+\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principal axes on the left, but a large one on the right.}
 \label{fig:perturb}
 \end{figure*}
 
 Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator of these equations is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
 Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
 Additionally, the timescale of fluctuations in these values goes down. 
-Overall, this makes the principle axes of high Rayleigh number systems much less stable.
+Overall, this makes the principal axes of high Rayleigh number systems much less stable.
 This is consistent with the result of \citet{richards1999polar}.
 
 In the limit that the eigengap becomes zero, the rotation of the pinciple axes can be arbitrary. 
@@ -660,7 +660,7 @@ as it has a lower characteristic gap between principal moments and the gap is mu
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/misfit.pdf}
-\caption{Top: Time series of principle moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Bottom: Time series of spin axis and mismatch angle $\theta$.  When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger. At $\sim$1 Gyr the gap goes to zero and there is a nearly $90^\circ$ TPW event, with $\sim80^\circ$ degrees of polar wander in $\sim$30 Myr. However, there are several other large TPW events which happen when the eigengap is small.}
+\caption{Top: Time series of principal moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Bottom: Time series of spin axis and mismatch angle $\theta$.  When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger. At $\sim$1 Gyr the gap goes to zero and there is a nearly $90^\circ$ TPW event, with $\sim80^\circ$ degrees of polar wander in $\sim$30 Myr. However, there are several other large TPW events which happen when the eigengap is small.}
 \label{fig:misfit}
 \end{figure*}
 
@@ -669,7 +669,7 @@ as it has a lower characteristic gap between principal moments and the gap is mu
 \label{sec:discussion}
 
 The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
-As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principle axes of the convective moment of inertia. 
+As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
 Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
 We may plug in the estimate for $\Lambda_{ij}$ into equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
