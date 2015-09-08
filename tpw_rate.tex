@@ -89,7 +89,7 @@ For a slowly convecting fluid such as a planetary mantle the inertial term $\par
 \end{equation}
 Equation~\eqref{eq:quasistatic_liouville} indicates that $\mitbf{\Omega}$ and $\mathbf{H}$ are parallel, so a solution for $\mitbf{\Omega}(t)$ is equivalent to solving an eigenvalue problem for $\mathbf{I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice, this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
-The moment of inertia tensor in~\eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
+The moment of inertia tensor in Equation~\eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
 Here we are interested in contributions from mantle convection, so we neglect other processes.
 
@@ -281,8 +281,8 @@ In addition we use the simple equation of state
 \end{equation}
 The other parameters are defined in Table \ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
-Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it
-(a fifth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
+Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it
+(a fourth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
 Convenient choices for these numbers are listed in Table \ref{tab:nondim}, along with approximate Earth-like values for them.
 
 In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
@@ -505,7 +505,7 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 \end{figure*}
 
 
-Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the interior and their spatial structure:
+Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the mantle and their spatial structure:
 
 \begin{equation}
 C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) \,dV
@@ -518,12 +518,12 @@ The surface response is a function of the viscosity structure of the planet and 
 For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-two part of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
-where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials:
+where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials, and
+$T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$:
 \begin{equation} 
 T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi)
 \label{eq:T_series}
 \end{equation}
-where the $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$.
 Inserting the temperature expansion~\eqref{eq:T_series} into~\eqref{eq:temperature_fluctuations} results in 
 a prefactor of the nondimensional number $\Gamma = \alpha \Delta T$.
 Orthogonality of the basis functions for the expansion results in the integral picking out degree-two 
@@ -682,7 +682,7 @@ Response timescales for relaxation of the mismatch angle go down at high Rayleig
 At the same time, however, coherence in the temperature structure goes down, reducing the amount of power in the degree-two part of the field responsible for driving TPW.
 That these two effects cancel is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
 Scalings for lengthscales of convection in fluids with temperature dependent viscosity \citep[e.g.][]{solomatov1995scaling} or pseudoplastic rheology \citep[e.g.][]{korenaga2010scaling} have different functional dependencies on $\mathrm{Ra}$ or additional nondimensional parameters.
-However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \sim \mathrm{Ra}^{-\beta}$.
+However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \mathrm{Ra}^{-\beta}$.
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{\mathrm{Fr}} \sin{2 \theta}
@@ -739,8 +739,9 @@ We identified a small number of dimensionless parameters which describe the syst
 
 The most important parameters are the Rayleigh number and the Froude number.
 The Froude number acts as a damper to TPW.
-The Rayleigh number is more complicated, since it is a control on both the forcing 
+The dependence on the Rayleigh number is more complicated, since it is a control on both the forcing 
 of TPW and the response, which act in opposite directions.
+Overall, however, we expect that more vigorously convecting planets should be less rotationally stable, and experience more TPW.
 This perspective allows us to consider not only the polar wandering of Phanerozoic Earth,
 but also allows us to hypothesize about polar wandering during the Archean and Proterozoic, or 
 on other planetary bodies.
