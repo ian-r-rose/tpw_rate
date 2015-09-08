@@ -10,12 +10,12 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,red -K -O >> perturb.ps <<EOF
 EOF
 #blue axis
 gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
-0 0 110 1.4 1.4
+0 0 290 1.4 1.4
 EOF
 
 #lambda 1
 gmt pstext -R -J -K  -O >>perturb.ps <<EOF
-.0 0.36 @~l@-1@-@~
+.04 -0.32 @~l@-1@-@~
 EOF
 
 #lambda 2
@@ -54,17 +54,17 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,red -K -O >> perturb.ps <<EOF
 EOF
 #blue axis
 gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
-0 0 170 1.6 1.6
+0 0 350 1.6 1.6
 EOF
 
 #lambda 1
 gmt pstext -R -J -K  -O >>perturb.ps <<EOF
--0.36 0.2 @~l@-1@-@~
+.36 -0.15 @~l@-1@-@~
 EOF
 
 #lambda 2
 gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.0 0.46 @~l@-2@-@~
+-.02 0.46 @~l@-2@-@~
 EOF
 
 #theta
