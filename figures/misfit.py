@@ -55,7 +55,7 @@ plt.ylim(0., 2.e-5)
 ax.legend(loc='upper right')
 ax.xaxis.set_major_formatter(matplotlib.ticker.NullFormatter())
 ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=4, prune=None))
-plt.ylabel(r'Eigengap $\Lambda_{21}')
+plt.ylabel(r'Eigengap')
 
 ax = fig.add_subplot(212)
 
