@@ -64,7 +64,7 @@ As such, they do not vary independently, and first-order questions about the pro
 Are other planetary bodies more or less likely than Earth to experience TPW?  And are these rates expected to vary in Earth history?
 
 These questions suggest that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
-Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment if inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
+Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment of inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
 \citet{richards1999polar} coupled thermal convection models to a polar wander model, but did not address in detail the scaling relationships between the two.
 
 Herein we perform a scaling analysis of rates of TPW for a minimal system of a rotating, convecting mantle,  which we support with numerical simulations.
@@ -109,6 +109,7 @@ This form of the quasistatic Liouville equation makes clear that the polar wande
 Our goal is to characterize this balance from a perspective of scaling and fluid dynamics.
 
 \subsection{Rotational deformation}
+\label{sec:rotational_deformation}
 
 The part of the moment of inertia due to the elastic rotational deformation is traditionally related to the degree-two part of the gravity field via MacCullagh's formula \citep{munk1960rotation}:
 \begin{equation}
@@ -353,7 +354,7 @@ Splitting the volume into $V_H$ and $\Delta V$ and substituting \eqref{eq:eos} i
 \end{aligned}
 \end{equation}
 The first term of this equation is zero due to the hydrostatic equation.  
-The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\Gamma$.
+The fourth term is negligible due to being second order in the smallness parameters $\Delta V/V_H$ and $\Gamma\equiv \alpha \Delta T$.
 Removing these, we find
 \begin{equation}
 \begin{aligned}
@@ -366,6 +367,7 @@ Our goal is to identify characteristic sizes of these quantities, which must be 
 
 \ifdetail
 \subsection{Buckingham Pi theorem and nondimensionalization}
+\label{sec:buckingham}
 The Buckingham Pi theorem (essentially an application of the rank-nullity theorem) allows us to determine the number of nondimensional numbers for this problem.
 We count the number of fundamental units for the problem, in this case mass (kg), length (m), time (s), and temperature (K), as well as the number of parameters in use for this problem.  
 These parameters are listed in Table \ref{tab:parameters}, and subtracting the ...
@@ -388,7 +390,6 @@ $g^\prime$ &=& $g_0 \;\; g$
 
 If we plug these nondimensionalizations into the governing equations we find that the incompressibility constraint remains unchanged.  
 The temperature equation and equation of state become
-
 \begin{equation}
 \frac{\partial T}{\partial t} + {\bf v} \cdot \nabla T = \nabla^2 T
 \end{equation}
@@ -396,13 +397,11 @@ The temperature equation and equation of state become
 \begin{equation}
 \rho = 1 - \alpha \Delta T \;\;  T
 \end{equation}
-
 We may furthermore define a hydrostatic reference state where the density is the reference density everywhere and the velocity is zero, i.e.
 
 \begin{equation}
  \rho_0{\bf \Omega \times \Omega \times r}= - \nabla P_0 + \rho_0 {\bf g}
 \end{equation}
-
 Subtracting this from the momentum equation and defining a dynamic pressure $P^* = P - P_0$, we find
 
 \begin{equation}
@@ -468,7 +467,7 @@ Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$
 
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep{munk1960rotation}.
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep{munk1960rotation}:
 \begin{equation}
 (C-A) \sim I_0 \mathrm{Fr}
 \end{equation}
@@ -493,6 +492,7 @@ In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look 
 
 
 \subsection{An estimate of $\Lambda_{ij}$}
+\label{sec:lambda}
 
 \begin{figure*}
 \centering
@@ -542,11 +542,11 @@ the style of convection changes from steady/quasisteady to chaotic.  Accompanyin
 and temporal spectra \citep{mclaughlin1982transition}.  
 
 At low Rayleigh number we expect the spectrum of the temperature field to be dominated by only a few low-degree modes which are largely influenced by the aspect ratio.
-This spectrum may or may not have a lot of power in degree-two, and does not depend strongly on time.
+This spectrum may or may not have a lot of power in the degree-two modes, and does not depend strongly on time.
 
 At high Rayleigh number we expect the shortest lengthscales to be limited by the effects of thermal diffusion,
 which tends to wipe out thermal heterogeneity at small scales.  Consequently, there will be no power in modes
-with shorter lenghtscales than that allowed by diffusion. 
+with shorter lengthscales than that allowed by diffusion. 
 Therefore we expect, to a good approximation, that the infinite sum in Equation \eqref{eq:T_series} can be truncated at some maximum wavenumber, set by the smallest lengthscale $d$:
 \begin{equation}
 n_{\mathrm{max}}, l_{\mathrm{max}}, m_{\mathrm{max}} \sim \frac{R}{d}
@@ -574,7 +574,7 @@ T_{\mathrm{degree \textendash two}}(t) \sim \mathrm{Ra}^{-1}
 
 We performed a series of numerical simulations of mantle convection at different Rayleigh numbers to test this scaling.
 We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII82}.
-which allows for flexible implementation of 
+which allows for flexible implementation of different rheologies, geometries, and postprocessors.
 In order to test a wide range of Rayleigh numbers, we ran the simulations in a 2D annulus, tracking the eigenvalues of the 
 moment of inertia tensor and integrating Equation~\eqref{eq:liouville_ode} in time.
 For the 2D simulations there is a reduced dimensionality when calculating the number of modes,
@@ -595,6 +595,7 @@ Nevertheless, at high Rayleigh number the expectation is that the power will be 
 
 
 \subsection{An estimate of the mismatch $\theta$}
+\label{sec:theta}
 
 The mismatch between the current axis and the principle axis of the convective moment is perhaps the most important parameter in Equation \eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
@@ -673,7 +674,7 @@ We may plug in the estimate for $\Lambda_{ij}$ into equation \eqref{eq:simple_mi
 \label{eq:simplest_milankovitch}
 \end{equation}
 Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the prefactor in the scaling. 
-At high Rayleigh numbers response timescales for relaxation of the mismatch angle go down.
+Response timescales for relaxation of the mismatch angle go down at high Rayleigh numbers.
 At the same time, however, coherence in the temperature structure goes down, reducing the amount of power in the degree-two part of the field responsible for driving TPW.
 That these two effects cancel is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
 Scalings for lengthscales of convection in fluids with temperature dependent viscosity \citep[e.g.][]{solomatov1995scaling} or pseudoplastic rheology \citep[e.g.][]{korenaga2010scaling} have different functional dependencies on $\mathrm{Ra}$ or additional nondimensional parameters.
@@ -681,13 +682,14 @@ However, a common feature in most scalings is that typical lengthscales are stil
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{\mathrm{Fr}} \sin{2 \theta}
+\label{eq:simplest_milankovitch_defer_scaling}
 \end{equation}
 In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
 
 We then suggest that the most important parameters are the Froude number, which acts as the brakes on the system, and the mismatch angle $\theta(\mathrm{Ra})$.
 Whereas the rest of the expression has at most a weak dependence on $\mathrm{Ra}$, $\theta$ is expected to be strongly dependent on it.
 
-Indeed, we can identify two endmember behaviors of Equation \eqref{eq:simplest_milankovitch}.
+Indeed, we can identify two endmember behaviors of Equation \eqref{eq:simplest_milankovitch_defer_scaling}.
 When convection is not sufficiently chaotic to create a large $\theta$ we are in the regime where the planet's rotation axis closely tracks that of the convective moment.
 This is the regime considered in \citet{steinberger1997changes}, \citet{roberts2007cause}, and \citet{zhong2007supercontinent}, and can be considered the ``slow TPW'' regime.
 When convection is more chaotic, however, there may be large excursions in $\theta$, which can drastically increase the wander rate.  
