@@ -77,18 +77,18 @@ Herein we perform a scaling analysis of rates of TPW for a minimal system of a r
 Conservation of angular momentum for a torque-free system in a rotating reference frame requires
 
 \begin{equation}
-\frac{d {\bf H}}{dt} + {\bf \Omega} \times {\bf H} = 0
+\frac{d \mathbf{H}}{dt} + \mitbf{\Omega} \times \mathbf{H} = 0
 \label{eq:euler}
 \end{equation}
-known as Euler's equations, where ${\bf H} = {\bf I} \cdot {\bf \Omega}$ is the angular momentum vector, $\bf I$ is the moment of inertia tensor, and $\bf \Omega$ is the angular velocity.
-On a dynamic planet $\bf I$ may be a function of time, so to conserve angular momentum $\bf \Omega$ must be also vary with time.
+known as Euler's equations, where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity.
+On a dynamic planet $\mathbf{I}$ may be a function of time, so to conserve angular momentum $\mitbf{\Omega}$ must be also vary with time.
 In this case Equation~\eqref{eq:euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
-For a slowly convecting fluid such as a planetary mantle the inertial term $\partial {\bf H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
+For a slowly convecting fluid such as a planetary mantle the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
-{\bf \Omega } (t)\times ( {\bf I}(t) \cdot {\bf \Omega }(t) ) = 0
+\mitbf{\Omega } (t)\times ( \mathbf{I}(t) \cdot \mitbf{\Omega }(t) ) = 0
 \label{eq:quasistatic_liouville}
 \end{equation}
-Equation~\eqref{eq:quasistatic_liouville} indicates that ${\bf \Omega}$ and ${\bf H}$ are parallel, so a solution for ${\bf \Omega}(t)$ is equivalent to solving an eigenvalue problem for ${\bf I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
+Equation~\eqref{eq:quasistatic_liouville} indicates that $\mitbf{\Omega}$ and $\mathbf{H}$ are parallel, so a solution for $\mitbf{\Omega}(t)$ is equivalent to solving an eigenvalue problem for $\mathbf{I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
 In practice this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor in~\eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
@@ -102,10 +102,11 @@ I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 where $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
 If we plug this decomposition into Equation~\eqref{eq:quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
 \begin{equation}
-{\bf \Omega} \times ({\bf J} \cdot {\bf \Omega}) = -{\bf \Omega } \times ( {\bf E} \cdot {\bf \Omega} )
+\mathbf{\Omega} \times (\mathbf{J} \cdot \mitbf{\Omega}) = -\mitbf{\Omega} \times ( \mathbf{E} \cdot \mitbf{\Omega} )
 \label{eq:disequilibrium}
 \end{equation}
-This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches of the convective part of the moment of inertia ($\bf E$) and the rotational deformation part of the moment of inertia ($\bf J$).
+This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches
+of the convective part of the moment of inertia ($\mathbf{E}$) and the rotational deformation part of the moment of inertia ($\mathbf{J}$).
 Our goal is to characterize this balance from a perspective of scaling and fluid dynamics.
 
 \subsection{Rotational deformation}
@@ -151,7 +152,7 @@ Since the first term represents the fluid limit of rotational deformation, it au
 The term on the right-hand side of equation~\eqref{eq:disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
 This, as well, may be parameterized using a viscoelastic Love number approach:
 \begin{equation} 
-{\bf E} = \left[ \delta(t) + k^L(t) \right] * {\bf C}
+\mathbf{E} = \left[ \delta(t) + k^L(t) \right] * \mathbf{C}
 \end{equation}
 where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, and $C_{ij}$ is the moment of inertia without that response.
 Frequently the simplification is made that the timescale of the surface response is quick compared to the true polar wander timescale, and we may use the fluid limit geoid kernels \citep[e.g.][]{richards1984geoid}:  
@@ -165,20 +166,20 @@ permits more general treatments of mantle rheology.
 \subsection{Rate of true polar wander}
 \label{sec:tpw_rate}
 
-We are in a position to address the rates of true polar wander for a given convective moment $\bf E$.
+We are in a position to address the rates of true polar wander for a given convective moment $\mathbf{E}$.
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation~\eqref{eq:rotational_deformation} into Equation~\eqref{eq:disequilibrium} we find
 \begin{equation}
-\frac{k_f a^5 T_1}{3G}{\bf \Omega} \times {\bf \dot{\Omega} } = {\bf \Omega} \times \left( {\bf E \cdot \Omega} \right)
+\frac{k_f a^5 T_1}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right)
 \label{eq:liouville}
 \end{equation}
-Introducing a unit vector $\mitbf{\omega} = {\bf \Omega}/\|{\bf \Omega} \|$ and using Equation~\eqref{eq:fluid_love} for $k_f$,  we may solve this equation for ${\bf \dot{\mitbf{\omega}} }$:
+Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ and using Equation~\eqref{eq:fluid_love} for $k_f$,  we may solve this equation for $\dot{\mitbf{\omega}}$:
 \begin{equation}
- \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ {\bf E \cdot \mitbf{\omega}} - \left( {\bf \mitbf{\omega} \cdot E \cdot \mitbf{\omega} } \right) \mitbf{\omega} \right]
+ \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ \mathbf{E} \cdot \mitbf{\omega} - \left( \mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega}  \right) \mitbf{\omega} \right]
 \label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
-If we enter the coordinate system of the convective moment of inertia $\bf E$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
+If we enter the coordinate system of the convective moment of inertia $\mathbf{E}$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
 \ifdetail
 
 And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$, and the pole of the coordinate system ($\theta = 0$) associated with the eigenvector for $\lambda_3$.  Therefore we find that $\mitbf{\omega} = \left[ \sin{\theta} \cos{\phi} \;\; \sin{\theta} \sin{\phi} \;\; \cos{\theta} \right]^T$.  Plugging this in, we find a system of three equations, which we want to solve for $\dot{\theta}$ and $\dot{\phi}$:
@@ -244,7 +245,7 @@ Without loss of generality we may choose the coordinate system such that $\phi=0
 \label{eq:simple_milankovitch}
 \end{equation}
 These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
-Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\bf E$, both of which depend on the structure and dynamics of mantle convection.  
+Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principle axis of the convective moment.
 Both $\theta$ and $\lambda_i$ depend upon the dynamics of the convecting planetary mantle.
 In order to derive estimates for them, we must consider those dynamics.
@@ -257,22 +258,22 @@ As such, some extra care must be taken to ensure that the equations we consider 
 For simplicty we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
 
 \begin{equation}
-\nabla \cdot {\bf u} = 0
+\nabla \cdot \mathbf{u} = 0
 \label{eq:conserve_mass}
 \end{equation}
 
 \begin{equation}
 \begin{aligned}
-- \nabla P + \eta \nabla^2 {\bf u} =  \rho {\bf g} -  \rho{\bf \Omega \times \Omega \times r}
+- \nabla P + \eta \nabla^2 \mathbf{u} =  \rho \mathbf{g} -  \rho \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}
 \label{eq:navier_stokes}
 \end{aligned}
 \end{equation}
 
 \begin{equation}
-\frac{\partial T}{\partial t} + {\bf u} \cdot \nabla T = \kappa \nabla^2 T
+\frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T = \kappa \nabla^2 T
 \label{eq:energy}
 \end{equation}
-where $\bf u$ is the velocity, $P$ is the pressure, and $T$ is the temperature
+where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperature
 (see Table~\ref{tab:parameters} for definitions of the other parameters).
 In addition we use the simple equation of state
 \begin{equation}
@@ -299,14 +300,14 @@ By definition the hydrostatic reference state is a solution to~\eqref{eq:navier_
 
 \begin{equation}
 \begin{aligned}
-- \nabla P_0 =  \rho_0 {\bf g} -  \rho_0 {\bf \Omega \times \Omega \times r}
+- \nabla P_0 =  \rho_0 \mathbf{g} -  \rho_0 \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}
 \label{eq:hydrostatic}
 \end{aligned}
 \end{equation}
 Nondimensionalizing with the parameters in Table \ref{tab:nondim} and removing the reference state we find the nondimensional momentum equation:
 \begin{equation}
 \begin{aligned}
- - \nabla P^* + \; \nabla^2{\bf v} - \mathrm{Ra} \; T \; {\bf g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times {\bf r}} = 0
+ - \nabla P^* + \; \nabla^2 \mathbf{v} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
 \end{aligned}
 \end{equation}
 
@@ -384,7 +385,7 @@ $x^\prime$ &=& $R \;\; x$ \\
 $t^\prime$ &=& $R^2/\kappa \;\; t$ \\
 $T^\prime$ &=& $\Delta T \;\; T$ \\
 $\rho^\prime$ &=& $\rho_0 \;\; \rho$\\
-$v^\prime$ &=& $\kappa/R \;\; v$ \\
+$u^\prime$ &=& $\kappa/R \;\; u$ \\
 $P^\prime$ &=& $\eta \kappa/R^2 \;\; P$ \\
 $\Omega^\prime$ &=& $\Omega_0 \;\; \Omega$ \\
 $g^\prime$ &=& $g_0 \;\; g$
@@ -394,7 +395,7 @@ $g^\prime$ &=& $g_0 \;\; g$
 If we plug these nondimensionalizations into the governing equations we find that the incompressibility constraint remains unchanged.  
 The temperature equation and equation of state become
 \begin{equation}
-\frac{\partial T}{\partial t} + \mathbf{v} \cdot \nabla T = \nabla^2 T
+\frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T = \nabla^2 T
 \end{equation}
 
 \begin{equation}
@@ -409,15 +410,15 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
 
 \begin{equation}
 \begin{aligned}
- - & \Omega_0^2  \alpha  \Delta T T R \; {\bf \Omega \times \Omega \times r} = - \eta \kappa / R^2 \; \nabla P^* \\ 
-&+ \eta \kappa / R^2 \; \nabla \cdot \left( \eta \epsilon ({\bf v}) \right) - \alpha \Delta T g_0 \; {\bf g}
+ - & \Omega_0^2  \alpha  \Delta T T R \; \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} = - \eta \kappa / R^2 \; \nabla P^* \\ 
+&+ \eta \kappa / R^2 \; \nabla \cdot \left( \eta \epsilon (\mathbf{u}) \right) - \alpha \Delta T g_0 \; \mathbf{g}
 \end{aligned}
 \end{equation}
 
 \begin{equation}
 \begin{aligned}
- - & \mathrm{Ra \; Fr}\; T \; {\bf \Omega \times \Omega \times r} = - \nabla P^* \\ 
-&+ \; \nabla \cdot \left( \eta \epsilon ({\bf v}) \right) - \mathrm{Ra} \; T \; {\bf g}
+ - & \mathrm{Ra \; Fr}\; T \; \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} = - \nabla P^* \\ 
+&+ \; \nabla \cdot \left( \eta \epsilon (\mathbf{u}) \right) - \mathrm{Ra} \; T \; \mathbf{g}
 \end{aligned}
 \end{equation}
 
@@ -762,19 +763,19 @@ We may explicitly draw a connection between the moment of inertia of a rotating 
 I_{ij} = \int_V \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) dV
 \label{eq:inertia}
 \end{equation}
-where $\bf r$ is the Eulerian coordinate, $\rho$ is the density, and $V$ is the volume of the material.  
+where $\mathbf{r}$ is the Eulerian coordinate, $\rho$ is the density, and $V$ is the volume of the material.  
 It is useful to enter the principal axes of the moment of inertia:
 \begin{equation}
-{\bf I} = \bf{1} \begin{bmatrix}
+\mathbf{I} = \mathbf{1} \begin{bmatrix}
 \lambda_1 \\ \lambda_2 \\ \lambda_3
 \end{bmatrix} = 
-{\bf 1} \begin{bmatrix}
+\mathbf{1} \begin{bmatrix}
 \int_V \rho (y^2+z^z) dV\\
 \int_V \rho (x^2+z^2) dV\\
 \int_V \rho (x^2+y^2) dV
 \end{bmatrix}
 \end{equation}
-where $\bf 1$ is the identity matrix, and $\lambda_1$, $\lambda_2$, and $\lambda_3$ are the principal moments.
+where $\mathbf{1}$ is the identity matrix, and $\lambda_1$, $\lambda_2$, and $\lambda_3$ are the principal moments.
 From equation~\eqref{eq:milankovitch} we see that the important quantities are the differences between the 
 principal moments, $(\lambda_3-\lambda_1)$, $(\lambda_3-\lambda_2)$ and $(\lambda_2-\lambda_1)$.
 These quantities may be rewritten in terms of degree-two real sperical harmonics \citep[e.g.][]{dahlen1999theoretical}.
