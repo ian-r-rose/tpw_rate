@@ -55,7 +55,7 @@ Convection in a planetary mantle continuously redistributes mass, which can chan
 
 TPW was first considered in detail by \citet{darwin1887influence}, and the theory has been subsequently developed by many \citep[e.g.][]{munk1960rotation, goldreich1969some, ricard1993polar}. 
 Despite this, the ability of internal mass anomalies to drive large-scale TPW remains controversial. 
-Paleomagnetic data have been interpreted to require up to $\sim 1^\circ$/Myr rates of TPW \citep{mitchell2011sutton}, but the ability of the mantle to respond at such rates has been questioned \citep{tsai2007theoretical}.
+Paleomagnetic data have been interpreted to require up to $3^\circ-12^\circ$/Myr rates of TPW \citep{mitchell2011sutton}, but the ability of the mantle to respond at such rates has been questioned \citep{tsai2007theoretical}.
 
 The primary uncertainties in assigning a maximum TPW rate to a convecting planet are the size of convective anomalies, which drive the rotational adjustment, and the viscosity structure of the mantle, which retards it. 
 These two uncertainties are not unrelated: they are both expected to be functions of the geometric and material properties of the mantle.
@@ -279,7 +279,6 @@ In addition we use the simple equation of state
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
 \label{eq:eos}
 \end{equation}
-The other parameters are defined in Table \ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it
 (a fourth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
@@ -536,7 +535,7 @@ We want to estimate the power in those few modes, which we denote by $T_{\text{d
 The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
 \begin{equation}
-\max \left( T(x,y,z, t) \right) = \max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1
+\max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1
 \end{equation}
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
 We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
@@ -688,10 +687,12 @@ With this form, our scaling for TPW rate has the following dependence on $\mathr
 \frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{\mathrm{Fr}} \sin{2 \theta}
 \label{eq:simplest_milankovitch_defer_scaling}
 \end{equation}
-In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for $d(\mathrm{Ra})$ will still show a weak dependence on the Rayleigh number.
+In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for 
+$d(\mathrm{Ra})$ will still result in a weak dependence of the prefactor in Equation~\eqref{eq:simplest_milankovitch_defer_scaling} 
+on the Rayleigh number.
 
 We then suggest that the most important parameters are the Froude number, which acts as the brakes on the system, and the mismatch angle $\theta(\mathrm{Ra})$.
-Whereas the rest of the expression has at most a weak dependence on $\mathrm{Ra}$, $\theta$ is expected to be strongly dependent on it.
+Whereas the rest of the expression has a weak dependence on $\mathrm{Ra}$, $\theta$ is expected to be strongly dependent on it.
 
 Indeed, we can identify two endmember behaviors of Equation~\eqref{eq:simplest_milankovitch_defer_scaling}.
 When convection is not sufficiently chaotic to create a large $\theta$ we are in the regime where the planet's rotation axis closely tracks that of the convective moment.
@@ -705,19 +706,22 @@ higher Rayleigh number. We would then predict that convection was more vigorous,
 a less stable $\theta(t)$, and thus more TPW and more frequent ``fast TPW'' events.
 
 For Cenozoic Earth we can substitute direct estimates of the important parameters into Equation~\eqref{eq:simple_milankovitch}.
-Typical values for the time constant $T_1$ are of order $30 \, \mathrm{kyr}$.
+Typical values for the time constant $T_1$ are of order $30 \, \mathrm{kyr}$ \citep{ricard1993polar}.
 Estimates of the present day non-hydrostatic moment of inertia (due to mantle density anomalies)
-are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia is $10^{-3} I_0$ \citep{chambat2001mean}.
+are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia is $3 \times 10^{-3} I_0$ \citep{chambat2001mean}.
 The largest question is whether convection is sufficiently chaotic to enter the large $\theta$ regime. 
 \citet{richards1997explanation} have argued that the convective planform of Earth has been stable for the last
 few hundred million years. On the other hand, we know that there have been large reorganizations of that planform 
-during Earth history, so this may not hold in general \citep{evans2003true}.
+during Earth history, so this recent geologic stability may not hold in general \citep{evans2003true}.
 Our numerical simulations show that large values for $\theta$ are possible in a vigorously convecting mantle.
 Allowing for such a large mismatch angle ($\theta = 45^\circ$) we may estimate the maximum polar wander rate
 \begin{equation}
-\max ( \dot{\theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 90^\circ / \mathrm{Myr}
+\max ( \dot{\theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr}
 \end{equation}
-which is similar to the timescales discussed by \citet{cambiotti2011new}.
+which is similar to the timescales discussed by \citet{cambiotti2011new}, and within the range 
+suggested by paleomagnetic observations.
+The bulk viscosity of Earth's mantle is uncertain by up to a factor of ten \citep{mitrovica2004new},
+which results in a corresponding uncertainty for the relaxation time $T_1$ and the maximum polar wander rate.
 
 Thus far we have restricted our discussion to planets with lithospheres lacking long-term elastic strength.
 For this case the long-time limit of the planetary figure is coaxial with the convective 
