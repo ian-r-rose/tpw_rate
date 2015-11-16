@@ -169,7 +169,7 @@ We are in a position to address the rates of true polar wander for a given conve
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation~\eqref{eq:rotational_deformation} into Equation~\eqref{eq:disequilibrium} we find
 \begin{equation}
-\frac{k_f a^5 T_1}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right)
+\frac{k_f a^5 T_1 \Omega^2}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right)
 \label{eq:liouville}
 \end{equation}
 Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ and using Equation~\eqref{eq:fluid_love} for $k_f$,  we may solve this equation for $\dot{\mitbf{\omega}}$:
@@ -305,7 +305,7 @@ By definition the hydrostatic reference state is a solution to~\eqref{eq:navier_
 Nondimensionalizing with the parameters in Table \ref{tab:nondim} and removing the reference state we find the nondimensional momentum equation:
 \begin{equation}
 \begin{aligned}
- - \nabla P^* + \; \nabla^2 \mathbf{v} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
+ - \nabla P^* + \; \nabla^2 \mathbf{u} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
 \end{aligned}
 \end{equation}
 
