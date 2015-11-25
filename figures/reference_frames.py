@@ -53,13 +53,15 @@ phi = 0. * np.pi/180.
 omega = np.array([ np.sin(theta)*np.cos(phi), np.sin(theta)*np.sin(phi), np.cos(theta)])
 #relative motion of the two frames
 alpha = 50. * np.pi/180.
-beta = 70. * np.pi/180.
+beta = 110. * np.pi/180.
 psi = np.array([ np.sin(alpha)*np.cos(beta), np.sin(alpha)*np.sin(beta), np.cos(alpha)])
 # tpw vector
 omega_dot = np.dot(E, omega.T) - np.dot(omega, np.dot(E, omega.T))*omega.T
 omega_dot_prime = omega_dot + np.cross(psi, omega)
-omega_dot = 0.3*omega_dot/norm(omega_dot)
-omega_dot_prime = 0.3*omega_dot_prime/norm(omega_dot_prime)
+#omega_dot = 0.3*omega_dot/norm(omega_dot)
+#omega_dot_prime = 0.3*omega_dot_prime/norm(omega_dot_prime)
+omega_dot *= 0.35
+omega_dot_prime *= 0.35
 
 # produce figure
 alpha_val = 0.4
@@ -144,4 +146,5 @@ ax.text( p[0], p[1], p[2], r'$\gamma$', **text_options)
 # show figure
 ax.view_init(elev=36, azim=18)
 ax.set_axis_off()
-plt.show()
+#plt.show()
+plt.savefig("reference_frames.pdf")
