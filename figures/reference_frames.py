@@ -67,7 +67,7 @@ def plot_rotation_arrow( axes, arrow, ccw=True, frac = 0.75, *args, **kwargs):
 
     # Make points around the arrow
     colat = 4.
-    azimuths = np.linspace(0., 300., 301.)
+    azimuths = np.linspace(0., 330., 331.)
     lats = np.ones_like(azimuths)*(90. - colat)
     norms = np.ones_like(azimuths)*norm[0]*frac
     points = spherical_to_cartesian(azimuths, lats, norms)
@@ -75,19 +75,19 @@ def plot_rotation_arrow( axes, arrow, ccw=True, frac = 0.75, *args, **kwargs):
     rotated_points = np.dot( rotation_matrix, points )
 
     # plot the points
-    dline = 20
+    dline = 40
     line = axes.plot(rotated_points[0,:-dline], rotated_points[1,:-dline], rotated_points[2,:-dline], lw=1, color='k')
     # add the arrowhead
     if ccw is True:
         head = Arrow3D( [rotated_points[0,-1-dline], rotated_points[0,-1]],
                         [rotated_points[1,-1-dline], rotated_points[1,-1]],
                         [rotated_points[2,-1-dline], rotated_points[2,-1]], 
-                        arrowstyle='-|>', mutation_scale=20, color='k')
+                        arrowstyle='-|>', mutation_scale=10, color='k')
     else:
         head = Arrow3D( [rotated_points[0,dline], rotated_points[0,0]],
                         [rotated_points[1,dline], rotated_points[1,0]],
                         [rotated_points[2,dline], rotated_points[2,0]], 
-                        arrowstyle='-|>', mutation_scale=20, color='k')
+                        arrowstyle='-|>', mutation_scale=10, color='k')
     axes.add_artist(head)
     return line,head
 
