@@ -8,6 +8,9 @@ from matplotlib import rc
 
 rc('text', usetex=True)
 
+d2r = np.pi/180.
+r2d = 180./np.pi
+
 class Arrow3D(FancyArrowPatch):
     def __init__(self, xs, ys, zs, *args, **kwargs):
         FancyArrowPatch.__init__(self, (0,0), (0,0), *args, **kwargs)
@@ -19,20 +22,75 @@ class Arrow3D(FancyArrowPatch):
         self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
         FancyArrowPatch.draw(self, renderer)
 
-def Rx(phi):
-    return np.array([[1, 0, 0],
-                     [0, np.cos(phi), -np.sin(phi)],
-                     [0, np.sin(phi), np.cos(phi)]])
+def construct_euler_rotation_matrix(alpha, beta, gamma):
+    """
+    Make a 3x3 matrix which represents a rigid body rotation,
+    with alpha being the first rotation about the z axis,
+    beta being the second rotation about the y axis, and
+    gamma being the third rotation about the z axis.
+ 
+    All angles are assumed to be in radians
+    """
+    rot_alpha = np.array( [ [np.cos(alpha), -np.sin(alpha), 0.],
+                            [np.sin(alpha), np.cos(alpha), 0.],
+                            [0., 0., 1.] ] )
+    rot_beta = np.array( [ [np.cos(beta), 0., np.sin(beta)],
+                           [0., 1., 0.],
+                           [-np.sin(beta), 0., np.cos(beta)] ] )
+    rot_gamma = np.array( [ [np.cos(gamma), -np.sin(gamma), 0.],
+                            [np.sin(gamma), np.cos(gamma), 0.],
+                            [0., 0., 1.] ] )
+    rot = np.dot( rot_gamma, np.dot( rot_beta, rot_alpha ) )
+    return rot
 
-def Ry(theta):
-    return np.array([[np.cos(theta), 0, np.sin(theta)],
-                     [0, 1, 0],
-                     [-np.sin(theta), 0, np.cos(theta)]])
+def spherical_to_cartesian( longitude, latitude, norm ):
+    assert(np.all(longitude >= 0.) and np.all(longitude <= 360.))
+    assert(np.all(latitude >= -90.) and np.all(latitude <= 90.))
+    assert(np.all(norm >= 0.))
+    colatitude = 90.-latitude
+    return np.array([ norm * np.sin(colatitude*d2r)*np.cos(longitude*d2r),
+                      norm * np.sin(colatitude*d2r)*np.sin(longitude*d2r),
+                      norm * np.cos(colatitude*d2r) ] )
 
-def Rz(psi):
-    return np.array([[np.cos(psi), -np.sin(psi), 0],
-                     [np.sin(psi), np.cos(psi), 0],
-                     [0, 0, 1]])
+def cartesian_to_spherical( vecs ):
+    v = np.reshape(vecs, (3,-1))
+    norm = np.sqrt(v[0,:]*v[0,:] + v[1,:]*v[1,:] + v[2,:]*v[2,:])
+    latitude = 90. - np.arccos(v[2,:]/norm)*r2d
+    longitude = np.arctan2(v[1,:], v[0,:] )*r2d
+    return longitude, latitude, norm
+
+def plot_rotation_arrow( axes, arrow, ccw=True, frac = 0.75, *args, **kwargs):
+    origin = np.array([ arrow._verts3d[0][0], arrow._verts3d[1][0], arrow._verts3d[2][0]])
+    tip = np.array([ arrow._verts3d[0][1], arrow._verts3d[1][1], arrow._verts3d[2][1]])
+    vec = tip-origin
+    lon,lat,norm = cartesian_to_spherical(vec)
+
+    # Make points around the arrow
+    colat = 4.
+    azimuths = np.linspace(0., 300., 301.)
+    lats = np.ones_like(azimuths)*(90. - colat)
+    norms = np.ones_like(azimuths)*norm[0]*frac
+    points = spherical_to_cartesian(azimuths, lats, norms)
+    rotation_matrix = construct_euler_rotation_matrix( 0.,  (90.-lat[0])*d2r, lon[0]*d2r)
+    rotated_points = np.dot( rotation_matrix, points )
+
+    # plot the points
+    dline = 20
+    line = axes.plot(rotated_points[0,:-dline], rotated_points[1,:-dline], rotated_points[2,:-dline], lw=1, color='k')
+    # add the arrowhead
+    if ccw is True:
+        head = Arrow3D( [rotated_points[0,-1-dline], rotated_points[0,-1]],
+                        [rotated_points[1,-1-dline], rotated_points[1,-1]],
+                        [rotated_points[2,-1-dline], rotated_points[2,-1]], 
+                        arrowstyle='-|>', mutation_scale=20, color='k')
+    else:
+        head = Arrow3D( [rotated_points[0,dline], rotated_points[0,0]],
+                        [rotated_points[1,dline], rotated_points[1,0]],
+                        [rotated_points[2,dline], rotated_points[2,0]], 
+                        arrowstyle='-|>', mutation_scale=20, color='k')
+    axes.add_artist(head)
+    return line,head
+
 
 # define origin
 o = np.array([0,0,0])
@@ -88,6 +146,7 @@ ax.plot( arc[0,:], arc[1,:], arc[2,:], 'k--', alpha=alpha_val)
 # plot spin axis
 spin_arrow = Arrow3D([o[0], omega[0]], [o[1], omega[1]], [o[2], omega[2]], **arrow_prop_dict)
 ax.add_artist(spin_arrow)
+plot_rotation_arrow(ax, spin_arrow)
 # add arc for spin axis
 arc_angles = np.linspace(0., theta, 100)
 arc = 0.5*np.array([np.sin(arc_angles)*np.cos(phi), np.sin(arc_angles)*np.sin(phi), np.cos(arc_angles)])
@@ -100,6 +159,7 @@ ax.plot( guideline[0,:], guideline[1,:], guideline[2,:], 'k--', alpha=alpha_val)
 # plot relative rotation
 psi_arrow = Arrow3D([o[0], psi[0]], [o[1], psi[1]], [o[2], psi[2]], **arrow_prop_dict)
 ax.add_artist(psi_arrow)
+plot_rotation_arrow(ax, psi_arrow)
 # add helper lines for psi
 span = np.linspace(0, 1., 100)
 guideline = np.array([np.cos(beta)*np.sin(alpha)*np.ones_like(span), np.sin(beta)*np.sin(alpha)*np.ones_like(span), np.cos(alpha)*span])
