@@ -22,8 +22,8 @@
 
 %in case I want to add detail to any derivation
 \newif\ifdetail
-%\detailfalse
-\detailtrue
+\detailfalse
+%\detailtrue
 
 \begin{document}
 
@@ -178,7 +178,29 @@ Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ 
 \label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
-If we enter the coordinate system of the convective moment of inertia $\mathbf{E}$ with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of $\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ we can write this in a more illuminating form (after some tedious algebra):
+The rate of polar wander is the angular rate of change of the spin axis $\left| \dot{\mitbf{\omega}} \right| = \dot{\Theta}$ in a body-fixed geographic reference frame.
+This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
+\begin{equation}
+\dot{\Theta}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right]
+\label{eq:polar_wander_rate_tensor}
+\end{equation}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
+\caption{ }
+\label{fig:eigengap}
+\end{figure*}
+
+The polar wander rate $\dot{\Theta}$ is measured in the body-fixed geographic frame, 
+but the physics of the right-hand-side of Equation~\eqref{eq:polar_wander_rate_tensor} 
+is more naturally expressed in the reference frame of the principal axes of $\mathbf{E}$,
+which is, in general, rotating with respect to the geographic frame.
+However, the right-hand-side is scalar-valued, and as such is invariant to rotations.
+Therefore we can enter the coordinate system of the convective moment of inertia $\mathbf{E}$ 
+with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of 
+$\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$.
+Plugging these in, and after some tedious algebra, we find
 \ifdetail
 
 And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$.
@@ -345,39 +367,52 @@ Again, plugging these into the scalar equation for $\dot{\mitbf{\omega}}^2$, we 
 &+ \sin^4{\theta} \cos^2{\phi}\sin^2{\phi} \left( \lambda_2 - \lambda_1 \right)^2 \\
 &=
 \sin^2{\theta}\cos^2{\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] \\
-&+ \sin^2{\theta} \cos^2{\theta} \tan^2{\theta} \cos^2{\phi}\sin^2{\phi} \left( \lambda_2 - \lambda_1 \right)^2 \\
+&+ \sin^4{\theta} \cos^2{\phi}\sin^2{\phi} \left( \lambda_2 - \lambda_1 \right)^2 \\
 &=
-\sin^2{\theta}\cos^2{\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi}
-+ \tan^2{\theta} \cos^2{\phi}\sin^2{\phi} \left( \lambda_2 - \lambda_1 \right)^2 \right] \\
+\sin^2{\theta}\cos^2{\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right]
++ \sin^4{\theta} \cos^2{\phi}\sin^2{\phi} \left( \lambda_2 - \lambda_1 \right)^2 \\
 \end{aligned}
 \end{equation}
 
 At long last, we get
 \begin{equation}
 \begin{aligned}
-\frac{\dot{\mitbf{\omega}}^2}{A^2}  &= 
-\frac{1}{4}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi}
-+ \frac{1}{4}\tan^2{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2 \right] \\
+\frac{\dot{\mitbf{\omega}}^2}{A^2}  = 
+&\frac{1}{4}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
+&\frac{1}{4}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2 \\
 \end{aligned}
 \end{equation}
 
 \else
 \fi
+
 \begin{equation}
 \begin{aligned}
-\dot{\theta} &= - \frac{1}{(C-A)T_1} \sin{2 \theta} \left[ (\lambda_3-\lambda_1) \cos^2{\phi} + (\lambda_3-\lambda_2) \sin^2{\phi} \right] \\
-\dot{\phi} &= \;\; \frac{1}{(C-A)T_1} \sin{2 \phi} \; (\lambda_2 - \lambda_1)
+\dot{\Theta}^2 = 
+&\frac{1}{4(C-A)^2 T_1^2}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
+&\frac{1}{4(C-A)^2 T_1^2}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2 \\
+\label{eq:polar_wander_rate}
 \end{aligned}
-\label{eq:milankovitch}
+\end{equation}
+This equation is a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.
+Two special cases of this equation are of note. First, if $\theta=\phi=45^\circ$, then it can be expressed in terms of
+the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator ($E_{ij} - 1/3 E_{kk} \delta_{ij}$):
+\begin{equation}
+\begin{aligned}
+\dot{\Theta}^2
+&= \frac{1}{4(C-A)^2 T_1^2}\left[( \lambda_3 - \lambda_1)^2 + (\lambda_3 - \lambda_2)^2 + (\lambda_2 - \lambda_1)^2 \right]\\
+&= \frac{E_{\mathrm{II}}}{4(C-A)^2 T_1^2} \\
+\end{aligned}
+\end{equation}
+Second, if the rotation vector $\mitbf{\omega}$ lies in the plane of the $\lambda_1$ axis ($\phi = 0$), then 
+Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which is useful for scaling purposes:
+\begin{equation}
+\vert \dot{\Theta} \vert = 
+\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) 
+\label{eq:polar_wander_rate_simplified}
 \end{equation}
 
-Without loss of generality we may choose the coordinate system such that $\phi=0$:
-\begin{equation}
-\dot{\theta} = - \frac{1}{(C-A)T_1} (\lambda_3-\lambda_1) \sin{2 \theta}
-\label{eq:simple_milankovitch}
-\end{equation}
-These equations are a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.  
-Written this way, it is clear that the important quantities are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
+Written this way, it is clear that the important quantities for estimating $\dot{\Theta}$ are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
 Both $\theta$ and $\lambda_i$ depend upon the dynamics of the convecting planetary mantle.
 In order to derive estimates for them, we must consider those dynamics.
@@ -387,6 +422,7 @@ In order to derive estimates for them, we must consider those dynamics.
 
 Mantle convection and rotational dynamics of planetary bodies are usually considered separately, yet the processes are based on a common set of governing equations. 
 As such, some extra care must be taken to ensure that the equations we consider are self-consistent. 
+Furthermore, since our goal is to establish a scaling for TPW rate, we must identify a minimal set of nondimensional numbers which describe its physics.
 For simplicty we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
 
 \begin{equation}
