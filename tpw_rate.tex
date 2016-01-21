@@ -6,6 +6,7 @@
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{color,soul}
 
 \title[TPW Rates]
   {Scaling rates of true polar wander in convecting planets and moons}
@@ -409,7 +410,7 @@ Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which is us
 \begin{equation}
 \vert \dot{\Theta} \vert = 
 \frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) 
-\label{eq:polar_wander_rate_simplified}
+\label{eq:simple_milankovitch}
 \end{equation}
 
 Written this way, it is clear that the important quantities for estimating $\dot{\Theta}$ are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
@@ -765,11 +766,33 @@ Cenozoic subduction history and the lower mantle LLSVPs \citep{dziewonski2010man
 Nevertheless, at high Rayleigh number the expectation is that the power will be distributed across many length scales.
 
 
-\subsection{An estimate of the mismatch $\theta$}
+\subsection{Estimating the mismatch $\theta$}
 \label{sec:theta}
 
 The mismatch between the current axis and the principal axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
+
+There are two processes at work which control the evolution of $\theta$, its growth through perturbations in the convective moment and 
+its decay via relaxation of the pole towards the maximum moment of inertia.
+We can interrogate these by constructing Equation~\eqref{eq:liouville_ode} in the reference frame
+of the principal axes of the convective moment $\mathbf{E}$.
+This reference frame rotates with respect to the geographic frame, which we can
+describe by introducing a rotation vector $\mathbf{\Psi}$.
+We can then write the rate of change of $\mitbf{\omega}$ in the rotating frame (denoted by primes)
+\begin{equation}
+\dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime
+\end{equation}
+Equation~\eqref{eq:liouville_ode} then becomes
+\begin{equation}
+ \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime
+\label{eq:liouville_ode_new_frame}
+\end{equation}
+
+\hl{This equation can be rewritten in terms of $\dot{\theta}$. It is useful to make the simplifying assumption that $\phi=0$.}
+\hl{This then becomes an equation for the time evolution of $\theta$, which has a decay component due to polar wander, and a growth component due to $\Psi$}
+\hl{What this buys us is a single equation that has both decay (for which we have already estimated the timescale) and growth, which comes next.}
+\hl{The following needs to be rewritten to use the notation of $\Psi$ instead of $\theta$.}
+
 
 An estimate for $\theta$ must concern the stability of the convective moment of inertia. 
 Convection is continuously redistributing mass throughout the mantle, which will perturb the convective moment of inertia.  
