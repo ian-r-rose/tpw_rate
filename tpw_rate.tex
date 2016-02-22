@@ -94,7 +94,7 @@ The moment of inertia tensor in Equation~\eqref{eq:quasistatic_liouville} includ
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
 Here we are interested in contributions from mantle convection, so we neglect other processes.
 
-For mantle convection problems the moment of inertia tensor is commonly separated into three parts \citep{ricard1993polar}:
+For mantle convection problems the moment of inertia tensor is commonly separated into three parts \citep{sabadini1981pleistocene, spada1992excitation}:
 \begin{equation}
 I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 \label{eq:separation}
@@ -443,7 +443,14 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 \label{eq:energy}
 \end{equation}
 where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperature
-(see Table~\ref{tab:parameters} for definitions of the other parameters).
+(he remaining parameters are defined in Table~\ref{tab:parameters}).
+The gravity vector $\mathbf{g}$ is given by $\mathbf{g} = -\nabla V$, where the 
+gravitational potential $V$ comes from solving Poisson's equation
+\begin{equation}
+\nabla^2 V = 4 \pi G \rho
+\end{equation}.
+For the purposes of scaling, we assume that gravity is the approximately constant
+vector $g_0 \mathbf{\hat{r}}$ (as is the case for Earth's mantle).
 In addition we use the simple equation of state
 \begin{equation}
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
@@ -603,6 +610,9 @@ Symbol & Definition\\
 \hline
 $R_i$ & inner radius \\
 $R$ & outer radius \\
+$G$ & gravitational constant \\
+$V$ & gravitational potential
+$M$ & mass of the planet \\
 $\Omega_0$ & reference rotation rate \\
 $\eta$ & viscosity \\
 $\kappa$ & thermal diffusivity \\
