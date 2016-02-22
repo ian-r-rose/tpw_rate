@@ -125,13 +125,23 @@ J_{ij} = \frac{k(t) a^5}{3 G} * \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q 
 \end{equation}
 where $k$ is now a time-dependent viscoelastic Love number which is convolved with the time-dependent rotation vector.
 
-The infinite-time limit of Equation~\eqref{eq:viscoelastic_deformation} allows us to calculate the fluid limit of the Love number $k_f$:
+The infinite-time limit of Equation~\eqref{eq:viscoelastic_deformation} for a 
+constant rotation vector around the $z$-axis implies
+\begin{equation}
+\begin{aligned}
+J_{zz} = C = &\frac{2}{3} \frac{k_f a^5 \Omega^2}{3 G} \\
+J_{xx} = J_{yy} = A = -&\frac{1}{3} \frac{k_f a^5 \Omega^2}{3 G} \\
+\end{aligned}
+\end{equation}
+where $C$ and $A$ are the polar and equatorial moments of inertia, respectively, 
+and $k_f$ is the fluid limit of $k$. 
+We can solve for $k_f$ in terms of $C-A$:
 \begin{equation}
 k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 \label{eq:fluid_love}
 \end{equation}
-where $C$ and $A$ are the polar and equatorial moments of inertia, respectively.
-The infinite-time limit, however, does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$.
+This fluid-limit representation of the deformation does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$,
+and so cannot by itself capture the physics of TPW.
 
 \citet{ricard1993polar} obtain an approximation to Equation~\eqref{eq:viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
 This introduces a new parameter, termed $T_1$, which can be seen as a weighted relaxation time for the system.  
