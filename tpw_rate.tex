@@ -455,7 +455,8 @@ Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires
 Convenient choices for these numbers are listed in Table \ref{tab:nondim}, along with approximate Earth-like values for them.
 
 In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
-This second nondimensional number does not have a uniformly agreed-upon name, but has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, which we adopt here.
+This second nondimensional number does not have a uniformly agreed-upon name: it has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, 
+and in the geodesy community has commonly been termed $m$ \citep[e.g.][]{nakiboglu1982hydrostatic, chambat2010flattening}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, and they do not affect the overall treatment of this scaling.
 
@@ -475,7 +476,7 @@ By definition the hydrostatic reference state is a solution to~\eqref{eq:navier_
 Nondimensionalizing with the parameters in Table \ref{tab:nondim} and removing the reference state we find the nondimensional momentum equation:
 \begin{equation}
 \begin{aligned}
- - \nabla P^* + \; \nabla^2 \mathbf{u} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra \; Fr}\; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
+ - \nabla P^* + \; \nabla^2 \mathbf{u} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra} \; m \; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
 \end{aligned}
 \end{equation}
 
@@ -585,7 +586,7 @@ Subtracting this from the momentum equation and defining a dynamic pressure $P^*
 
 \begin{equation}
 \begin{aligned}
- - & \mathrm{Ra \; Fr}\; T \; \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} = - \nabla P^* \\ 
+ - & \mathrm{Ra} \; m \; T \; \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} = - \nabla P^* \\ 
 &+ \; \nabla \cdot \left( \eta \epsilon (\mathbf{u}) \right) - \mathrm{Ra} \; T \; \mathbf{g}
 \end{aligned}
 \end{equation}
@@ -619,10 +620,10 @@ $\Delta T$ & temperature drop across mantle
 \caption{Nondimensional numbers with approximate Earth-like values}
 \label{tab:nondim}
 \begin{tabular}{@{}lcccc}
-Symbol &  Number & Definition & Approximate value \\
+Symbol &  Name & Definition & Approximate value \\
 \hline
 Ra & Rayleigh &  $\rho_0 g_0 \alpha \Delta T R^3/\eta \kappa$ & $10^7$\\
-Fr & Froude & $\Omega_0^2 R/g_0$ & $10^{-3}$ \\
+$m$ & Froude & $\Omega_0^2 R/g_0 = \Omega_0^2 R^3/GM$ & $10^{-3}$ \\
 A & aspect ratio & $R_i/R$ & $0.54$ \\
 $\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 \end{tabular}
@@ -639,9 +640,9 @@ Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$
 
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces, or Froude number \citep{munk1960rotation}:
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces($m$ \citep{munk1960rotation}:
 \begin{equation}
-(C-A) \sim I_0 \mathrm{Fr}
+(C-A) \sim I_0 m
 \end{equation}
 
 The time constant $T_1$ is a viscous relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
@@ -650,7 +651,7 @@ T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm
 \end{equation}
 Plugging these scalings into Equation~\eqref{eq:simple_milankovitch} we find
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma \mathrm{Fr}} \Lambda_{31} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma m} \Lambda_{31} \sin{2 \theta}
 \label{eq:scaled_rotation}
 \end{equation}
 
@@ -658,9 +659,9 @@ At this point we do not have estimates for the characteristic magnitudes of $\La
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
 
 
-The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $\mathrm{Fr}$, and $\Gamma$.  
-We consider relatively slowly rotating bodies here ($\mathrm{Fr} \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
-In this regime, therefore, we neglect the dependence on $\mathrm{Fr}$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra})$ and $\theta(\mathrm{Ra})$.
+The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $m$, and $\Gamma$.  
+We consider relatively slowly rotating bodies here ($m \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
+In this regime, therefore, we neglect the dependence on $m$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra})$ and $\theta(\mathrm{Ra})$.
 
 
 \subsection{An estimate of $\Lambda_{ij}$}
@@ -859,13 +860,13 @@ as it has a lower characteristic gap between principal moments and the gap is mu
 \section{Discussion}
 \label{sec:discussion}
 
-The preceding results clarify the complex relationship between the Rayleigh number, the Froude number and the rates of TPW for a convecting planet.
+The preceding results clarify the complex relationship between the Rayleigh number, $m$, and the rates of TPW for a convecting planet.
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
 Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
 We may plug in the estimate for $\Lambda_{ij}$ into equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{\mathrm{Fr}} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{m} \sin{2 \theta}
 \label{eq:simplest_milankovitch}
 \end{equation}
 Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the prefactor in the scaling. 
@@ -876,14 +877,14 @@ Scalings for lengthscales of convection in fluids with temperature dependent vis
 However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \mathrm{Ra}^{-\beta}$.
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{\mathrm{Fr}} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{m} \sin{2 \theta}
 \label{eq:simplest_milankovitch_defer_scaling}
 \end{equation}
 In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for 
 $d(\mathrm{Ra})$ will still result in a weak dependence of the prefactor in Equation~\eqref{eq:simplest_milankovitch_defer_scaling} 
 on the Rayleigh number.
 
-We then suggest that the most important parameters are the Froude number, which acts as the brakes on the system, and the mismatch angle $\theta(\mathrm{Ra})$.
+We then suggest that the most important parameters are $m$, which acts as the brakes on the system, and the mismatch angle $\theta(\mathrm{Ra})$.
 Whereas the rest of the expression has a weak dependence on $\mathrm{Ra}$, $\theta$ is expected to be strongly dependent on it.
 
 Indeed, we can identify two endmember behaviors of Equation~\eqref{eq:simplest_milankovitch_defer_scaling}.
@@ -933,8 +934,7 @@ We have developed a framework for discussing the rates of true polar wander for 
 from a perspective of scaling and fluid dynamics.
 We identified a small number of dimensionless parameters which describe the system, and showed how they affect the overall dynamics of the system.
 
-The most important parameters are the Rayleigh number and the Froude number.
-The Froude number acts as a damper to TPW.
+The most important parameters are the Rayleigh number and the $m$, which acts as a damper to TPW.
 The dependence on the Rayleigh number is more complicated, since it is a control on both the forcing 
 of TPW and the response, which act in opposite directions.
 Overall, however, we expect that more vigorously convecting planets should be less rotationally stable, and experience more TPW.
