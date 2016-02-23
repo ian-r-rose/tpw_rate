@@ -80,9 +80,9 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 \frac{d \mathbf{H}}{dt} + \mitbf{\Omega} \times \mathbf{H} = 0
 \label{eq:euler}
 \end{equation}
-known as Euler's equations, where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity.
+where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity.
 On a dynamic planet $\mathbf{I}$ may be a function of time, so to conserve angular momentum $\mitbf{\Omega}$ must be also vary with time.
-In this case Equation~\eqref{eq:euler} is known as the Liouville equation \citep[e.g.][]{munk1960rotation}.
+In this case Equation~\eqref{eq:euler} is often called the Liouville equation \citep[e.g.][]{munk1960rotation}.
 For a slowly convecting fluid such as a planetary mantle the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
 \mitbf{\Omega } (t)\times ( \mathbf{I}(t) \cdot \mitbf{\Omega }(t) ) = 0
@@ -92,7 +92,7 @@ Equation~\eqref{eq:quasistatic_liouville} indicates that $\mitbf{\Omega}$ and $\
 In practice, this eigenvalue approach has been often used in previous studies for computing the spin axis of a planet \citep[e.g.][]{steinberger1997changes, roberts2007cause}.
 The moment of inertia tensor in Equation~\eqref{eq:quasistatic_liouville} includes all contributions to the mass structure
 of the planet, including the spherically symmetric mass distribution, rotational deformation, deformation due to self gravity, internal and surface density anomalies, and surface deflections due to density anomalies.
-Here we are interested in contributions from mantle convection, so we neglect other processes.
+Here we are interested in contributions from mantle convection, so we restrict our attention to these processes.
 
 For mantle convection problems the moment of inertia tensor is commonly separated into three parts \citep{sabadini1981pleistocene, spada1992excitation}:
 \begin{equation}
@@ -466,7 +466,8 @@ In addition we use the simple equation of state
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
 \label{eq:eos}
 \end{equation}
-Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure.
+Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure
+(in the latter case the boundary conditions on $P$ must be modified).
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it
 (a fourth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
 Convenient choices for these numbers are listed in Table \ref{tab:nondim}, along with approximate Earth-like values for them.
@@ -738,13 +739,15 @@ At low Rayleigh number we expect the spectrum of the temperature field to be dom
 This spectrum may or may not have a lot of power in the degree-two modes, and does not depend strongly on time.
 
 At high Rayleigh number we expect the shortest lengthscales to be limited by the effects of thermal diffusion,
-which tends to wipe out thermal heterogeneity at small scales.  Consequently, there will be no power in modes
+which tends to wipe out thermal heterogeneity at small scales.  Consequently, there will be little power in modes
 with shorter lengthscales than that allowed by diffusion. 
 Therefore we expect, to a good approximation, that the infinite sum in Equation~\eqref{eq:T_series} can be truncated at some maximum wavenumber, set by the smallest lengthscale $d$:
 \begin{equation}
 n_{\text{max}}, l_{\text{max}}, m_{\text{max}} \sim \frac{R}{d}
 \end{equation}
-The total number of modes that are accessible to the system are therefore 
+Of course, convective mixing can produce smaller scales, but the power in these scales
+is greatly reduced by diffusion.
+Thus total number of modes that are accessible to the system are 
 
 \begin{equation}
 N_{\text{modes}} = n_{\text{max}} \times l_{\text{max}} \times m_{\text{max}} \sim \left( \frac{R}{d} \right)^{3}
@@ -771,7 +774,8 @@ which allows for flexible implementation of different rheologies, geometries, an
 In order to test a wide range of Rayleigh numbers, we ran the simulations in a 2D annulus, tracking the eigenvalues of the 
 moment of inertia tensor and integrating Equation~\eqref{eq:liouville_ode} in time.
 For the 2D simulations there is a reduced dimensionality when calculating the number of modes,
-so $N_\text{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\text{degree-two}} \sim \mathrm{Ra}^{-2/3}$, which is used in the simulations shown in Figure~\ref{fig:eigengap}.
+so $N_\text{modes} \sim \left(R/d \right)^2$.  This leads us to a scaling of $T_{\text{degree-two}} \sim \mathrm{Ra}^{-2/3}$, 
+which is shown as a dashed line in Figure~\ref{fig:eigengap}.
 This result has a simple interpretation.
 As the Rayleigh number of the system increases, the smallest lengthscale of convective features gets smaller.
 The total power in the temperature field is spread across a larger spectrum, leaving less total power for the degree-two part, which is what drives TPW.
@@ -799,7 +803,7 @@ We can interrogate these by constructing Equation~\eqref{eq:liouville_ode} in th
 of the principal axes of the convective moment $\mathbf{E}$.
 This reference frame rotates with respect to the geographic frame, which we can
 describe by introducing a rotation vector $\mathbf{\Psi}$.
-We can then write the rate of change of $\mitbf{\omega}$ in the rotating frame (denoted by primes)
+We can then write the rate of change of $\mitbf{\omega}$ in the principal axis frame (denoted by primes)
 \begin{equation}
 \dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime
 \end{equation}
