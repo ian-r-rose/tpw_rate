@@ -196,9 +196,9 @@ text_options = {'horizontalalignment': 'center',
                 'fontsize': 16}
 
 # add labels for axes
-ax.text(1.1*x0[0],1.1*x0[1],1.1*x0[2],r'$e_1$', **text_options)
-ax.text(1.1*y0[0],1.1*y0[1],1.1*y0[2],r'$e_2$', **text_options)
-ax.text(1.1*z0[0],1.1*z0[1],1.1*z0[2],r'$e_3$', **text_options)
+ax.text(1.1*x0[0],1.1*x0[1],1.1*x0[2],r'$\mathbf{e}_1$', **text_options)
+ax.text(1.1*y0[0],1.1*y0[1],1.1*y0[2],r'$\mathbf{e}_2$', **text_options)
+ax.text(1.1*z0[0],1.1*z0[1],1.1*z0[2],r'$\mathbf{e}_3$', **text_options)
 ax.text(1.1*omega[0],1.1*omega[1],1.1*omega[2],r'$\omega$', **text_options)
 ax.text(1.1*psi[0],1.1*psi[1],1.1*psi[2],r'$\Psi$', **text_options)
 ax.text(omega[0] + omega_dot[0]*1.15, omega[1] + omega_dot[1]*1.15, omega[2]+omega_dot[2]*1.15, r'$\dot{\omega}$', **text_options)

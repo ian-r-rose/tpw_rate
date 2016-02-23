@@ -199,8 +199,8 @@ This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
-\caption{  }
-\label{fig:eigengap}
+\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $z$-axis. For simplicity, we assume the longitude $\psi$ of the rotation axis is zero. True polar wander in the geographic reference frame moves the rotation axis towards the $z$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$, with colatitude $\alpha$ and longitude $\beta$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$ frame, shown as $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Section~\ref{sec:theta}}
+\label{fig:reference_frames}
 \end{figure*}
 
 The polar wander rate $\dot{\Theta}$ is measured in the body-fixed geographic frame, 
@@ -457,8 +457,8 @@ where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperat
 The gravity vector $\mathbf{g}$ is given by $\mathbf{g} = -\nabla V$, where the 
 gravitational potential $V$ comes from solving Poisson's equation
 \begin{equation}
-\nabla^2 V = 4 \pi G \rho
-\end{equation}.
+\nabla^2 V = 4 \pi G \rho.
+\end{equation}
 For the purposes of scaling, we assume that gravity is the approximately constant
 vector $g_0 \mathbf{\hat{r}}$ (as is the case for Earth's mantle).
 In addition we use the simple equation of state
@@ -704,7 +704,10 @@ C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \
 \end{equation}
 where $V_S$ is the reference spherical volume of the mantle.
 As discussed in Section \ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
-The surface response is a function of the viscosity structure of the planet and the wavelength of the interal load, but the multiplicative factor $(1+k^L_f)$ is generally an order-one parameter, so we neglect it for this scaling.
+The surface response is a function of the viscosity structure of the planet and the wavelength and depth of the interal load.
+The factor $(1+k^L_f)$ is generally an order-one parameter 
+(strictly speaking, dynamic compensation usually makes it less than one, \citep[e.g.][]{richards1984geoid}). 
+For the purposes of scaling it is reasonable to neglect this multiplicative factor.
 
 For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-two part of the temperature field (see Appendix \ref{appendix:moments}).
 Therefore, an estimate of one allows an estimate of the other.
@@ -812,16 +815,35 @@ Equation~\eqref{eq:liouville_ode} then becomes
  \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime
 \label{eq:liouville_ode_new_frame}
 \end{equation}
+The advantage of writing this in the frame of the principal axes of $\mathbf{E}$ is that the entire equation
+may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
+As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that $\phi=0$
+(for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
+The direction of $\Psi$ is given by colatitude $\alpha$ and longitude $\beta$, as shown in Figure~\ref{fig:reference_frames}.
 
-\hl{This equation can be rewritten in terms of $\dot{\theta}$. It is useful to make the simplifying assumption that $\phi=0$.}
-\hl{This then becomes an equation for the time evolution of $\theta$, which has a decay component due to polar wander, and a growth component due to $\Psi$}
-\hl{What this buys us is a single equation that has both decay (for which we have already estimated the timescale) and growth, which comes next.}
-\hl{The following needs to be rewritten to use the notation of $\Psi$ instead of $\theta$.}
+We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ in terms of $\theta$, $\alpha$, and $\beta$:
+\begin{equation}
+\dot{\theta} = 
+-\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\alpha \sin\beta
+\label{eq:theta_competition}
+\end{equation}
+Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
+The first term acts to reduce $\theta$ via TPW, the second term can increase (or decrease) it arbitrarily via
+relative motion between the geographic frame and the principal axes of the $\mathbf{E}$ frame.
 
+Note that comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
+then the rate of TPW $\vert \dot{\Theta} \vert$ is just $\vert \dot{\theta} \vert$.
+Conversely, when TPW is very slow $\theta$ is completely determined by $\mitbf{\Psi}$, and 
+$\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$ 
+(where we have neglected the orientation factor $\sin \alpha \sin \beta$ for the purposes of scaling).
+In order for the TPW rate to be large, the growth of $\theta$ via $\vert \mitbf{\Psi} \vert$ must, 
+at least occasionally, be larger than its decay.
 
-An estimate for $\theta$ must concern the stability of the convective moment of inertia. 
+An estimate for $\vert \mitbf{\Psi} \vert$ must concern the stability of the convective moment of inertia. 
 Convection is continuously redistributing mass throughout the mantle, which will perturb the convective moment of inertia.  
-If the convective moment is stable to small perturbations, then $\theta$ should be small, but if it is not stable to perturbations, then $\theta$ could be up to $90^\circ$. 
+If the convective moment is stable to small perturbations, then $\vert \mitbf{\Psi} \vert$ should be small, 
+and $\theta$ will never be large.
+However, if $\mathbf{E}$ is not stable to perturbations, then $\theta$ could be up to $90^\circ$. 
 Given a random perturbation to that moment, we would like to give a bound on how big the perturbation to $\theta$ is. 
 This may be done by application of a theorem due to \citet{davis1970rotation}.
 
@@ -829,17 +851,18 @@ Let $\delta$ be the size of the perturbation to the convective moment of inertia
 Then the rotation of the principal axes of the tensor is bounded by
 
 \begin{equation}
-\lVert \sin(2 \theta) \rVert \le \frac{ 2 \lVert \delta \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\vert \sin(2 \theta) \vert \le \frac{ 2 \vert \delta \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }
 \label{eq:kahan}
 \end{equation} 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principal axes.
 This is illustrated schematically in Figure \ref{fig:perturb}
 
-We may arrive at a simple estimate of the growth rate of the angle $\theta$ by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\lVert \lambda_i - \lambda_j \rVert$ fixed:
+We may arrive at a simple estimate of the growth rate of the angle $\theta$ (and thus $\vert \mitbf{\Psi} \vert$) 
+by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\vert \lambda_i - \lambda_j \vert$ fixed:
 
 \begin{equation}
-\lVert \dot{\theta} \rVert \le \frac{ \lVert \dot{\delta} \rVert}{ \displaystyle \min_{i \neq j} \lVert \lambda_i - \lambda_j \rVert }
+\vert \mitbf{\Psi} \vert \sim \vert \dot{\theta} \vert \le \frac{ \vert \dot{\delta} \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }
 \label{eq:grow_perturbation}
 \end{equation} 
 
@@ -850,7 +873,7 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ by d
 \label{fig:perturb}
 \end{figure*}
 
-Furthermore, the quantity $(\lambda_i-\lambda_j)$ which appears in the denominator of these equations is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
+The quantity $(\lambda_i-\lambda_j)$ which appears in the denominator of these equations is precisely the same as the quantity which we estimated in the previous section to scale with $\sim \mathrm{Ra}^{-1}$.
 Therefore, as the Rayleigh number increases, the characteristic gap between the eigenvalues of the convective moment becomes smaller.  
 Additionally, the timescale of fluctuations in these values goes down. 
 Overall, this makes the principal axes of high Rayleigh number systems much less stable.
@@ -890,7 +913,7 @@ There is a constant competition between growth of the mismatch angle $\theta$ th
 Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
 We may plug in the estimate for $\Lambda_{ij}$ into equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{1}{m} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}
 \label{eq:simplest_milankovitch}
 \end{equation}
 Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the prefactor in the scaling. 
@@ -901,7 +924,7 @@ Scalings for lengthscales of convection in fluids with temperature dependent vis
 However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \mathrm{Ra}^{-\beta}$.
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{m} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{m} \sin{2 \theta}
 \label{eq:simplest_milankovitch_defer_scaling}
 \end{equation}
 In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for 
@@ -933,7 +956,7 @@ during Earth history, so this recent geologic stability may not hold in general 
 Our numerical simulations show that large values for $\theta$ are possible in a vigorously convecting mantle.
 Allowing for such a large mismatch angle ($\theta = 45^\circ$) we may estimate the maximum polar wander rate
 \begin{equation}
-\max ( \dot{\theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr}
+\max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr}
 \end{equation}
 which is similar to the timescales discussed by \citet{cambiotti2011new}, and within the range 
 suggested by paleomagnetic observations.
@@ -958,7 +981,7 @@ We have developed a framework for discussing the rates of true polar wander for 
 from a perspective of scaling and fluid dynamics.
 We identified a small number of dimensionless parameters which describe the system, and showed how they affect the overall dynamics of the system.
 
-The most important parameters are the Rayleigh number and the $m$, which acts as a damper to TPW.
+The most important parameters are the Rayleigh number and $m$, which acts as a damper to TPW.
 The dependence on the Rayleigh number is more complicated, since it is a control on both the forcing 
 of TPW and the response, which act in opposite directions.
 Overall, however, we expect that more vigorously convecting planets should be less rotationally stable, and experience more TPW.
