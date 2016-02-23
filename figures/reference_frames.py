@@ -75,7 +75,7 @@ def plot_rotation_arrow( axes, arrow, ccw=True, frac = 0.75, *args, **kwargs):
     rotated_points = np.dot( rotation_matrix, points )
 
     # plot the points
-    dline = 40
+    dline = 10
     line = axes.plot(rotated_points[0,:-dline], rotated_points[1,:-dline], rotated_points[2,:-dline], lw=1, color='k')
     # add the arrowhead
     if ccw is True:
@@ -159,14 +159,21 @@ ax.plot( guideline[0,:], guideline[1,:], guideline[2,:], 'k--', alpha=alpha_val)
 # plot relative rotation
 psi_arrow = Arrow3D([o[0], psi[0]], [o[1], psi[1]], [o[2], psi[2]], **arrow_prop_dict)
 ax.add_artist(psi_arrow)
-plot_rotation_arrow(ax, psi_arrow)
+plot_rotation_arrow(ax, psi_arrow, ccw=False)
 # add helper lines for psi
 span = np.linspace(0, 1., 100)
 guideline = np.array([np.cos(beta)*np.sin(alpha)*np.ones_like(span), np.sin(beta)*np.sin(alpha)*np.ones_like(span), np.cos(alpha)*span])
 ax.plot( guideline[0,:], guideline[1,:], guideline[2,:], 'k--', alpha=alpha_val)
 guideline = np.array([np.cos(beta)*np.sin(alpha)*(span), np.sin(beta)*np.sin(alpha)*(span), np.zeros_like(span)])
 ax.plot( guideline[0,:], guideline[1,:], guideline[2,:], 'k--', alpha=alpha_val)
-guideline = np.array([omega * s + psi * (1.-s) for s in span] )
+
+tmpvec = np.array([ np.cos(beta), np.sin(beta), 0.])
+guideline = np.array([tmpvec * s + psi * (1.-s) for s in span] )
+for i,p in enumerate(guideline):
+  guideline[i] = 0.45*p/norm(p)
+ax.plot( guideline[:,0], guideline[:,1], guideline[:,2], 'k')
+tmpvec2 = np.array([ 1., 0., 0.])
+guideline = np.array([tmpvec * s + tmpvec2 * (1.-s) for s in span] )
 for i,p in enumerate(guideline):
   guideline[i] = 0.45*p/norm(p)
 ax.plot( guideline[:,0], guideline[:,1], guideline[:,2], 'k')
@@ -193,18 +200,20 @@ ax.text(1.1*x0[0],1.1*x0[1],1.1*x0[2],r'$e_1$', **text_options)
 ax.text(1.1*y0[0],1.1*y0[1],1.1*y0[2],r'$e_2$', **text_options)
 ax.text(1.1*z0[0],1.1*z0[1],1.1*z0[2],r'$e_3$', **text_options)
 ax.text(1.1*omega[0],1.1*omega[1],1.1*omega[2],r'$\omega$', **text_options)
-ax.text(1.1*psi[0],1.1*psi[1],1.1*psi[2],r'$\psi$', **text_options)
-ax.text(omega[0] + omega_dot[0]*1.1, omega[1] + omega_dot[1]*1.1, omega[2]+omega_dot[2]*1.1, r'$\dot{\omega}$', **text_options)
-ax.text(omega[0] + omega_dot_prime[0]*1.1, omega[1] + omega_dot_prime[1]*1.1, omega[2]+omega_dot_prime[2]*1.1, r'$\dot{\omega}^\prime$', **text_options)
+ax.text(1.1*psi[0],1.1*psi[1],1.1*psi[2],r'$\Psi$', **text_options)
+ax.text(omega[0] + omega_dot[0]*1.15, omega[1] + omega_dot[1]*1.15, omega[2]+omega_dot[2]*1.15, r'$\dot{\omega}$', **text_options)
+ax.text(omega[0] + omega_dot_prime[0]*1.2, omega[1] + omega_dot_prime[1]*1.2, omega[2]+omega_dot_prime[2]*1.2, r'$\dot{\omega}^\prime$', **text_options)
 
 # add text for angles
 p = 0.45*(omega + z0)/2.0
 ax.text( p[0], p[1], p[2], r'$\theta$', **text_options)
-p = 0.3* (psi + omega) / 2.0
-ax.text( p[0], p[1], p[2], r'$\gamma$', **text_options)
+p = 0.4* (tmpvec + psi) / 2.0
+ax.text( p[0], p[1], p[2], r'$\alpha$', **text_options)
+p = 0.6* (tmpvec + tmpvec2) / 2.0
+ax.text( p[0], p[1], p[2], r'$\beta$', **text_options)
 
 # show figure
-ax.view_init(elev=36, azim=18)
+ax.view_init(elev=25, azim=49)
 ax.set_axis_off()
 #plt.show()
 plt.savefig("reference_frames.pdf")
