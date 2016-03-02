@@ -85,7 +85,7 @@ On a dynamic planet $\mathbf{I}$ may be a function of time, so to conserve angul
 In this case Equation~\eqref{eq:euler} is often called the Liouville equation \citep[e.g.][]{munk1960rotation}.
 For a slowly convecting fluid such as a planetary mantle the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
-\mitbf{\Omega } (t)\times ( \mathbf{I}(t) \cdot \mitbf{\Omega }(t) ) = 0
+\mitbf{\Omega } (t)\times ( \mathbf{I}(t) \cdot \mitbf{\Omega }(t) ) = 0.
 \label{eq:quasistatic_liouville}
 \end{equation}
 Equation~\eqref{eq:quasistatic_liouville} indicates that $\mitbf{\Omega}$ and $\mathbf{H}$ are parallel, so a solution for $\mitbf{\Omega}(t)$ is equivalent to solving an eigenvalue problem for $\mathbf{I}(t)$, where the eigenvectors correspond to the principal axes and the eigenvalues correspond to the principal moments (where the most stable orientation of the planet corresponds to rotating about the largest principal axis).
@@ -102,7 +102,7 @@ I_{ij}(t) = I_0 \delta_{ij} + J_{ij}(t) + E_{ij}(t)
 where $I_0$ is the spherically symmetric reference moment, $J_{ij}$ is the contribution due to rotational deformation, and $E_{ij}$ is the contribution due to internal density anomalies, as well as the surface deflections caused by them.
 If we plug this decomposition into Equation~\eqref{eq:quasistatic_liouville} the spherically symmetric part $I_0 \delta_{ij}$ drops out, and we are left with
 \begin{equation}
-\mathbf{\Omega} \times (\mathbf{J} \cdot \mitbf{\Omega}) = -\mitbf{\Omega} \times ( \mathbf{E} \cdot \mitbf{\Omega} )
+\mathbf{\Omega} \times (\mathbf{J} \cdot \mitbf{\Omega}) = -\mitbf{\Omega} \times ( \mathbf{E} \cdot \mitbf{\Omega} ).
 \label{eq:disequilibrium}
 \end{equation}
 This form of the quasistatic Liouville equation makes clear that the polar wander problem represents a balance between the mismatches
@@ -142,7 +142,7 @@ where $C$ and $A$ are the polar and equatorial moments of inertia, respectively,
 and $k_f$ is the fluid limit of $k$. 
 We can solve for $k_f$ in terms of $C-A$:
 \begin{equation}
-k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
+k_f = \frac{3 G (C-A)}{\Omega^2 a^5}.
 \label{eq:fluid_love}
 \end{equation}
 This fluid-limit representation of the deformation does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$,
@@ -153,7 +153,7 @@ This introduces a new parameter, termed $T_1$, which can be seen as a weighted r
 This simple approximation in the Laplace domain allows for an analytical transformation back into the time domain, and neglecting second order terms in $\dot{\Omega}$ we find:
 \begin{equation}
 J_{ij} = \frac{k_f a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right) -
- \frac{k_f a^5 T_1}{3G} \left(\dot{\Omega}_i \Omega_j + \Omega_i \dot{\Omega}_j - \frac{2}{3} \Omega_q \dot{\Omega}_q \delta_{ij} \right)
+ \frac{k_f a^5 T_1}{3G} \left(\dot{\Omega}_i \Omega_j + \Omega_i \dot{\Omega}_j - \frac{2}{3} \Omega_q \dot{\Omega}_q \delta_{ij} \right).
 \label{eq:rotational_deformation}
 \end{equation}
 The two terms of this equation have simple interpretations.  
@@ -172,7 +172,7 @@ This, as well, may be parameterized using a viscoelastic Love number approach:
 where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, and $C_{ij}$ is the moment of inertia without that response.
 Frequently the simplification is made that the timescale of the surface response is quick compared to the true polar wander timescale, and we may use the fluid limit geoid kernels \citep[e.g.][]{richards1984geoid}:  
 \begin{equation}
-E_{ij} = (1+k^L_f) C_{ij}
+E_{ij} = (1+k^L_f) C_{ij}.
 \end{equation}
 An alternative to the Love number formulism is to calculate to surface deflections directly using mantle convection simulations with a true free surface boundary condition.
 A recent implementation of a free surface boundary condition in the CIG-sponsored mantle convection software \texttt{ASPECT} \citep{rose2016free}
@@ -185,19 +185,19 @@ We are in a position to address the rates of true polar wander for a given conve
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation~\eqref{eq:rotational_deformation} into Equation~\eqref{eq:disequilibrium} we find
 \begin{equation}
-\frac{k_f a^5 T_1 \Omega^2}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right)
+\frac{k_f a^5 T_1 \Omega^2}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right).
 \label{eq:liouville}
 \end{equation}
 Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ and using Equation~\eqref{eq:fluid_love} for $k_f$,  we may solve this equation for $\dot{\mitbf{\omega}}$:
 \begin{equation}
- \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ \mathbf{E} \cdot \mitbf{\omega} - \left( \mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega}  \right) \mitbf{\omega} \right]
+ \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ \mathbf{E} \cdot \mitbf{\omega} - \left( \mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega}  \right) \mitbf{\omega} \right].
 \label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
 The rate of polar wander is the angular rate of change of the spin axis $\left| \dot{\mitbf{\omega}} \right| = \dot{\Theta}$ in a body-fixed geographic reference frame.
 This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
 \begin{equation}
-\dot{\Theta}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right]
+\dot{\Theta}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right].
 \label{eq:polar_wander_rate_tensor}
 \end{equation}
 
@@ -238,7 +238,7 @@ A^2 \left[ \left(\mathbf{E}\cdot \mitbf{\omega}\right)\cdot \left(\mathbf{E}\cdo
 \right]\\
 \dot{\mitbf{\omega}}^2  &= 
 A^2 \left[ \left(\mathbf{E}\cdot \mitbf{\omega}\right)^2
- - \left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2 
+ - \left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2.
 \right]\\
 \end{aligned}
 \end{equation}
@@ -258,7 +258,7 @@ It is most convenient to choose the principal axes of $\mathbf{E}$, where
 \sin{\theta} \cos{\phi} \\
 \sin{\theta} \sin{\phi} \\
 \cos{\theta} \\
-\end{bmatrix}
+\end{bmatrix}.
 \end{equation}
 
 As a warmup, consider the case where $\phi = 0$, then  
@@ -406,7 +406,7 @@ At long last, we get
 \begin{aligned}
 \dot{\Theta}^2 = 
 &\frac{1}{4(C-A)^2 T_1^2}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
-&\frac{1}{4(C-A)^2 T_1^2}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2 \\
+&\frac{1}{4(C-A)^2 T_1^2}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2. \\
 \label{eq:polar_wander_rate}
 \end{aligned}
 \end{equation}
@@ -418,7 +418,7 @@ the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator ($E_{
 \begin{aligned}
 \dot{\Theta}^2
 &= \frac{1}{9(C-A)^2 T_1^2}\left[( \lambda_3 - \lambda_1)^2 + (\lambda_3 - \lambda_2)^2 + (\lambda_2 - \lambda_1)^2 \right]\\
-&= \frac{E_{\mathrm{II}}}{9(C-A)^2 T_1^2} \\
+&= \frac{E_{\mathrm{II}}}{9(C-A)^2 T_1^2}. \\
 \end{aligned}
 \end{equation}
 The second invariant of the stress deviator is commonly used in the theories of elasticity and plasticity
@@ -429,7 +429,7 @@ The second special case is if the rotation vector $\mitbf{\omega}$ lies in the p
 Then Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which is useful for scaling purposes:
 \begin{equation}
 \vert \dot{\Theta} \vert = 
-\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) 
+\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1).
 \label{eq:simple_milankovitch}
 \end{equation}
 The maximum polar wander rate of the system is achieved when $\theta=45^\circ$ (see, e.g. \citet{fung1965foundations}).
@@ -473,7 +473,7 @@ For the purposes of scaling, we assume that gravity is the approximately constan
 vector $g_0 \mathbf{\hat{r}}$ (as is the case for Earth's mantle).
 In addition we use the simple equation of state
 \begin{equation}
-\rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
+\rho = \rho_0 \left( 1 - \alpha (T-T_0) \right).
 \label{eq:eos}
 \end{equation}
 The remaining parameters are defined in Table~\ref{tab:parameters}.
@@ -498,14 +498,14 @@ By definition the hydrostatic reference state is a solution to Equation~\eqref{e
 
 \begin{equation}
 \begin{aligned}
-- \nabla P_0 =  \rho_0 \mathbf{g} -  \rho_0 \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}
+- \nabla P_0 =  \rho_0 \mathbf{g} -  \rho_0 \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}.
 \label{eq:hydrostatic}
 \end{aligned}
 \end{equation}
 Nondimensionalizing with the parameters in Table~\ref{tab:nondim} and removing the reference state we find the nondimensional momentum equation:
 \begin{equation}
 \begin{aligned}
- - \nabla P^* + \; \nabla^2 \mathbf{u} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra} \; m \; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0
+ - \nabla P^* + \; \nabla^2 \mathbf{u} - \mathrm{Ra} \; T \; \mathbf{g} + \mathrm{Ra} \; m \; T \;{\mitbf{\omega} \times \mitbf{\omega} \times \mathbf{r}} = 0.
 \end{aligned}
 \end{equation}
 
@@ -514,7 +514,7 @@ Equation~\eqref{eq:navier_stokes}, crossing it with $\mathbf{r}$ and integrating
 \begin{equation}
 \begin{aligned}
 -\int_V \mathbf{r} \times \nabla P \,dV + \int_V \eta \mathbf{r} \times \nabla^2 \mathbf{u} \,dV - \int_V \rho \mathbf{r} \times \mathbf{g} \,dV 
-   + \int_V \rho \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}  \,dV &= 0 \\
+   + \int_V \rho \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}  \,dV &= 0. \\
 \end{aligned}
 \end{equation}
 
@@ -540,7 +540,7 @@ which may be rewritten via the Jacobi identity to find
 \fi
 \begin{equation}
 \begin{aligned}
- \mitbf{\Omega} \times \int_V \rho \mathbf{r} \times (\mitbf{\Omega}\times \mathbf{r}) \,dV &= 0 \\
+ \mitbf{\Omega} \times \int_V \rho \mathbf{r} \times (\mitbf{\Omega}\times \mathbf{r}) \,dV &= 0. \\
 \end{aligned}
 \end{equation}
 This can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
@@ -552,7 +552,7 @@ Splitting the volume into $V_H$ and $\Delta V$ and substituting Equation~\eqref{
 &\int_{V_H} \rho_0 \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV + 
 \int_{V_H} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV +  \\
 &\int_{\Delta V} \rho_0 \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV + 
-\int_{\Delta V} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV = 0  \\
+\int_{\Delta V} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV = 0.  \\
 \end{aligned}
 \end{equation}
 The first term of this equation is zero due to the hydrostatic equation.  
@@ -561,7 +561,7 @@ Removing these, we find
 \begin{equation}
 \begin{aligned}
 \int_{\Delta V} \rho_0 \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV = 
--\int_{V_H} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV
+-\int_{V_H} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV.
 \end{aligned}
 \end{equation}
 This equation may be identified with Equation~\eqref{eq:disequilibrium}, where disequilibrium in the rotational deformation (left side) is balanced by the mismatch of the convective moment of intertia with the spin axis (right side).
@@ -597,12 +597,12 @@ The temperature equation and equation of state become
 \end{equation}
 
 \begin{equation}
-\rho = 1 - \alpha \Delta T \;\;  T
+\rho = 1 - \alpha \Delta T \;\;  T.
 \end{equation}
 We may furthermore define a hydrostatic reference state where the density is the reference density everywhere and the velocity is zero, i.e.
 
 \begin{equation}
- \rho_0 \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}= - \nabla P_0 + \rho_0 \mathbf{g}
+ \rho_0 \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r}= - \nabla P_0 + \rho_0 \mathbf{g}.
 \end{equation}
 Subtracting this from the momentum equation and defining a dynamic pressure $P^* = P - P_0$, we find
 
@@ -674,16 +674,16 @@ It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') 
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
 The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces($m$ \citep{munk1960rotation}:
 \begin{equation}
-(C-A) \sim I_0 m
+(C-A) \sim I_0 m.
 \end{equation}
 
 The time constant $T_1$ is a viscous relaxation time of the planetary mantle. It is frequently represented as a weighted average of the different relaxation modes \citep[e.g.][]{ricard1993polar, greff2004upwelling}, but for our purposes it is enough to approximate it as a single mode:
 \begin{equation}
-T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm{Ra} }
+T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm{Ra} }.
 \end{equation}
 Plugging these scalings into Equation~\eqref{eq:simple_milankovitch} we find
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma m} \Lambda_{31} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma m} \Lambda_{31} \sin{2 \theta}.
 \label{eq:scaled_rotation}
 \end{equation}
 
@@ -726,7 +726,7 @@ We can expand the temperature structure of the convecting planet with a set of o
 where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials, and
 $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$:
 \begin{equation} 
-T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi)
+T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi).
 \label{eq:T_series}
 \end{equation}
 Inserting the temperature expansion~\eqref{eq:T_series} into Equation~\eqref{eq:temperature_fluctuations} results in 
@@ -736,12 +736,12 @@ spherical harmonics in the lateral dimensions, and only having power in the lowe
 Therefore, of the entire temperature spectrum, only a few of the modes matter for TPW.
 We want to estimate the power in those few modes, which we denote by $T_{\text{degree-two}}$ (see Appendix~\ref{appendix:moments} for more detail): 
 \begin{equation}
-\Lambda_{31} \sim \Gamma T_{\text{degree-two}}
+\Lambda_{31} \sim \Gamma T_{\text{degree-two}}.
 \end{equation}
 The temperature field has been normalized by $\Delta T$ and thus goes between zero and one, therefore the expansion in $T_{lmn}$ is constrained by
 
 \begin{equation}
-\max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1
+\max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1.
 \end{equation}
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
 We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
@@ -757,7 +757,7 @@ which tends to wipe out thermal heterogeneity at small scales.  Consequently, th
 with shorter lengthscales than that allowed by diffusion. 
 Therefore we expect, to a good approximation, that the infinite sum in Equation~\eqref{eq:T_series} can be truncated at some maximum wavenumber, set by the smallest lengthscale $d$:
 \begin{equation}
-n_{\text{max}}, l_{\text{max}}, m_{\text{max}} \sim \frac{R}{d}
+n_{\text{max}}, l_{\text{max}}, m_{\text{max}} \sim \frac{R}{d}.
 \label{eq:max_wavenumber}
 \end{equation}
 Strictly speaking, convective mixing can produce smaller scales, but the power in these scales
@@ -765,14 +765,14 @@ is greatly reduced by diffusion.
 Thus total number of modes that are accessible to the system are 
 
 \begin{equation}
-N_{\text{modes}} = n_{\text{max}} \times l_{\text{max}} \times m_{\text{max}} \sim \left( \frac{R}{d} \right)^{3}
+N_{\text{modes}} = n_{\text{max}} \times l_{\text{max}} \times m_{\text{max}} \sim \left( \frac{R}{d} \right)^{3}.
 \end{equation}
 The value of each $T_{lmn}(t)$ will in general be some complex function of time, but for a given style of convection we expect there to be some average value.
 For chaotic flow the power should be spread out amongst the modes accessible to it.
 We may make the hypothesis that each of the modes are roughly as likely as any of the others, which implies
 
 \begin{equation}
-T_{\text{degree-two}}(t) \sim \frac{1}{N_{\text{modes}}} \sim \left( \frac{d}{R}\right)^3
+T_{\text{degree-two}}(t) \sim \frac{1}{N_{\text{modes}}} \sim \left( \frac{d}{R}\right)^3.
 \end{equation}
 
 Any of a number of scaling laws can provide an estimate for the characteristic length scale of a convecting system which may depending on rheology, geometry, or density structure.
@@ -783,7 +783,7 @@ It thus furnishes us with an estimate of the power in
 the degree-two part of the field as a function of Rayleigh number:
 
 \begin{equation}
-T_{\text{degree-two}}(t) \sim \mathrm{Ra}^{-1}
+T_{\text{degree-two}}(t) \sim \mathrm{Ra}^{-1}.
 \label{eq:degree_two_of_ra}
 \end{equation}
 
@@ -802,7 +802,7 @@ The total power in the temperature field is spread across a larger spectrum, lea
 
 With an estimate for the power in the degree-two part of the temperature field, we may finally estimate $\Lambda_{ij}$:
 \begin{equation}
-\Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
+\Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }.
 \label{eq:lambda_estimate}
 \end{equation}
 Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
@@ -826,11 +826,11 @@ describe by introducing a rotation vector $\mathbf{\Psi}$
 (Here $\mitbf{\Psi}$ describes the rotation of the $\mathbf{E}$-frame in the body-fixed frame).
 We can then write the rate of change of $\mitbf{\omega}$ in the principal axis frame (denoted by primes)
 \begin{equation}
-\dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime
+\dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \end{equation}
 Equation~\eqref{eq:liouville_ode} then becomes
 \begin{equation}
- \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime
+ \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \label{eq:liouville_ode_new_frame}
 \end{equation}
 The advantage of expressing TPW in the frame of the principal axes of $\mathbf{E}$ is that the entire equation
@@ -842,7 +842,7 @@ The direction of $\Psi$ is given by colatitude $\alpha$ and longitude $\beta$, a
 We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ in terms of $\theta$, $\alpha$, and $\beta$:
 \begin{equation}
 \dot{\theta} = 
--\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\alpha \sin\beta
+-\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\alpha \sin\beta.
 \label{eq:theta_competition}
 \end{equation}
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
@@ -869,7 +869,7 @@ Let $\delta$ be the size of the perturbation to the convective moment of inertia
 Then the rotation of the principal axes of the tensor is bounded by
 
 \begin{equation}
-\vert \sin(2 \theta) \vert \le \frac{ 2 \vert \delta \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }
+\vert \sin(2 \theta) \vert \le \frac{ 2 \vert \delta \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
 \label{eq:kahan}
 \end{equation} 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
@@ -880,7 +880,7 @@ We may arrive at a simple estimate of the growth rate of the angle $\theta$ (and
 by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\vert \lambda_i - \lambda_j \vert$ fixed:
 
 \begin{equation}
-\vert \mitbf{\Psi} \vert \sim \vert \dot{\theta} \vert \le \frac{ \vert \dot{\delta} \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }
+\vert \mitbf{\Psi} \vert \sim \vert \dot{\theta} \vert \le \frac{ \vert \dot{\delta} \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
 \label{eq:grow_perturbation}
 \end{equation} 
 
@@ -931,7 +931,7 @@ There is a constant competition between growth of the mismatch angle $\theta$ th
 Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
 We may plug in the estimate for $\Lambda_{ij}$ (Equation~\eqref{eq:lambda_estimate}) into Equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}.
 \label{eq:simplest_milankovitch}
 \end{equation}
 Surprisingly, $\Gamma$ and $\mathrm{Ra}$ have completely dropped from the prefactor in the scaling. 
@@ -942,7 +942,7 @@ Scalings for lengthscales of convection in fluids with temperature dependent vis
 However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \mathrm{Ra}^{-\beta}$.
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{m} \sin{2 \theta}
+\frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{\mathrm{Ra}^{1-3\beta}}{m} \sin{2 \theta}.
 \label{eq:simplest_milankovitch_defer_scaling}
 \end{equation}
 In general, $\beta$ is some small number between one-fourth and one-third, so we expect that more complicated estimates for 
@@ -1045,7 +1045,7 @@ The relevant (fully normalized) harmonics are, in Cartesian coordinates:
 \begin{equation}
 \begin{aligned}
 Y_{20} &= \frac{1}{4} \sqrt{\frac{ 5}{\pi}} \frac{ 2 z^2 - x^2 - y^2}{r^2} \\ 
-Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}
+Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}.
 \end{aligned}
 \end{equation}
 Solving for $( \lambda_i - \lambda_j )$ in terms of these harmonics, we find
@@ -1055,7 +1055,7 @@ It is useful to define unnormalized verions of the spherical harmonics as interm
 \begin{equation}
 \begin{aligned}
 Y_{20}^* &= 2 z^2 - x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{5} } r^2 Y_{20} \\ 
-Y_{22}^* &= x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{15} } r^2 Y_{22}
+Y_{22}^* &= x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{15} } r^2 Y_{22}.
 \end{aligned}
 \end{equation}
 These make it easy to rewrite the differences between the $\lambda_n$:
@@ -1063,7 +1063,7 @@ These make it easy to rewrite the differences between the $\lambda_n$:
 \begin{aligned}
 (\lambda_2 - \lambda_1) &= \int_V \rho Y_{22}^* \, dV \\
 (\lambda_3 - \lambda_1) &= \frac{1}{2} \int_V  \rho \left( Y_{22}^* - Y_{20}^* \right) dV \\
-(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV \\
+(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV. \\
 \end{aligned}
 \end{equation}
 Substituting back in for the normalized spherical harmonics we find
@@ -1072,7 +1072,7 @@ Substituting back in for the normalized spherical harmonics we find
 \begin{aligned}
 (\lambda_2 - \lambda_1) &= 4 \sqrt{\frac{\pi}{15} } \int_V   \rho r^2  Y_{22} \,dV \\
 (\lambda_3 - \lambda_1) &= 2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV \\
-(\lambda_3 - \lambda_2) &= -2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV \\
+(\lambda_3 - \lambda_2) &= -2 \sqrt{ \frac{\pi}{15} } \int_V  \rho r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV. \\
 \label{eq:degree_two_moments}
 \end{aligned}
 \end{equation}
@@ -1085,7 +1085,7 @@ This allows us to drop the terms which integrate to zero due to the orthogonalit
 \begin{aligned}
 (\lambda_2 - \lambda_1) &= -4 \sqrt{\frac{\pi}{15} } \alpha \rho_0 \int_{V_S} T r^2  Y_{22} \,dV \\
 (\lambda_3 - \lambda_1) &= -2 \sqrt{ \frac{\pi}{15} } \alpha \rho_0 \int_{V_S} T r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV \\
-(\lambda_3 - \lambda_2) &= 2 \sqrt{ \frac{\pi}{15} } \alpha \rho_0 \int_{V_S}  T r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV \\
+(\lambda_3 - \lambda_2) &= 2 \sqrt{ \frac{\pi}{15} } \alpha \rho_0 \int_{V_S}  T r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV. \\
 \label{eq:degree_two_moments_of_temperature}
 \end{aligned}
 \end{equation}
@@ -1101,7 +1101,7 @@ I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \left(1 - 2 \sqrt{\frac{\pi}{5}} Y_{20}\
 \end{equation}
 \fi
 \begin{equation}
-I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV
+I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV.
 \end{equation}
 \ifdetail
 \begin{equation}
@@ -1123,7 +1123,7 @@ Dividing Equation~\eqref{eq:degree_two_moments_of_temperature} by $I_0$ and nodi
 the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
 degree-two coefficients for the temperature field, which we abbreviate as $T_{\text{degree-two}}$:
 \begin{equation}
-\Lambda_{ij} \sim \Gamma T_{\text{degree-two}}
+\Lambda_{ij} \sim \Gamma T_{\text{degree-two}}.
 \end{equation}
 
 \label{lastpage}
