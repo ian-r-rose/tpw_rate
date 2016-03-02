@@ -109,6 +109,11 @@ This form of the quasistatic Liouville equation makes clear that the polar wande
 of the convective part of the moment of inertia ($\mathbf{E}$) and the rotational deformation part of the moment of inertia ($\mathbf{J}$).
 Our goal is to characterize this balance from a perspective of scaling and fluid dynamics.
 
+\subsection{A note on reference frames}
+\label{sec:reference_frames}
+
+
+
 \subsection{Rotational deformation}
 \label{sec:rotational_deformation}
 
@@ -170,7 +175,7 @@ Frequently the simplification is made that the timescale of the surface response
 E_{ij} = (1+k^L_f) C_{ij}
 \end{equation}
 An alternative to the Love number formulism is to calculate to surface deflections directly using mantle convection simulations with a true free surface boundary condition.
-A recent implementation of a free surface boundary condition in the CIG-sponsored mantle convection software \texttt{ASPECT} \citep{rose2015free}
+A recent implementation of a free surface boundary condition in the CIG-sponsored mantle convection software \texttt{ASPECT} \citep{rose2016free}
 permits more general treatments of mantle rheology.
 
 \subsection{Rate of true polar wander}
@@ -418,7 +423,7 @@ the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator ($E_{
 \end{equation}
 The second invariant of the stress deviator is commonly used in the theories of elasticity and plasticity
 as a convenient scalar approximation of the shear stress in a system.
-The second invariant of the moment of inertia deviator can be similarly useful as a scalar estimate of the ``rotational stress.''
+The second invariant of the moment of inertia deviator can be similarly viewed as a scalar estimate of the ``rotational stress.''
 
 The second special case is if the rotation vector $\mitbf{\omega}$ lies in the plane of the $\lambda_1$ axis ($\phi = 0$).
 Then Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which is useful for scaling purposes:
@@ -729,7 +734,7 @@ a prefactor of the nondimensional number $\Gamma = \alpha \Delta T$.
 Orthogonality of the basis functions for the expansion results in the integral picking out degree-two 
 spherical harmonics in the lateral dimensions, and only having power in the lowest few radial functions $R_n(r)$.
 Therefore, of the entire temperature spectrum, only a few of the modes matter for TPW.
-We want to estimate the power in those few modes, which we denote by $T_{\text{degree-two}}$: 
+We want to estimate the power in those few modes, which we denote by $T_{\text{degree-two}}$ (see Appendix~\ref{appendix:moments} for more detail): 
 \begin{equation}
 \Lambda_{31} \sim \Gamma T_{\text{degree-two}}
 \end{equation}
@@ -753,6 +758,7 @@ with shorter lengthscales than that allowed by diffusion.
 Therefore we expect, to a good approximation, that the infinite sum in Equation~\eqref{eq:T_series} can be truncated at some maximum wavenumber, set by the smallest lengthscale $d$:
 \begin{equation}
 n_{\text{max}}, l_{\text{max}}, m_{\text{max}} \sim \frac{R}{d}
+\label{eq:max_wavenumber}
 \end{equation}
 Strictly speaking, convective mixing can produce smaller scales, but the power in these scales
 is greatly reduced by diffusion.
@@ -770,7 +776,11 @@ T_{\text{degree-two}}(t) \sim \frac{1}{N_{\text{modes}}} \sim \left( \frac{d}{R}
 \end{equation}
 
 Any of a number of scaling laws can provide an estimate for the characteristic length scale of a convecting system which may depending on rheology, geometry, or density structure.
-The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $d/R \sim \mathrm{Ra}^{-1/3}$, thus furnishing us with an estimate of the power in the degree-two part of the field as a function of Rayleigh number:
+The simplest, based on boundary layer theory \citep{turcotte1967finite}, finds $d/R \sim \mathrm{Ra}^{-1/3}$.
+This scaling is roughly a measure of the diffusive lengthscale for the timescale of a convective overturn, consistent
+with the cutoff in Equation~\eqref{eq:max_wavenumber}.
+It thus furnishes us with an estimate of the power in 
+the degree-two part of the field as a function of Rayleigh number:
 
 \begin{equation}
 T_{\text{degree-two}}(t) \sim \mathrm{Ra}^{-1}
@@ -793,6 +803,7 @@ The total power in the temperature field is spread across a larger spectrum, lea
 With an estimate for the power in the degree-two part of the temperature field, we may finally estimate $\Lambda_{ij}$:
 \begin{equation}
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }
+\label{eq:lambda_estimate}
 \end{equation}
 Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
 Present day Earth seems to have a fairly ``red'' spectrum, with large low-degree seismic anomalies due to 
@@ -810,8 +821,9 @@ There are two processes at work which control the evolution of $\theta$, its gro
 its decay via relaxation of the pole towards the maximum moment of inertia.
 We can interrogate these by constructing Equation~\eqref{eq:liouville_ode} in the reference frame
 of the principal axes of the convective moment $\mathbf{E}$.
-This reference frame rotates with respect to the geographic frame, which we can
-describe by introducing a rotation vector $\mathbf{\Psi}$.
+The $\mathbf{E}$-frame slowly rotates with respect to the geographic frame, which we can
+describe by introducing a rotation vector $\mathbf{\Psi}$ 
+(Here $\mitbf{\Psi}$ describes the rotation of the $\mathbf{E}$-frame in the body-fixed frame).
 We can then write the rate of change of $\mitbf{\omega}$ in the principal axis frame (denoted by primes)
 \begin{equation}
 \dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime
@@ -821,7 +833,7 @@ Equation~\eqref{eq:liouville_ode} then becomes
  \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime
 \label{eq:liouville_ode_new_frame}
 \end{equation}
-The advantage of writing this in the frame of the principal axes of $\mathbf{E}$ is that the entire equation
+The advantage of expressing TPW in the frame of the principal axes of $\mathbf{E}$ is that the entire equation
 may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
 As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that $\phi=0$
 (for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
@@ -834,13 +846,13 @@ We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ in t
 \label{eq:theta_competition}
 \end{equation}
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
-The first term acts to reduce $\theta$ via TPW, the second term can increase (or decrease) it arbitrarily via
+The first term acts to reduce $\theta$ via TPW, while the second term can increase (or decrease) it arbitrarily via
 relative motion between the geographic frame and the principal axes of the $\mathbf{E}$ frame.
-
-Note that comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
-then the rate of TPW $\vert \dot{\Theta} \vert$ is just $\vert \dot{\theta} \vert$.
-Conversely, when TPW is very slow $\theta$ is completely determined by $\mitbf{\Psi}$, and 
-$\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$ 
+Comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
+then the rate of TPW $\vert \dot{\Theta} \vert$ is identical to $\vert \dot{\theta} \vert$.
+Conversely, when the rate of TPW is very slow (i.e. $\vert \dot{\Theta} \vert \sim 0$), 
+then $\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$ 
+and $\theta$ is completely determined by $\mitbf{\Psi}$
 (where we have neglected the orientation factor $\sin \alpha \sin \beta$ for the purposes of scaling).
 In order for the TPW rate to be large, the growth of $\theta$ via $\vert \mitbf{\Psi} \vert$ must, 
 at least occasionally, be larger than its decay.
@@ -917,7 +929,7 @@ The preceding results clarify the complex relationship between the Rayleigh numb
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
 Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
-We may plug in the estimate for $\Lambda_{ij}$ into Equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
+We may plug in the estimate for $\Lambda_{ij}$ (Equation~\eqref{eq:lambda_estimate}) into Equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}
 \label{eq:simplest_milankovitch}
@@ -953,8 +965,8 @@ a less stable $\theta(t)$, and thus more TPW and more frequent ``fast TPW'' even
 
 For Cenozoic Earth we can substitute direct estimates of the important parameters into Equation~\eqref{eq:simple_milankovitch}.
 Typical values for the time constant $T_1$ are of order $30 \, \mathrm{kyr}$ \citep{ricard1993polar}.
-Estimates of the present day non-hydrostatic moment of inertia (due to mantle density anomalies)
-are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia is $3 \times 10^{-3} I_0$ \citep{chambat2001mean}.
+Estimates of the present day non-hydrostatic moment of inertia (due to mantle density anomalies, corresponding to $\Lambda_{31}I_0$ in the preceding scaling)
+are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia (corresponding to $C-A$) is $3 \times 10^{-3} I_0$ \citep{chambat2001mean}.
 The largest question is whether convection is sufficiently chaotic to enter the large $\theta$ regime. 
 \citet{richards1997explanation} have argued that the convective planform of Earth has been stable for the last
 few hundred million years. On the other hand, we know that there have been large reorganizations of that planform 
@@ -1026,7 +1038,7 @@ It is useful to enter the principal axes of the moment of inertia:
 \end{bmatrix}
 \end{equation}
 where $\mathbf{1}$ is the identity matrix, and $\lambda_1$, $\lambda_2$, and $\lambda_3$ are the principal moments.
-From Equation~\eqref{eq:milankovitch} we see that the important quantities are the differences between the 
+From Equation~\eqref{eq:polar_wander_rate} we see that the important quantities are the differences between the 
 principal moments, $(\lambda_3-\lambda_1)$, $(\lambda_3-\lambda_2)$ and $(\lambda_2-\lambda_1)$.
 These quantities may be rewritten in terms of degree-two real sperical harmonics \citep[e.g.][]{dahlen1999theoretical}.
 The relevant (fully normalized) harmonics are, in Cartesian coordinates:
@@ -1107,7 +1119,8 @@ I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV
 \end{aligned}
 \end{equation}
 \fi
-Dividing by $I_0$ and nodimensionalizing the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
+Dividing Equation~\eqref{eq:degree_two_moments_of_temperature} by $I_0$ and nodimensionalizing 
+the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
 degree-two coefficients for the temperature field, which we abbreviate as $T_{\text{degree-two}}$:
 \begin{equation}
 \Lambda_{ij} \sim \Gamma T_{\text{degree-two}}
