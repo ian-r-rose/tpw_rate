@@ -215,8 +215,9 @@ which is, in general, rotating with respect to the geographic frame.
 However, the right-hand-side is scalar-valued, and as such is invariant to rotations.
 Therefore we can enter the coordinate system of the convective moment of inertia $\mathbf{E}$ 
 with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of 
-$\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$.
-Plugging these in, and after some tedious algebra, we find
+$\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ (see Figure~\ref{fig:reference_frames}).
+Plugging this description of $\mitbf{\omega}$ into Equation~\eqref{eq:polar_wander_rate_tensor},
+and after some tedious algebra, we find
 \ifdetail
 
 And here is the tedious algebra.  Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$.
@@ -412,8 +413,9 @@ At long last, we get
 \end{equation}
 This equation is a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.
 Two special cases of this equation are of note. First, if it is evaluated on the octahedral plane
-($\phi=45^\circ, \theta\approx 55^\circ$), then it can be expressed in terms of
-the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator ($E_{ij} - 1/3 E_{kk} \delta_{ij}$):
+(the plane with direction cosines all $1/\sqrt{3}$, or $\phi=45^\circ, \theta\approx 55^\circ$, cf. \citet{fung1965foundations}), 
+then it can be expressed in terms of the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator 
+($E_{ij} - 1/3 E_{kk} \delta_{ij}$):
 \begin{equation}
 \begin{aligned}
 \dot{\Theta}^2
@@ -546,7 +548,12 @@ which may be rewritten via the Jacobi identity to find
 This can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
 and is a statement that a quasistatic body will rotate around the principal axis of its total moment of inertia.
 
-Splitting the volume into $V_H$ and $\Delta V$ and substituting Equation~\eqref{eq:eos} into Equation~\eqref{eq:quasistatic_angular_momentum}, we find
+We now seek to evaluate Equation~\eqref{eq:quasistatic_angular_momentum} in the perturbed, convecting state.
+Hydrostatic balance (Equation~\eqref{eq:hydrostatic}) ensures that the integral over the reference shape $V_H$ vanishes when $\rho = \rho_0$.
+Nonzero contributions arise from perturbations in the density field or from perturbations in the shape.
+To make this dependence explicit, we split the shape into the reference volume $V_H$ and perturbations from it $\Delta V$,
+and use Equation~\eqref{eq:eos} to define density perturbations.
+Substituting this decomposition into Equation~\eqref{eq:quasistatic_angular_momentum} brings the integral into the form
 \begin{equation}
 \begin{aligned}
 &\int_{V_H} \rho_0 \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV + 
@@ -702,7 +709,7 @@ In this regime, therefore, we neglect the dependence on $m$, and look for scalin
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/eigengap.pdf}
-\caption{ Left: Time series of the normalized difference between moments $\Lambda_{12}$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayleigh number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{12}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
+\caption{ Left: Time series of the normalized difference between moments $\Lambda_{21} = (\lambda_2 - \lambda_1)/I_0$ for convection in a 2D annulus at several different Rayleigh numbers.  As the Rayleigh number increases, the average value of the relative moment decreases due to less low-degree coherence in the temperature structure.  Right:  average value of $\Lambda_{21}$ for the different Rayleigh numbers.  Also shown is a line with slope $\mathrm{Ra}^{-2/3}$, which is predicted from the scaling analysis (the exponent is $-2/3$ instead of $-1$ due to the reduced dimensionality of the simulations).}
 \label{fig:eigengap}
 \end{figure*}
 

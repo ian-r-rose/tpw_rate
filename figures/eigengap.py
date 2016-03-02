@@ -110,7 +110,7 @@ for i,f in enumerate(output_files):
 ax.set_xlim(0,4)
 ax.set_ylim(0, 8.0e-5)
 ax.set_xlabel(r'Time (Gyr)')
-ax.set_ylabel(r'$(\lambda_2-\lambda_1)/I_0$')
+ax.set_ylabel(r'$\Lambda_{21} = (\lambda_2-\lambda_1)/I_0$')
 ax.legend(loc="upper right")
 print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
 
