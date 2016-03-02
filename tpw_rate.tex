@@ -141,7 +141,7 @@ k_f = \frac{3 G (C-A)}{\Omega^2 a^5}
 \label{eq:fluid_love}
 \end{equation}
 This fluid-limit representation of the deformation does not allow for any disequilibrium between $J_{ij}$ and $E_{ij}$,
-and so cannot by itself capture the physics of TPW.
+so it does not permit TPW.
 
 \citet{ricard1993polar} obtain an approximation to Equation~\eqref{eq:viscoelastic_deformation} which retains its long-time behavior by entering the Laplace domain and truncating a Taylor series for $k(s)$ to first order.  
 This introduces a new parameter, termed $T_1$, which can be seen as a weighted relaxation time for the system.  
@@ -458,8 +458,7 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 \frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T = \kappa \nabla^2 T
 \label{eq:energy}
 \end{equation}
-where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperature
-(he remaining parameters are defined in Table~\ref{tab:parameters}).
+where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperature.
 The gravity vector $\mathbf{g}$ is given by $\mathbf{g} = -\nabla V$, where the 
 gravitational potential $V$ comes from solving Poisson's equation
 \begin{equation}
@@ -472,6 +471,7 @@ In addition we use the simple equation of state
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right)
 \label{eq:eos}
 \end{equation}
+The remaining parameters are defined in Table~\ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure
 (in the latter case the boundary conditions on $P$ must be modified).
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires three nondimensional numbers to characterize it
@@ -688,7 +688,7 @@ They represent, respectively, the size of convective anomalies in the moment of 
 
 The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $m$, and $\Gamma$.  
 We consider relatively slowly rotating bodies here ($m \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
-In this regime, therefore, we neglect the dependence on $m$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra})$ and $\theta(\mathrm{Ra})$.
+In this regime, therefore, we neglect the dependence on $m$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\theta(\mathrm{Ra}, \Gamma)$.
 
 
 \subsection{An estimate of $\Lambda_{ij}$}
@@ -754,7 +754,7 @@ Therefore we expect, to a good approximation, that the infinite sum in Equation~
 \begin{equation}
 n_{\text{max}}, l_{\text{max}}, m_{\text{max}} \sim \frac{R}{d}
 \end{equation}
-Of course, convective mixing can produce smaller scales, but the power in these scales
+Strictly speaking, convective mixing can produce smaller scales, but the power in these scales
 is greatly reduced by diffusion.
 Thus total number of modes that are accessible to the system are 
 
@@ -803,7 +803,7 @@ Nevertheless, at high Rayleigh number the expectation is that the power will be 
 \subsection{Estimating the mismatch $\theta$}
 \label{sec:theta}
 
-The mismatch between the current axis and the principal axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
+The mismatch between the current rotation axis and the principal axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
 There are two processes at work which control the evolution of $\theta$, its growth through perturbations in the convective moment and 
