@@ -80,7 +80,7 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 \frac{d \mathbf{H}}{dt} + \mitbf{\Omega} \times \mathbf{H} = 0
 \label{eq:euler}
 \end{equation}
-where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity.
+where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity vector.
 On a dynamic planet $\mathbf{I}$ may be a function of time, so to conserve angular momentum $\mitbf{\Omega}$ must be also vary with time.
 In this case Equation~\eqref{eq:euler} is often called the Liouville equation \citep[e.g.][]{munk1960rotation}.
 For a slowly convecting fluid such as a planetary mantle the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
@@ -111,13 +111,29 @@ Our goal is to characterize this balance from a perspective of scaling and fluid
 
 \subsection{A note on reference frames}
 \label{sec:reference_frames}
+True polar wander can be described in different reference frames, and this choice is fundamentally an arbitrary one.
+However, certain aspects of the physics can be made much simpler by an appropriate choice of the reference frame.
+In our treatment of TPW, we will refer to three different reference frames:
 
+First, there is the inertial, non-rotating frame corresponding to spatial coordinates that are fixed in time.
+Second, there is the body-fixed (or geographic) frame, which corresponds roughly to a no-net-rotation or hotspot reference frame. 
+Treatments of gravitational or rotational deformation of a planet are most naturally expressed in the body-fixed frame,
+as described in Section~\ref{sec:rotational_deformation}.
+The relative rotation between the inertial and geographic reference frame is given by the planetary rotation vector $\mitbf{\Omega}$.
+Finally, there is the frame described by the principal axes of convective part of the moment of inertia $\mathbf{E}$,
+which we will refer to as the ``$\mathbf{E}$-frame.'' 
+Redistribution of mantle mass anomalies due to convection changes the principal axes of $\mathbf{E}$, 
+rotating the $\mathbf{E}$-frame with respect to the geographic frame, which we will describe
+by a rotation vector $\mitbf{\Psi}$ (see Section~\ref{sec:theta}).
+
+These reference frames and vectors are illustrated in Figure~\ref{fig:reference_frames}.
 
 
 \subsection{Rotational deformation}
 \label{sec:rotational_deformation}
 
-The part of the moment of inertia due to the elastic rotational deformation is traditionally related to the degree-two part of the gravity field via MacCullagh's formula \citep{munk1960rotation}:
+The part of the moment of inertia due to the elastic rotational deformation in the body-fixed frame 
+is traditionally related to the degree-two part of the gravity field via MacCullagh's formula \citep{munk1960rotation}:
 \begin{equation}
 J_{ij} = \frac{k a^5}{3 G} \left( \Omega_i \Omega_j - \frac{1}{3} \Omega_q \Omega_q \delta_{ij} \right)
 \label{eq:elastic_deformation}
@@ -194,7 +210,7 @@ Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ 
 \label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
-The rate of polar wander is the angular rate of change of the spin axis $\left| \dot{\mitbf{\omega}} \right| = \dot{\Theta}$ in a body-fixed geographic reference frame.
+The rate of polar wander is the angular rate of change of the spin axis $\left| \dot{\mitbf{\omega}} \right| = \dot{\Theta}$ in the geographic reference frame.
 This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
 \begin{equation}
 \dot{\Theta}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right].
@@ -204,7 +220,7 @@ This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
-\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $z$-axis. For simplicity, we assume the longitude $\psi$ of the rotation axis is zero. True polar wander in the geographic reference frame moves the rotation axis towards the $z$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$, with colatitude $\alpha$ and longitude $\beta$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$ frame, shown as $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Section~\ref{sec:theta}}
+\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander in the geographic reference frame moves the rotation axis towards the $\mathbf{e}_3$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$ in the geographic frame, which is defined by colatitude $\alpha$ and longitude $\beta$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame. The motion of $\mitbf{\omega}$ in the $\mathbf{E}$-frame is shown by $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
 \label{fig:reference_frames}
 \end{figure*}
 
@@ -489,7 +505,7 @@ In particular, the two most important numbers are the Rayleigh number, character
 This second nondimensional number does not have a uniformly agreed-upon name: it has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, 
 and in the geodesy community has commonly been termed $m$ \citep[e.g.][]{nakiboglu1982hydrostatic, chambat2010flattening}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
-It would be straightforward to include them, and they do not affect the overall treatment of this scaling.
+It would be straightforward to include them, but they do not affect the overall treatment of this scaling.
 
 In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
 In addition, we expect deviations in the figure of the planet from its hydrostatic shape, which we denote by $V = V_H + \Delta V$, where $V_H$ is the hydrostatic figure and $\Delta V$ is the deviation.
@@ -826,12 +842,12 @@ Much of the debate around the existence and magnitude of TPW on Earth comes down
 
 There are two processes at work which control the evolution of $\theta$, its growth through perturbations in the convective moment and 
 its decay via relaxation of the pole towards the maximum moment of inertia.
-We can interrogate these by constructing Equation~\eqref{eq:liouville_ode} in the reference frame
-of the principal axes of the convective moment $\mathbf{E}$.
-The $\mathbf{E}$-frame slowly rotates with respect to the geographic frame, which we can
-describe by introducing a rotation vector $\mathbf{\Psi}$ 
-(Here $\mitbf{\Psi}$ describes the rotation of the $\mathbf{E}$-frame in the body-fixed frame).
-We can then write the rate of change of $\mitbf{\omega}$ in the principal axis frame (denoted by primes)
+We can explore these two effects by converting Equation~\eqref{eq:liouville_ode}
+from the body-fixed frame to the $\mathbf{E}$-frame (recall that $\mitbf{\Omega}$ defines
+the rotation of the body-fixed frame relative to inertial space, as shown in Equation~\eqref{eq:euler})
+The $\mathbf{E}$-frame slowly rotates with respect to the geographic frame, described by the rotation vector $\mathbf{\Psi}$ 
+(here $\mitbf{\Psi}$ defines the rotation of the $\mathbf{E}$-frame in the geographic frame, see Figure~\ref{fig:reference_frames}).
+We can then write the rate of change of $\mitbf{\omega}$ in the $\mathbf{E}$-frame (denoted by primes)
 \begin{equation}
 \dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \end{equation}
@@ -840,7 +856,7 @@ Equation~\eqref{eq:liouville_ode} then becomes
  \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \label{eq:liouville_ode_new_frame}
 \end{equation}
-The advantage of expressing TPW in the frame of the principal axes of $\mathbf{E}$ is that the entire equation
+The advantage of expressing TPW in the $\mathbf{E}$-frame is that the entire equation
 may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
 As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that $\phi=0$
 (for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
@@ -854,7 +870,7 @@ We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ in t
 \end{equation}
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
 The first term acts to reduce $\theta$ via TPW, while the second term can increase (or decrease) it arbitrarily via
-relative motion between the geographic frame and the principal axes of the $\mathbf{E}$ frame.
+relative motion between the geographic frame and the principal axes of the $\mathbf{E}$-frame.
 Comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
 then the rate of TPW $\vert \dot{\Theta} \vert$ is identical to $\vert \dot{\theta} \vert$.
 Conversely, when the rate of TPW is very slow (i.e. $\vert \dot{\Theta} \vert \sim 0$), 
