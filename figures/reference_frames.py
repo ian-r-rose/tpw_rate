@@ -168,7 +168,7 @@ guideline = np.array([np.cos(beta)*np.sin(alpha)*(span), np.sin(beta)*np.sin(alp
 ax.plot( guideline[0,:], guideline[1,:], guideline[2,:], 'k--', alpha=alpha_val)
 
 tmpvec = np.array([ np.cos(beta), np.sin(beta), 0.])
-guideline = np.array([tmpvec * s + psi * (1.-s) for s in span] )
+guideline = np.array([z0 * s + psi * (1.-s) for s in span] )
 for i,p in enumerate(guideline):
   guideline[i] = 0.45*p/norm(p)
 ax.plot( guideline[:,0], guideline[:,1], guideline[:,2], 'k')
@@ -207,7 +207,7 @@ ax.text(omega[0] + omega_dot_prime[0]*1.2, omega[1] + omega_dot_prime[1]*1.2, om
 # add text for angles
 p = 0.45*(omega + z0)/2.0
 ax.text( p[0], p[1], p[2], r'$\theta$', **text_options)
-p = 0.4* (tmpvec + psi) / 2.0
+p = 0.4* (z0 + psi) / 2.0
 ax.text( p[0], p[1], p[2], r'$\alpha$', **text_options)
 p = 0.6* (tmpvec + tmpvec2) / 2.0
 ax.text( p[0], p[1], p[2], r'$\beta$', **text_options)
