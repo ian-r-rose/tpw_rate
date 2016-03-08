@@ -208,9 +208,9 @@ ax.text(omega[0] + omega_dot_prime[0]*1.2, omega[1] + omega_dot_prime[1]*1.2, om
 p = 0.45*(omega + z0)/2.0
 ax.text( p[0], p[1], p[2], r'$\theta$', **text_options)
 p = 0.4* (z0 + psi) / 2.0
-ax.text( p[0], p[1], p[2], r'$\alpha$', **text_options)
-p = 0.6* (tmpvec + tmpvec2) / 2.0
 ax.text( p[0], p[1], p[2], r'$\beta$', **text_options)
+p = 0.6* (tmpvec + tmpvec2) / 2.0
+ax.text( p[0], p[1], p[2], r'$\gamma$', **text_options)
 
 # show figure
 ax.view_init(elev=25, azim=49)

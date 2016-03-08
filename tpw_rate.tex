@@ -222,7 +222,7 @@ Evaluating the scalar product $\dot{\Theta}^2 = \dot{\mitbf{\omega}} \cdot \dot{
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
-\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander in the geographic reference frame moves the rotation axis towards the $\mathbf{e}_3$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$ in the geographic frame, which is defined by colatitude $\alpha$ and longitude $\beta$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame. The motion of $\mitbf{\omega}$ in the $\mathbf{E}$-frame is shown by $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
+\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander in the geographic reference frame moves the rotation axis towards the $\mathbf{e}_3$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$ in the geographic frame, which is defined by colatitude $\beta$ and longitude $\gamma$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame. The motion of $\mitbf{\omega}$ in the $\mathbf{E}$-frame is shown by $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
 \label{fig:reference_frames}
 \end{figure*}
 
@@ -862,14 +862,14 @@ The advantage of expressing TPW in the $\mathbf{E}$-frame is that the entire equ
 may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
 As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that $\phi=0$
 (for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
-The direction of $\Psi$ is given by colatitude $\alpha$ and longitude $\beta$, as shown in Figure~\ref{fig:reference_frames}.
+The direction of $\Psi$ is given by colatitude $\beta$ and longitude $\gamma$, as shown in Figure~\ref{fig:reference_frames}.
 
 We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ 
 (i.e., the colatitudinal velocity in the $\mathbf{E}$ frame, not the TPW rate $\dot{\Theta}$)
-in terms of $\theta$, $\alpha$, and $\beta$:
+in terms of $\theta$, $\beta$, and $\gamma$:
 \begin{equation}
 \dot{\theta} = 
--\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\alpha \sin\beta.
+-\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\beta \sin\gamma.
 \label{eq:theta_competition}
 \end{equation}
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
@@ -880,7 +880,7 @@ then the rate of TPW $\vert \dot{\Theta} \vert$ is identical to $\vert \dot{\the
 Conversely, when the rate of TPW is very slow (i.e. $\vert \dot{\Theta} \vert \sim 0$), 
 then $\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$ 
 and $\theta$ is completely determined by $\mitbf{\Psi}$
-(where we have neglected the orientation factor $\sin \alpha \sin \beta$ for the purposes of scaling).
+(where we have neglected the orientation factor $\sin \beta \sin \gamma$ for the purposes of scaling).
 In order for the TPW rate to be large, the growth of $\theta$ via $\vert \mitbf{\Psi} \vert$ must, 
 at least occasionally, be larger than its decay.
 
