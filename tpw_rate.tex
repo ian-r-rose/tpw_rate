@@ -116,10 +116,11 @@ However, certain aspects of the physics can be made much simpler by an appropria
 In our treatment of TPW, we will refer to three different reference frames:
 
 First, there is the inertial, non-rotating frame corresponding to spatial coordinates that are fixed in time.
-Second, there is the body-fixed (or geographic) frame, which corresponds roughly to a no-net-rotation or hotspot reference frame. 
+Second, there is the body-fixed (or geographic) frame.
+By definition, the rotaiton of the body-fixed frame relative to the inertial frame is specified by $\mitbf{\Omega}$.
+A terrestrial no-net-rotation or hotspot reference frame are common choices for the body-fixed frame.
 Treatments of gravitational or rotational deformation of a planet are most naturally expressed in the body-fixed frame,
 as described in Section~\ref{sec:rotational_deformation}.
-The relative rotation between the inertial and geographic reference frame is given by the planetary rotation vector $\mitbf{\Omega}$.
 Finally, there is the frame described by the principal axes of convective part of the moment of inertia $\mathbf{E}$,
 which we will refer to as the ``$\mathbf{E}$-frame.'' 
 Redistribution of mantle mass anomalies due to convection changes the principal axes of $\mathbf{E}$, 
@@ -190,7 +191,7 @@ Frequently the simplification is made that the timescale of the surface response
 \begin{equation}
 E_{ij} = (1+k^L_f) C_{ij}.
 \end{equation}
-An alternative to the Love number formulism is to calculate to surface deflections directly using mantle convection simulations with a true free surface boundary condition.
+An alternative to the Love number formalism is to calculate to surface deflections directly using mantle convection simulations with a true free surface boundary condition.
 A recent implementation of a free surface boundary condition in the CIG-sponsored mantle convection software \texttt{ASPECT} \citep{rose2016free}
 permits more general treatments of mantle rheology.
 
@@ -210,8 +211,9 @@ Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ 
 \label{eq:liouville_ode}
 \end{equation}
 Note that the quantity in brackets is similar in form to the shear stress on a plane in classical elastostatics.
-The rate of polar wander is the angular rate of change of the spin axis $\left| \dot{\mitbf{\omega}} \right| = \dot{\Theta}$ in the geographic reference frame.
-This can be calculated by dotting Equation~\eqref{eq:liouville_ode} with itself:
+This correspondence permits useful insights (see below).
+Let $\dot{\Theta} = \vert \dot{\mitbf{\omega}} \vert$ denote the rate of polar wander.
+Evaluating the scalar product $\dot{\Theta}^2 = \dot{\mitbf{\omega}} \cdot \dot{\mitbf{\omega}}$ gives
 \begin{equation}
 \dot{\Theta}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right].
 \label{eq:polar_wander_rate_tensor}
@@ -428,7 +430,7 @@ At long last, we get
 \end{aligned}
 \end{equation}
 This equation is a version of what has been called the ``Milankovitch theorem'' \citep{munk1960rotation}.
-Two special cases of this equation are of note. First, if it is evaluated on the octahedral plane
+Two special cases of this equation are of note. First, if $\dot{\Theta}^2$ is evaluated on the octahedral plane
 (the plane with direction cosines all $1/\sqrt{3}$, or $\phi=45^\circ, \theta\approx 55^\circ$, cf. \citet{fung1965foundations}), 
 then it can be expressed in terms of the second invariant ($E_{\mathrm{II}}$) of the moment of inertia deviator 
 ($E_{ij} - 1/3 E_{kk} \delta_{ij}$):
@@ -443,7 +445,7 @@ The second invariant of the stress deviator is commonly used in the theories of 
 as a convenient scalar approximation of the shear stress in a system.
 The second invariant of the moment of inertia deviator can be similarly viewed as a scalar estimate of the ``rotational stress.''
 
-The second special case is if the rotation vector $\mitbf{\omega}$ lies in the plane of the $\lambda_1$ axis ($\phi = 0$).
+The second special case is if the rotation vector $\mitbf{\omega}$ lies in $\mathbf{e}_1$-$\mathbf{e}_2$ plane ($\phi = 0$).
 Then Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which is useful for scaling purposes:
 \begin{equation}
 \vert \dot{\Theta} \vert = 
@@ -504,7 +506,7 @@ Convenient choices for these numbers are listed in Table~\ref{tab:nondim}, along
 In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
 This second nondimensional number does not have a uniformly agreed-upon name: it has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, 
 and in the geodesy community has commonly been termed $m$ \citep[e.g.][]{nakiboglu1982hydrostatic, chambat2010flattening}, which we adopt here.
-Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers which characterize those effects (e.g., the Prandtl and dissipation numbers).
+Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers that characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, but they do not affect the overall treatment of this scaling.
 
 In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
@@ -688,14 +690,14 @@ $\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 \label{sec:scaling}
 
 Having drawn the connection between the angular momentum equation (Section~\ref{sec:rotational_dynamics}) and the linear momentum 
-equation (Section~\ref{sec:internal}), we would like to apply insights from fluid dynamics and scaling of the 
+equation (Section~\ref{sec:internal}), we would like to apply the scaling of the 
 linear momentum equation to the problem of TPW. We would therefore like to rewrite Equation~\eqref{eq:simple_milankovitch}
 in terms of the nondimensional numbers identified in Section~\ref{sec:internal}.
 Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$, and $\theta$. 
 
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the rotational to gravitational forces($m$ \citep{munk1960rotation}:
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the ratio of rotational to gravitational forces(\citep{munk1960rotation}:
 \begin{equation}
 (C-A) \sim I_0 m.
 \end{equation}
@@ -706,7 +708,7 @@ T_1 \sim \frac{ \eta }{ \rho_0 g_0 R} = \frac{R^2}{\kappa} \frac{\Gamma}{\mathrm
 \end{equation}
 Plugging these scalings into Equation~\eqref{eq:simple_milankovitch} we find
 \begin{equation}
-\frac{\kappa}{R^2} \; \dot{\theta} \sim - \frac{\mathrm{Ra}}{\Gamma m} \Lambda_{31} \sin{2 \theta}.
+\frac{\kappa}{R^2} \; \dot{\Theta} \sim - \frac{\mathrm{Ra}}{\Gamma m} \Lambda_{31} \sin{2 \theta}.
 \label{eq:scaled_rotation}
 \end{equation}
 
@@ -754,8 +756,8 @@ T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}
 \end{equation}
 Inserting the temperature expansion~\eqref{eq:T_series} into Equation~\eqref{eq:temperature_fluctuations} results in 
 a prefactor of the nondimensional number $\Gamma = \alpha \Delta T$.
-Orthogonality of the basis functions for the expansion results in the integral picking out degree-two 
-spherical harmonics in the lateral dimensions, and only having power in the lowest few radial functions $R_n(r)$.
+Orthogonality of the basis functions for the expansion means that the integral for $C_{ij}$ picks out degree-two 
+spherical harmonics in the lateral dimensions, and only the lowest few radial functions $R_n(r)$.
 Therefore, of the entire temperature spectrum, only a few of the modes matter for TPW.
 We want to estimate the power in those few modes, which we denote by $T_{\text{degree-two}}$ (see Appendix~\ref{appendix:moments} for more detail): 
 \begin{equation}
@@ -844,7 +846,7 @@ There are two processes at work which control the evolution of $\theta$, its gro
 its decay via relaxation of the pole towards the maximum moment of inertia.
 We can explore these two effects by converting Equation~\eqref{eq:liouville_ode}
 from the body-fixed frame to the $\mathbf{E}$-frame (recall that $\mitbf{\Omega}$ defines
-the rotation of the body-fixed frame relative to inertial space, as shown in Equation~\eqref{eq:euler})
+the rotation of the body-fixed frame relative to inertial space, as shown in Equation~\eqref{eq:euler}).
 The $\mathbf{E}$-frame slowly rotates with respect to the geographic frame, described by the rotation vector $\mathbf{\Psi}$ 
 (here $\mitbf{\Psi}$ defines the rotation of the $\mathbf{E}$-frame in the geographic frame, see Figure~\ref{fig:reference_frames}).
 We can then write the rate of change of $\mitbf{\omega}$ in the $\mathbf{E}$-frame (denoted by primes)
@@ -862,7 +864,9 @@ As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumptio
 (for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
 The direction of $\Psi$ is given by colatitude $\alpha$ and longitude $\beta$, as shown in Figure~\ref{fig:reference_frames}.
 
-We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ in terms of $\theta$, $\alpha$, and $\beta$:
+We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ 
+(i.e., the colatitudinal velocity in the $\mathbf{E}$ frame, not the TPW rate $\dot{\Theta}$)
+in terms of $\theta$, $\alpha$, and $\beta$:
 \begin{equation}
 \dot{\theta} = 
 -\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\alpha \sin\beta.
@@ -885,7 +889,7 @@ Convection is continuously redistributing mass throughout the mantle, which will
 If the convective moment is stable to small perturbations, then $\vert \mitbf{\Psi} \vert$ should be small, 
 and $\theta$ will never be large.
 However, if $\mathbf{E}$ is not stable to perturbations, then $\theta$ could be up to $90^\circ$. 
-Given a random perturbation to that moment, we would like to give a bound on how big the perturbation to $\theta$ is. 
+Given a random perturbation to $\mathbf{E}$, we would like to give a bound on the size of the perturbation to $\theta$. 
 This may be done by application of a theorem due to \citet{davis1970rotation}.
 
 Let $\delta$ be the size of the perturbation to the convective moment of inertia tensor, and let $\lambda_3 \ge \lambda_2 \ge \lambda_1$ be the eigenvalues of that tensor.  
@@ -932,9 +936,12 @@ When the eigengap gets small, the misfit angle becomes much larger, and the rate
 At $\sim$1 Gyr the eigengap goes to zero, and the misfit angle goes to approximately $90^\circ$, 
 an IITPW event. But there are several other events where the eigengap becomes small, and there are 
 still large TPW events associated with them.
+For example, at $\sim$0.3 Gyr the eigengap dips, with an associated large TPW event, even though
+there is technically no interchange of the axes.
 
 We suggest, then, that $90^\circ$ IITPW events are simply a special case of a broad class of events which can occur
-when the principal moments are close to each other.  Furthermore, a more vigorously convecting planet is much more likely to experience rapid TPW events
+when the principal moments are close to each other. 
+Furthermore, a more vigorously convecting planet is much more likely to experience rapid TPW events
 as it has a lower characteristic gap between principal moments and the gap is much more likely to go to zero.
 
 \begin{figure*}
@@ -990,7 +997,7 @@ For Cenozoic Earth we can substitute direct estimates of the important parameter
 Typical values for the time constant $T_1$ are of order $30 \, \mathrm{kyr}$ \citep{ricard1993polar}.
 Estimates of the present day non-hydrostatic moment of inertia (due to mantle density anomalies, corresponding to $\Lambda_{31}I_0$ in the preceding scaling)
 are in the neighborhood of $10^{-5} I_0$, while the hydrostatic moment of inertia (corresponding to $C-A$) is $3 \times 10^{-3} I_0$ \citep{chambat2001mean}.
-The largest question is whether convection is sufficiently chaotic to enter the large $\theta$ regime. 
+A key question is whether convection is sufficiently chaotic to enter the large $\theta$ regime. 
 \citet{richards1997explanation} have argued that the convective planform of Earth has been stable for the last
 few hundred million years. On the other hand, we know that there have been large reorganizations of that planform 
 during Earth history, so this recent geologic stability may not hold in general \citep{evans2003true}.
@@ -1043,7 +1050,8 @@ This work was supported by National Science Foundation grant EAR-1246670. We tha
 \section{Degree-two moments}
 \label{appendix:moments}
 
-We may explicitly draw a connection between the moment of inertia of a rotating object and it's degree-two density structure.  The moment of inertia tensor may be written in index notation
+There is a connection between the moment of inertia of a rotating object and the degree-two density structure.
+The moment of inertia tensor may be written in index notation
 \begin{equation}
 I_{ij} = \int_V \rho \left( r_q r_q \delta_{ij} - r_i r_j \right) dV
 \label{eq:inertia}
