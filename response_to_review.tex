@@ -1,0 +1,74 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Response to review}
+\author{Ian Rose and Bruce Buffett}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+We thank Yanick Ricard for his thoughtful review.
+In addition to several smaller suggestions and corrections,
+his review centers on our treatment of the reference frames relevant to the scaling of true polar pander (TPW).
+We broadly agree with his criticism, and have substantially reworked our discussion of reference frames to address it.
+Several of the key equations have been corrected, and we have changed some of the notation for clarity,
+but the overall conclusions of the manuscript are unchanged.
+
+In particular, we have done the following to clarify and correct the treatment of reference frames:
+\\
+\\
+1. We have added a section (Section 2.2) which makes the differences between reference frames explict.
+We identify three frames which are important to the problem: 
+(1) the inertial, nonrotating frame, 
+(2) A body-fixed geographic frame, rotating with respect to the inertial frame with relative rotation vector $\mathbf{\Omega}$, and
+(3) The frame described by the principal axes of the convective moment of inertia $\mathbf{E}$,
+rotating with respect to the body-fixed frame with relative rotation vector $\mathbf{\Psi}$.
+\\
+\\
+2. We have added a new figure (Figure 1) which illustrates the different reference frames.
+\\
+\\
+3. We have changed the discussion in Section 2.5 to clarify that the rate of TPW is measured in the body-fixed frame.
+The rate of TPW we denote by $\dot{\Theta}$. The physics describing the magnitude of $\dot{\Theta}$ are 
+more naturally expressed in the $\mathbf{E}$-frame, with colatitude $\theta$ and longitude $\phi$. 
+For much of the discussion we make the simplifying assumption that $\phi=0$.
+If the $\mathbf{E}$-frame is not rotating with respect to the body fixed frame ($\mathbf{\Psi}=0$) then $\dot{\Theta} = \dot{\theta}$.
+\\
+\\
+4. We have updated the discussion of the time evolution of the mismatch angle $\theta$ (Section 4.2)
+in light of the changes to the reference frames. The characteristic size of $\theta$ is set by 
+the competition of its decay via TPW and its growth via $\mathbf{\Psi}$.
+This is reflected in Equations (43) and (44).
+Our scaling furnishes estimates of the sizes of these two processes.
+\\
+\\
+Besides the discussion of reference frames, we have addressed these other issues raised in the review:
+
+\begin{itemize}
+\item We have added the clarifying intermediate step in Equation (7).
+\item We have added Equation (21) on the source of the gravitational field.
+\item We have changed the notation of the ratio of centrifugal to gravitational forces from
+the fluid-dynamics-inspired ``Froude number'' to the symobl $m$ more commonly used in geodesy.
+\item We have clarified discussion of transforming the linear momentum equation to the
+angular momentum equation (Equations (25)-(29)). The review criticized this transformation as not very useful.
+While we agree that these equations are not particularly easy to evaluate in practice,
+they do serve two useful purposes for our scaling: First, they establish the overall consistency
+between the approximations made for the linear momentum equation (Section 3) and those made for
+the angular momentum equation (Section 2). Second, Equations (23)-(29) demonstrate the
+origin of the nondimensionalization that we use for our scaling. In particular, Equations (28)-(29)
+shows the origin of $\alpha \Delta T$ as an independent nondimensional number.
+\item We have added additional note on the effect of dynamic compensation on the value of $(1+k_f^L)$
+\item The review suggested that stirring and mixing can populate lengthscales smaller than $d$
+in the convecting system, where $d$ is the injection lengthscale, roughly set by the thickness of
+the boundary layers. While mixing can do this, we argue that those lengthscales are
+quickly homogenized by thermal diffusion, whereas thermal anomalies at larger lengthscales 
+persist for a much longer time.
+
+\end{itemize}
+
+
+
+\end{document}
