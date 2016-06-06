@@ -115,11 +115,8 @@ beta = 110. * np.pi/180.
 psi = np.array([ np.sin(alpha)*np.cos(beta), np.sin(alpha)*np.sin(beta), np.cos(alpha)])
 # tpw vector
 omega_dot = np.dot(E, omega.T) - np.dot(omega, np.dot(E, omega.T))*omega.T
-omega_dot_prime = omega_dot + np.cross(psi, omega)
 #omega_dot = 0.3*omega_dot/norm(omega_dot)
-#omega_dot_prime = 0.3*omega_dot_prime/norm(omega_dot_prime)
 omega_dot *= 0.35
-omega_dot_prime *= 0.35
 
 # produce figure
 alpha_val = 0.4
@@ -184,11 +181,6 @@ omega_dot_arrow = Arrow3D([omega[0], omega[0]+omega_dot[0]], \
                           [omega[2], omega[2]+omega_dot[2]], \
                           **arrow_prop_dict)
 ax.add_artist(omega_dot_arrow)
-omega_dot_prime_arrow = Arrow3D([omega[0], omega[0]+omega_dot_prime[0]], \
-                                [omega[1], omega[1]+omega_dot_prime[1]], \
-                                [omega[2], omega[2]+omega_dot_prime[2]], \
-                                **arrow_prop_dict)
-ax.add_artist(omega_dot_prime_arrow)
 
 
 text_options = {'horizontalalignment': 'center',
@@ -202,7 +194,6 @@ ax.text(1.1*z0[0],1.1*z0[1],1.1*z0[2],r'$\mathbf{e}_3$', **text_options)
 ax.text(1.1*omega[0],1.1*omega[1],1.1*omega[2],r'$\omega$', **text_options)
 ax.text(1.1*psi[0],1.1*psi[1],1.1*psi[2],r'$\Psi$', **text_options)
 ax.text(omega[0] + omega_dot[0]*1.15, omega[1] + omega_dot[1]*1.15, omega[2]+omega_dot[2]*1.15, r'$\dot{\omega}$', **text_options)
-ax.text(omega[0] + omega_dot_prime[0]*1.2, omega[1] + omega_dot_prime[1]*1.2, omega[2]+omega_dot_prime[2]*1.2, r'$\dot{\omega}^\prime$', **text_options)
 
 # add text for angles
 p = 0.45*(omega + z0)/2.0
