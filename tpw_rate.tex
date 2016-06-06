@@ -8,7 +8,6 @@
 \usepackage{graphicx}
 \usepackage{color,soul}
 \usepackage{lineno}
-\linenumbers
 
 \title[TPW Rates]
   {Scaling rates of true polar wander in convecting planets and moons}
@@ -49,6 +48,8 @@ Finally, we discuss implications for large-scale TPW in Earth's past, which has 
 \begin{keywords}
 Earth rotation variations; Mantle processes; Dynamics: convection currents and mantle plumes; Planetary interiors; Numerical solutions; Paleomagnetism applied to tectonics.
 \end{keywords}
+
+\linenumbers
 
 \section{Introduction}
 \label{sec:intro}
@@ -119,14 +120,14 @@ In our treatment of TPW, we will refer to three different reference frames:
 
 First, there is the inertial, non-rotating frame corresponding to spatial coordinates that are fixed in time.
 Second, there is the body-fixed (or geographic) frame.
-By definition, the rotaiton of the body-fixed frame relative to the inertial frame is specified by $\mitbf{\Omega}$.
+By definition, the rotation of the body-fixed frame relative to the inertial frame is specified by $\mitbf{\Omega}$.
 A terrestrial no-net-rotation or hotspot reference frame are common choices for the body-fixed frame.
 Treatments of gravitational or rotational deformation of a planet are most naturally expressed in the body-fixed frame,
 as described in Section~\ref{sec:rotational_deformation}.
 Finally, there is the frame described by the principal axes of convective part of the moment of inertia $\mathbf{E}$,
 which we will refer to as the ``$\mathbf{E}$-frame.'' 
 Redistribution of mantle mass anomalies due to convection changes the principal axes of $\mathbf{E}$, 
-rotating the $\mathbf{E}$-frame with respect to the geographic frame, which we will describe
+causing the $\mathbf{E}$-frame to slowly rotate with respect to the geographic frame. We denote this drift 
 by a rotation vector $\mitbf{\Psi}$ (see Section~\ref{sec:theta}).
 
 These reference frames and vectors are illustrated in Figure~\ref{fig:reference_frames}.
@@ -188,7 +189,8 @@ This, as well, may be parameterized using a viscoelastic Love number approach:
 \begin{equation} 
 \mathbf{E} = \left[ \delta(t) + k^L(t) \right] * \mathbf{C}
 \end{equation}
-where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, and $C_{ij}$ is the moment of inertia without that response.
+where $k^L$ is an internal loading Love number representing the surface deflection due to density anomalies, 
+and $C_{ij}$ is the moment of inertia due solely to the internal load.
 Frequently the simplification is made that the timescale of the surface response is quick compared to the true polar wander timescale, and we may use the fluid limit geoid kernels \citep[e.g.][]{richards1984geoid}:  
 \begin{equation}
 E_{ij} = (1+k^L_f) C_{ij}.
@@ -224,18 +226,20 @@ Evaluating the scalar product $\dot{\Theta}^2 = \dot{\mitbf{\omega}} \cdot \dot{
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
-\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander in the geographic reference frame moves the rotation axis towards the $\mathbf{e}_3$-axis, shown by $\dot{\mitbf{\omega}}$. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$ in the geographic frame, which is defined by colatitude $\beta$ and longitude $\gamma$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame. The motion of $\mitbf{\omega}$ in the $\mathbf{E}$-frame is shown by $\dot{\mitbf{\omega}}^\prime$. Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
+\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander moves the rotation axis towards the $\mathbf{e}_3$-axis. We denote this motion by $\dot{\mitbf{\omega}}$ in the geographic frame. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$, which is defined by colatitude $\beta$ and longitude $\gamma$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame.  Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
 \label{fig:reference_frames}
 \end{figure*}
 
-The polar wander rate $\dot{\Theta}$ is measured in the body-fixed geographic frame, 
-but the physics of the right-hand-side of Equation~\eqref{eq:polar_wander_rate_tensor} 
-is more naturally expressed in the reference frame of the principal axes of $\mathbf{E}$,
-which is, in general, rotating with respect to the geographic frame.
-However, the right-hand-side is scalar-valued, and as such is invariant to rotations.
+Our goal is to quantify the polar wander rate $\dot{\Theta}$ due to a convective perturbation $\mathbf{E}$ in the moment of inertia. 
+The rate defined by Equation~\eqref{eq:polar_wander_rate_tensor} is expressed in the body-fixed geographic frame, 
+which is also the reference frame used to measure TPW. 
+However, the physics of the right-hand-side of Equation~\eqref{eq:polar_wander_rate_tensor} 
+is more naturally expressed in the reference frame of the principal axes of $\mathbf{E}$. 
+In general the $\mathbf{E}$-frame rotates slowly with respect to the geographic frame, so the time derivative of $\omega$ is different in these two frames.
+However, the rate of true polar wander in Equation~\eqref{eq:polar_wander_rate_tensor} is a scalar quantity, which means it is invariant to rotations.
 Therefore we can enter the coordinate system of the convective moment of inertia $\mathbf{E}$ 
 with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of 
-$\mitbf{\omega}$ with colatitude $\theta$ and longitude $\phi$ (see Figure~\ref{fig:reference_frames}).
+$\mitbf{\omega}$ in the $\mathbf{E}$-frame with colatitude $\theta$ and longitude $\phi$ (see Figure~\ref{fig:reference_frames}).
 Plugging this description of $\mitbf{\omega}$ into Equation~\eqref{eq:polar_wander_rate_tensor},
 and after some tedious algebra, we find
 \ifdetail
@@ -457,9 +461,13 @@ Then Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which 
 The maximum polar wander rate of the system is achieved when $\theta=45^\circ$ (see, e.g. \citet{fung1965foundations}).
 
 From Equation~\eqref{eq:simple_milankovitch} it is clear that the important quantities for estimating $\dot{\Theta}$ are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
-They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
-Both $\theta$ and $\lambda_i$ depend upon the dynamics of the convecting planetary mantle.
-In order to derive estimates for them, we must consider those dynamics.
+They represent, respectively, the size of convective anomalies in the moment of inertia tensor 
+and the angular mismatch between the rotation axis and the principal axis of the convective moment. 
+The dynamics of mantle convection affects the rate of TPW in two ways; 
+it controls $\lambda_i$ and it represents the mechanism that drives the angular mismatch. 
+The value of $\theta$ at any time also depends on the relaxation of the rotation axis back toward the principal axis of $\mathbf{E}$. 
+We focus on the dynamics of the convective contribution in the next section.
+
 
 \section{Internal dynamics}
 \label{sec:internal}
@@ -486,18 +494,20 @@ For simplicty we consider an isoviscous planet in a rotating reference frame wit
 \label{eq:energy}
 \end{equation}
 where $\mathbf{u}$ is the velocity, $P$ is the pressure, and $T$ is the temperature.
-The gravity vector $\mathbf{g}$ is given by $\mathbf{g} = -\nabla V$, where the 
-gravitational potential $V$ comes from solving Poisson's equation
+The vector $\mathbf{g}$ is the gravitational acceleration, 
+which defined in terms of a gravitational potential $V$ by $\mathbf{g} = -\nabla V$. 
+The gravitational potential obeys 
 \begin{equation}
 \nabla^2 V = 4 \pi G \rho.
 \end{equation}
-For the purposes of scaling, we assume that gravity is the approximately constant
-vector $g_0 \mathbf{\hat{r}}$ (as is the case for Earth's mantle).
+where $G$ is the gravitational constant. 
+For the purposes of scaling, we assume that the magnitude of the gravitational acceleration, $g_0$, is the approximately constant (as is the case for Earth's mantle).
 In addition we use the simple equation of state
 \begin{equation}
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right).
 \label{eq:eos}
 \end{equation}
+to define the density.
 The remaining parameters are defined in Table~\ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure
 (in the latter case the boundary conditions on $P$ must be modified).
@@ -505,15 +515,22 @@ Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires
 (a fourth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
 Convenient choices for these numbers are listed in Table~\ref{tab:nondim}, along with approximate Earth-like values for them.
 
-In particular, the two most important numbers are the Rayleigh number, characterizing the vigor of convection, and the ratio of centrifugal to gravitational forces.
-This second nondimensional number does not have a uniformly agreed-upon name: it has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, 
+Two dimensionless parameters have a prominent role in our scaling analysis. 
+The first is the Rayleigh number, which characterizes the  vigor of convection. 
+The second is the ratio of centrifugal to gravitational forces.
+This nondimensional number does not have a uniformly agreed-upon name: 
+it has been called a Froude number in analogy with other applications of inertial-to-gravitational effects \citep{mckenzie1968influence}, 
 and in the geodesy community has commonly been termed $m$ \citep[e.g.][]{nakiboglu1982hydrostatic, chambat2010flattening}, which we adopt here.
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers that characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, but they do not affect the overall treatment of this scaling.
 
-In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
-In addition, we expect deviations in the figure of the planet from its hydrostatic shape, which we denote by $V = V_H + \Delta V$, where $V_H$ is the hydrostatic figure and $\Delta V$ is the deviation.
-The introduction of $\Delta V$ requires another nondimensional number to characterize it, and we find that the quantity $\Gamma \equiv \alpha \Delta T$ is convenient.
+In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, 
+which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
+In addition, we expect deviations in the figure of the planet from its hydrostatic shape, 
+which we denote by $V = V_H + \Delta V$, where $V_H$ is the hydrostatic figure and $\Delta V$ is the deviation. 
+Our rationale for this decomposition is simply that the hydrostatic pressure is most naturally defined in the (oblate) hydrostatic configuration. 
+The introduction of $\Delta V$ requires another nondimensional number to characterize it, 
+and we find that the quantity $\Gamma \equiv \alpha \Delta T$ is convenient.
 Finally, we define $\mitbf{\Omega} = \Omega_0 \mitbf{\omega}$, where $\mitbf{\omega}$ is a unit vector in the direction of $\mitbf{\Omega}$.
 
 By definition the hydrostatic reference state is a solution to Equation~\eqref{eq:navier_stokes} where there is no flow:
@@ -591,7 +608,8 @@ Removing these, we find
 -\int_{V_H} \rho_0 \alpha (T-T_0) \mathbf{r} \times \mitbf{\Omega} \times \mitbf{\Omega} \times \mathbf{r} \,dV.
 \end{aligned}
 \end{equation}
-This equation may be identified with Equation~\eqref{eq:disequilibrium}, where disequilibrium in the rotational deformation (left side) is balanced by the mismatch of the convective moment of intertia with the spin axis (right side).
+This equation may be identified with Equation~\eqref{eq:disequilibrium}, 
+where disequilibrium in the rotational deformation (left side) is balanced by the mismatch of the convective moment of inertia with the spin axis (right side).
 Our goal is to identify characteristic sizes of these quantities, which must be functions of the nondimensional numbers identified in Table~\ref{tab:nondim}.
 
 \ifdetail
@@ -699,7 +717,8 @@ Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$
 
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
-The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is proportional to the ratio of rotational to gravitational forces(\citep{munk1960rotation}:
+The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is 
+proportional to the ratio of rotational to gravitational forces (\citep{munk1960rotation}:
 \begin{equation}
 (C-A) \sim I_0 m.
 \end{equation}
@@ -718,12 +737,15 @@ At this point we do not have estimates for the characteristic magnitudes of $\La
 They represent, respectively, the size of convective anomalies in the moment of inertia tensor and the angular mismatch between the rotation axis and the principal axis of the convective moment.
 
 
-The quantites $\Lambda_{ij}$ and $\theta$ should be functions of our nondimensional parameters $\mathrm{Ra}$, $m$, and $\Gamma$.  
+The quantity $\Lambda_{ij}$ should be a function of our nondimensional parameters $\mathrm{Ra}$, $m$, and $\Gamma$. 
+Similarly, the convective forcing that drives changes in $\theta$ must also be a function these nondimensional parameters. 
+To be explicit in our discussion, we denote this driving force by ${\Psi}$.
 We consider relatively slowly rotating bodies here ($m \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
-In this regime, therefore, we neglect the dependence on $m$, and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\theta(\mathrm{Ra}, \Gamma)$.
+In this regime, therefore, we neglect the dependence on $m$, 
+and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\Psi(\mathrm{Ra}, \Gamma)$.
 
 
-\subsection{An estimate of $\Lambda_{ij}$}
+\subsection{An estimate for $\Lambda_{ij}$}
 \label{sec:lambda}
 
 \begin{figure*}
@@ -748,7 +770,7 @@ The factor $(1+k^L_f)$ is generally an order-one parameter
 For the purposes of scaling it is reasonable to neglect this multiplicative factor.
 
 For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-two part of the temperature field (see Appendix~\ref{appendix:moments}).
-Therefore, an estimate of one allows an estimate of the other.
+Therefore, an estimate for one specifies the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
 where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials, and
 $T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$:
@@ -771,7 +793,8 @@ The temperature field has been normalized by $\Delta T$ and thus goes between ze
 \max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1.
 \end{equation}
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
-We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) and that of chaotic flow (relatively high $\mathrm{Ra}$).
+We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) 
+and that of chaotic flow (relatively high $\mathrm{Ra}$).
 The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
 the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is a broadening of the spatial 
 and temporal spectra \citep{mclaughlin1982transition}.  
@@ -815,7 +838,7 @@ T_{\text{degree-two}}(t) \sim \mathrm{Ra}^{-1}.
 \end{equation}
 
 We performed a series of numerical simulations of mantle convection at different Rayleigh numbers to test this scaling.
-We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII82}.
+We used the mantle convection software \texttt{ASPECT} \citep{kronbichler2012high}, based on the finite element library \texttt{deal.II} \citep{dealII82},
 which allows for flexible implementation of different rheologies, geometries, and postprocessors.
 In order to test a wide range of Rayleigh numbers, we ran the simulations in a 2D annulus, tracking the eigenvalues of the 
 moment of inertia tensor and integrating Equation~\eqref{eq:liouville_ode} in time.
@@ -838,80 +861,90 @@ Cenozoic subduction history and the lower mantle LLSVPs \citep{dziewonski2010man
 Nevertheless, at high Rayleigh number the expectation is that the power will be distributed across many length scales.
 
 
-\subsection{Estimating the mismatch $\theta$}
+\subsection{An estimate for the angular mismatch $\theta$}
 \label{sec:theta}
 
-The mismatch between the current rotation axis and the principal axis of the convective moment is perhaps the most important parameter in Equation~\eqref{eq:scaled_rotation}.  
+Convection drives a mismatch $\theta$ between the current rotation axis and the principal axis of the convective moment. 
+This parameter is crucial for the rate of TPW, as described in is in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
-There are two processes at work which control the evolution of $\theta$, its growth through perturbations in the convective moment and 
-its decay via relaxation of the pole towards the maximum moment of inertia.
+Two processes control the evolution of $\theta$. Its growth occurs through perturbations in the convective moment and 
+its decay occurs by relaxation of the pole towards the maximum moment of inertia.
 We can explore these two effects by converting Equation~\eqref{eq:liouville_ode}
 from the body-fixed frame to the $\mathbf{E}$-frame (recall that $\mitbf{\Omega}$ defines
-the rotation of the body-fixed frame relative to inertial space, as shown in Equation~\eqref{eq:euler}).
-The $\mathbf{E}$-frame slowly rotates with respect to the geographic frame, described by the rotation vector $\mathbf{\Psi}$ 
-(here $\mitbf{\Psi}$ defines the rotation of the $\mathbf{E}$-frame in the geographic frame, see Figure~\ref{fig:reference_frames}).
-We can then write the rate of change of $\mitbf{\omega}$ in the $\mathbf{E}$-frame (denoted by primes)
+the rotation of the body-fixed frame relative to inertial space in Equation~\eqref{eq:euler}).
+The $\mathbf{E}$-frame rotates slowly with respect to the geographic frame, 
+which we describe by the rotation vector $\mathbf{\Psi}$. 
+(To be explicit in our discussion we let $\mitbf{\Psi}$ define the rotation of the $\mathbf{E}$-frame in the geographic frame, 
+although this choice is arbitrary as long as we are consistent). The time derivatives of $\mitbf{\omega}$ in the two frames are related by 
 \begin{equation}
 \dot{\mitbf{\omega}} = \dot{\mitbf{\omega}}^\prime + \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \end{equation}
-Equation~\eqref{eq:liouville_ode} then becomes
+where primes are used to define quantities in the $\mathbf{E}$-frame. Rearranging gives 
+\begin{equation}
+\dot{\mitbf{\omega}}^{\prime} = \dot{\mitbf{\omega}} - \mathbf{\Psi}\times \mitbf{\omega}^\prime.
+\end{equation}
+We now substitute for $\dot{\mitbf{\omega}}$ from Equation~\eqref{eq:liouville_ode}, 
+making the additional assumption that the geographic and $\mathbf{E}$-frames are momentarily aligned. 
+This assumption is not a serious restriction because our goal is simply to relate the time derivatives of $\mitbf{\omega}$ in the two frames, 
+rather than track the evolution of $\mitbf{\omega}$ over time. The expression for $\dot{\mitbf{\omega}}$ becomes
 \begin{equation}
  \dot{\mitbf{\omega}}^\prime  = \frac{1}{(C-A)T_1} \left[ \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime - \left( \mitbf{\omega}^\prime \cdot \mathbf{E}^\prime \cdot \mitbf{\omega}^\prime  \right) \mitbf{\omega}^\prime \right] - \mathbf{\Psi}\times \mitbf{\omega}^\prime.
 \label{eq:liouville_ode_new_frame}
 \end{equation}
-The advantage of expressing TPW in the $\mathbf{E}$-frame is that the entire equation
+The advantage of expressing the rate of TPW in the $\mathbf{E}$-frame is that the entire equation
 may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
-As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that $\phi=0$
-(for nonzero $\phi$ the equations become more complex, but the basic physics is unchanged).
-The direction of $\Psi$ is given by colatitude $\beta$ and longitude $\gamma$, as shown in Figure~\ref{fig:reference_frames}.
+As in Equation~\eqref{eq:simple_milankovitch}, we can choose a convenient coordinate system by aligning the axes so that 
+$\mitbf{\omega}^{\prime}$ lies in $\mathbf{e}_1^{\prime}-\mathbf{e}_3^{\prime} $ plane (as shown in Figure~\ref{fig:reference_frames}). 
+In this case the orientation of $\mitbf{\omega}$ is defined by colatitude $\theta$ and longitude $\phi=0$. 
+The colatitude $\theta$ is precisely the angular misalignment that specifies the rate of TPW in Equation~\eqref{eq:simple_milankovitch}.
+The orientation of $\Psi$ is not restricted in this frame, 
+so we specify the direction using colatitude $\beta$ and longitude $\gamma$ (see Figure~\ref{fig:reference_frames}).
 
-We may solve Equation~\eqref{eq:liouville_ode_new_frame} for $\dot{\theta}$ 
-(i.e., the colatitudinal velocity in the $\mathbf{E}$ frame, not the TPW rate $\dot{\Theta}$)
-in terms of $\theta$, $\beta$, and $\gamma$:
+The time derivative of the unit vector $\mitbf{\omega}^{\prime}$ defines the changing orientation of the rotation axis in the $\mathbf{E}$-frame. 
+We can express this changing orientation in terms of changes in angles $\theta$ and $\phi$. The change in colatitude is
 \begin{equation}
 \dot{\theta} = 
 -\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1) - \vert \mitbf{\Psi} \vert \sin\beta \sin\gamma.
 \label{eq:theta_competition}
 \end{equation}
+where $\mitbf{\Psi}$ is expressed in terms of its amplitude $|\mitbf{\Psi}|$ and its orientation angles $\beta$ and $\gamma$.
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
 The first term acts to reduce $\theta$ via TPW, while the second term can increase (or decrease) it arbitrarily via
 relative motion between the geographic frame and the principal axes of the $\mathbf{E}$-frame.
 Comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
 then the rate of TPW $\vert \dot{\Theta} \vert$ is identical to $\vert \dot{\theta} \vert$.
 Conversely, when the rate of TPW is very slow (i.e. $\vert \dot{\Theta} \vert \sim 0$), 
-then $\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$ 
-and $\theta$ is completely determined by $\mitbf{\Psi}$
-(where we have neglected the orientation factor $\sin \beta \sin \gamma$ for the purposes of scaling).
+then $\vert \dot{\theta} \vert \sim \vert \mitbf{\Psi} \vert$, so the evolution of $\theta$ is driven mostly by $\mitbf{\Psi}$. 
+For the purposes of scaling we will omit the orientation factor $\sin \beta \sin \gamma$ and focus on $|\mitbf{\Psi}|$.
 In order for the TPW rate to be large, the growth of $\theta$ via $\vert \mitbf{\Psi} \vert$ must, 
 at least occasionally, be larger than its decay.
 
 An estimate for $\vert \mitbf{\Psi} \vert$ must concern the stability of the convective moment of inertia. 
 Convection is continuously redistributing mass throughout the mantle, which will perturb the convective moment of inertia.  
-If the convective moment is stable to small perturbations, then $\vert \mitbf{\Psi} \vert$ should be small, 
-and $\theta$ will never be large.
-However, if $\mathbf{E}$ is not stable to perturbations, then $\theta$ could be up to $90^\circ$. 
-Given a random perturbation to $\mathbf{E}$, we would like to give a bound on the size of the perturbation to $\theta$. 
+If the convective moment is stable to small perturbations, then $\vert \mitbf{\Psi} \vert$ should be small, so
+ $\theta$ will never have the opportunity to grow.
+However, if $\mathbf{E}$ is not stable to perturbations, then $|\mitbf{\Psi}|$ can be large and $\theta$ can grow up to $90^\circ$. 
+Given a random perturbation to $\mathbf{E}$, we would like to give a bound on the size of changes in the orientation of the principle axes. 
 This may be done by application of a theorem due to \citet{davis1970rotation}.
 
-Let $\delta$ be the size of the perturbation to the convective moment of inertia tensor, and let $\lambda_3 \ge \lambda_2 \ge \lambda_1$ be the eigenvalues of that tensor.  
-Then the rotation of the principal axes of the tensor is bounded by
-
+Let $\delta$ be the size of the perturbation to the convective moment of inertia tensor after some time interval $\Delta t$, and let $\lambda_3 \ge \lambda_2 \ge \lambda_1$ be the eigenvalues of that tensor.  The corresponding rotation of the principal axes is defined by the angle $\xi$. A bound on $\xi$ is given by 
 \begin{equation}
-\vert \sin(2 \theta) \vert \le \frac{ 2 \vert \delta \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
+\vert \sin(2 \xi) \vert \le \frac{ 2 \vert \delta \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
 \label{eq:kahan}
 \end{equation} 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principal axes.
 This is illustrated schematically in Figure~\ref{fig:perturb}
 
-We may arrive at a simple estimate of the growth rate of the angle $\theta$ (and thus $\vert \mitbf{\Psi} \vert$) 
+We may arrive at a simple estimate for $|\mitbf{\Psi}|$  
 by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\vert \lambda_i - \lambda_j \vert$ fixed:
-
 \begin{equation}
-\vert \mitbf{\Psi} \vert \sim \vert \dot{\theta} \vert \le \frac{ \vert \dot{\delta} \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
+\vert \mitbf{\Psi} \vert \sim \vert \dot{\xi} \vert \le \frac{ \vert \dot{\delta} \vert}{ \displaystyle \min_{i \neq j} \vert \lambda_i - \lambda_j \vert }.
 \label{eq:grow_perturbation}
 \end{equation} 
+As noted previously, $|\mitbf{\Psi}|\sim |\dot\theta |$ when the rate of TPW is small and the angular misalignment $\theta$ is small. 
+Consequently, we can interpret Equation~\eqref{eq:grow_perturbation} as a bound on how fast $\theta$ can grow.
 
 \begin{figure*}
 \centering
@@ -981,13 +1014,16 @@ In general, $\beta$ is some small number between one-fourth and one-third, so we
 $d(\mathrm{Ra})$ will still result in a weak dependence of the prefactor in Equation~\eqref{eq:simplest_milankovitch_defer_scaling} 
 on the Rayleigh number.
 
-We then suggest that the most important parameters are $m$, which acts as the brakes on the system, and the mismatch angle $\theta(\mathrm{Ra})$.
-Whereas the rest of the expression has a weak dependence on $\mathrm{Ra}$, $\theta$ is expected to be strongly dependent on it.
+We then suggest that the most important parameters are $m$, which acts as the brakes on the system, and the mismatch angle $\theta$.
+Whereas the prefactor $\mathrm{Ra}^{1-3\beta}$ in Equation~\eqref{eq:simplest_milankovitch} has a weak dependence on $\mathrm{Ra}$, 
+the misalignment angle $\theta$ is expected to be strongly dependent on it.
 
 Indeed, we can identify two endmember behaviors of Equation~\eqref{eq:simplest_milankovitch_defer_scaling}.
 When convection is not sufficiently chaotic to create a large $\theta$ we are in the regime where the planet's rotation axis closely tracks that of the convective moment.
 This is the regime considered in \citet{steinberger1997changes}, \citet{roberts2007cause}, and \citet{zhong2007supercontinent}, and can be considered the ``slow TPW'' regime.
-When convection is more chaotic, however, there may be large excursions in $\theta$, which can drastically increase the wander rate.  
+When convection is more chaotic, however, there may be large excursions in $\theta$, 
+which are driven by large values for $|\mitbf{\Psi}|$ when $(\lambda_i - \lambda_j)$ is small, according to Equation~\eqref{eq:grow_perturbation}. 
+In this case a dramatic increase in the rate of TPW is possible.
 If $\theta=90^\circ$, this corresponds to IITPW \citep{kirschvink1997evidence}.  
 This, however, is a special case in the large $\theta$, ``fast TPW'' regime.
 
@@ -1040,7 +1076,7 @@ but also allows us to hypothesize about polar wandering during the Archean and P
 on other planetary bodies.
 
 \begin{acknowledgments}
-This work was supported by National Science Foundation grant EAR-1246670. We thank Yanick Ricard for a thoughtful review.
+This work was supported by National Science Foundation grant EAR-1246670. We thank Yanick Ricard for thoughtful reviews and constructive comments that greatly improved the paper.
 \end{acknowledgments}
 
 \bibliographystyle{gji}
