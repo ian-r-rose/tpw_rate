@@ -6,8 +6,8 @@ eigengap.pdf: eigengap.py
 misfit.pdf: misfit.py
 	python misfit.py
 
-perturb.pdf: perturb.sh
-	./perturb.sh
+perturb.pdf: perturb.py
+	python perturb.py
 
 reference_frames.pdf: reference_frames.py
 	python reference_frames.py
