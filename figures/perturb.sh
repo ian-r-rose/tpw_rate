@@ -14,18 +14,18 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
 EOF
 
 #lambda 1
-gmt pstext -R -J -K  -O >>perturb.ps <<EOF
+gmt pstext -R -J -K  -O -F+f9 >>perturb.ps <<EOF
 .04 -0.32 @~l@-1@-@~
 EOF
 
 #lambda 2
-gmt pstext -R -J -K -O >>perturb.ps <<EOF
+gmt pstext -R -J -K -O -F+f9 >>perturb.ps <<EOF
 .32 0.26 @~l@-2@-@~
 EOF
 
 #theta
-gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.46 0.10 @~q@~
+gmt pstext -R -J -K -O -F+f9 >>perturb.ps <<EOF
+.46 0.10 @~x@~
 EOF
 
 #Rotation axis
@@ -58,18 +58,18 @@ gmt psxy -R -J -Sv0.3+e -Wthicker,blue -K -O >> perturb.ps <<EOF
 EOF
 
 #lambda 1
-gmt pstext -R -J -K  -O >>perturb.ps <<EOF
+gmt pstext -R -J -K  -O -F+f9 >>perturb.ps <<EOF
 .36 -0.15 @~l@-1@-@~
 EOF
 
 #lambda 2
-gmt pstext -R -J -K -O >>perturb.ps <<EOF
+gmt pstext -R -J -K -O -F+f9 >>perturb.ps <<EOF
 -.02 0.46 @~l@-2@-@~
 EOF
 
 #theta
-gmt pstext -R -J -K -O >>perturb.ps <<EOF
-.1 0.10 @~q@~
+gmt pstext -R -J -K -O -F+f9 >>perturb.ps <<EOF
+.1 0.10 @~x@~
 EOF
 
 #rotation axis
