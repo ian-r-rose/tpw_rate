@@ -27,6 +27,25 @@
 \detailfalse
 %\detailtrue
 
+
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+    {\linenomath\csname old#1\endcsname}%
+    {\csname oldend#1\endcsname\endlinenomath}}% 
+  \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+    \patchAmsMathEnvironmentForLineno{#1}%
+    \patchAmsMathEnvironmentForLineno{#1*}}%
+  \AtBeginDocument{%
+  \patchBothAmsMathEnvironmentsForLineno{equation}%
+  \patchBothAmsMathEnvironmentsForLineno{align}%
+  \patchBothAmsMathEnvironmentsForLineno{flalign}%
+  \patchBothAmsMathEnvironmentsForLineno{alignat}%
+  \patchBothAmsMathEnvironmentsForLineno{gather}%
+  \patchBothAmsMathEnvironmentsForLineno{multline}%
+  }
+
 \begin{document}
 
 \label{firstpage}
@@ -226,7 +245,7 @@ Evaluating the scalar product $\dot{\Theta}^2 = \dot{\mitbf{\omega}} \cdot \dot{
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/reference_frames.pdf}
-\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\psi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander moves the rotation axis towards the $\mathbf{e}_3$-axis. We denote this motion by $\dot{\mitbf{\omega}}$ in the geographic frame. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$, which is defined by colatitude $\beta$ and longitude $\gamma$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame.  Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
+\caption{Relevant vectors and angles for the TPW analysis. The axes $\mathbf{e}_1$, $\mathbf{e}_2$, and $\mathbf{e}_3$ represent the principal axes of the convective moment of inertia $\mathbf{E}$, with associated eigenvalues $\lambda_1$, $\lambda_2$, and $\lambda_3$, respectively. Since the choice of geographic axes is arbitrary, we assume that at this instant the $\mathbf{E}$-frame and the geographic frames are colocated (though at future times they will not be). The angle $\theta$ represents the mismatch between the rotation axis $\mitbf{\omega}$ and the $\mathbf{e}_3$-axis. For illustration, we assume the longitude $\phi$ of the rotation axis is zero so $\mitbf{\omega}$ lies in the $\mathbf{e_1}$-$\mathbf{e_3}$ plane. True polar wander moves the rotation axis towards the $\mathbf{e}_3$-axis. We denote this motion by $\dot{\mitbf{\omega}}$ in the geographic frame. However, time-dependent convection in the mantle may cause a relative rotation between the geographic frame and the $\mathbf{E}$-frame. This relative rotation can be represented as a rotation around the axis $\mitbf{\Psi}$, which is defined by colatitude $\beta$ and longitude $\gamma$. The rotation around the $\mitbf{\Psi}$ axis contributes to the motion of $\mitbf{\omega}$ as seen in the $\mathbf{E}$-frame.  Further discussion of the reference frames and the relative rotation vector $\mitbf{\Psi}$ can be found in Sections~\ref{sec:reference_frames} and \ref{sec:theta}}
 \label{fig:reference_frames}
 \end{figure*}
 
@@ -718,7 +737,7 @@ Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$
 It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
 The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is 
-proportional to the ratio of rotational to gravitational forces (\citep{munk1960rotation}:
+proportional to the ratio of rotational to gravitational forces \citep{munk1960rotation}:
 \begin{equation}
 (C-A) \sim I_0 m.
 \end{equation}
@@ -865,7 +884,7 @@ Nevertheless, at high Rayleigh number the expectation is that the power will be 
 \label{sec:theta}
 
 Convection drives a mismatch $\theta$ between the current rotation axis and the principal axis of the convective moment. 
-This parameter is crucial for the rate of TPW, as described in is in Equation~\eqref{eq:scaled_rotation}.  
+This parameter is crucial for the rate of TPW, as previously noted in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
 Two processes control the evolution of $\theta$. Its growth occurs through perturbations in the convective moment and 
@@ -896,7 +915,7 @@ The advantage of expressing the rate of TPW in the $\mathbf{E}$-frame is that th
 may be written in terms of the principal moments $\lambda_i$ and the angles from the principal axes.
 As in Equation~\eqref{eq:simple_milankovitch}, we make the simplifying assumption that 
 $\mitbf{\omega}^{\prime}$ lies in $\mathbf{e}_1^{\prime}-\mathbf{e}_3^{\prime} $ plane (as shown in Figure~\ref{fig:reference_frames}). 
-In this case the orientation of $\mitbf{\omega}$ is defined by colatitude $\theta$ and longitude $\phi=0$. 
+In this case the orientation of $\mitbf{\omega}^\prime$ is defined by colatitude $\theta$ and longitude $\phi=0$. 
 The colatitude $\theta$ is precisely the angular misalignment that specifies the rate of TPW in Equation~\eqref{eq:simple_milankovitch}.
 We furthermore specify the orientation of $\Psi$
 using colatitude $\beta$ and longitude $\gamma$ (see Figure~\ref{fig:reference_frames}).
@@ -910,7 +929,7 @@ We can express this changing orientation in terms of changes in angles $\theta$ 
 \end{equation}
 where $\mitbf{\Psi}$ is expressed in terms of its amplitude $|\mitbf{\Psi}|$ and its orientation angles $\beta$ and $\gamma$.
 Equation~\eqref{eq:theta_competition} captures the essential competition between growth and decay of the mismatch angle.
-The first term acts to reduce $\theta$ via TPW, while the second term can increase (or decrease) it arbitrarily via
+The first term acts to reduce $\theta$ via TPW, while the second term can increase (or decrease) it via
 relative motion between the geographic frame and the principal axes of the $\mathbf{E}$-frame.
 Comparison with Equation~\eqref{eq:simple_milankovitch} shows that, when $\vert \mitbf{\Psi} \vert$ is zero,
 then the rate of TPW $\vert \dot{\Theta} \vert$ is identical to $\vert \dot{\theta} \vert$.
@@ -949,7 +968,7 @@ Consequently, we can interpret Equation~\eqref{eq:grow_perturbation} as a bound 
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/perturb.pdf}
-\caption{Graphical demonstration of the $\sin{2 \theta}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principal axes on the left, but a large one on the right.}
+\caption{Graphical demonstration of the $\sin{2 \xi}$ theorem of \citet{davis1970rotation}.  Two spheroidal bodies with eigenvalues $\lambda_2 > \lambda_1$ start out with the rotation axis $\Omega$ aligned with the $\lambda_2$ axis. However, on the left the eigengap $\lVert \lambda_2 - \lambda_1 \rVert$ is large, while on the right it is small.  A negative mass perturbation is instantaneously added to both bodies, which effects a small rotation of the principal axes on the left, but a large one on the right.}
 \label{fig:perturb}
 \end{figure*}
 
@@ -993,7 +1012,7 @@ as it has a lower characteristic gap between principal moments and the gap is mu
 The preceding results clarify the complex relationship between the Rayleigh number, $m$, and the rates of TPW for a convecting planet.
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
-Equation~\eqref{eq:grow_perturbation} and its relaxation through Equation~\eqref{eq:simple_milankovitch}.
+Equation~\eqref{eq:grow_perturbation} and its relaxation through TPW.
 We may plug in the estimate for $\Lambda_{ij}$ (Equation~\eqref{eq:lambda_estimate}) into Equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}.
@@ -1015,7 +1034,7 @@ $d(\mathrm{Ra})$ will still result in a weak dependence of the prefactor in Equa
 on the Rayleigh number.
 
 We then suggest that the most important parameters are $m$, which acts as the brakes on the system, and the mismatch angle $\theta$.
-Whereas the prefactor $\mathrm{Ra}^{1-3\beta}$ in Equation~\eqref{eq:simplest_milankovitch} has a weak dependence on $\mathrm{Ra}$, 
+Whereas the prefactor $\mathrm{Ra}^{1-3\beta}$ in Equation~\eqref{eq:simplest_milankovitch_defer_scaling} has a weak dependence on $\mathrm{Ra}$, 
 the misalignment angle $\theta$ is expected to be strongly dependent on it.
 
 Indeed, we can identify two endmember behaviors of Equation~\eqref{eq:simplest_milankovitch_defer_scaling}.
