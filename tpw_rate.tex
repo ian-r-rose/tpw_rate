@@ -255,7 +255,7 @@ which is also the reference frame used to measure TPW.
 However, the physics of the right-hand-side of Equation~\eqref{eq:polar_wander_rate_tensor} 
 is more naturally expressed in the reference frame of the principal axes of $\mathbf{E}$. 
 In general the $\mathbf{E}$-frame rotates slowly with respect to the geographic frame, so the time derivative of $\omega$ is different in these two frames.
-However, the rate of true polar wander in Equation~\eqref{eq:polar_wander_rate_tensor} is a scalar quantity, which means it is invariant to rotations.
+However, Equation~\eqref{eq:polar_wander_rate_tensor} is a scalar equation, which means it is invariant to rotations.
 Therefore we can enter the coordinate system of the convective moment of inertia $\mathbf{E}$ 
 with principal moments $\lambda_1 \le \lambda_2 \le \lambda_3$ and define the orientation of 
 $\mitbf{\omega}$ in the $\mathbf{E}$-frame with colatitude $\theta$ and longitude $\phi$ (see Figure~\ref{fig:reference_frames}).
@@ -530,6 +530,12 @@ to define the density.
 The remaining parameters are defined in Table~\ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure
 (in the latter case the boundary conditions on $P$ must be modified).
+The centrifugal term, although the largest of the terms neglected in typical mantle convection models,
+is generally small compared to gravitational forces (at least for Earthlike parameters),
+and likely does not have a strong influence on the style of convection.
+However, it is critical for determining the the size of the rotational bulge which must be moved around via TPW, 
+and so we must include it to establish the connection between the linear and angular momentum equations.
+
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it
 (a fifth one, defined by the ratio of the length of day to a diffusion timescale, does not appear in the governing equations).
 Convenient choices for these numbers are listed in Table~\ref{tab:nondim}, along with approximate Earth-like values for them.
@@ -778,10 +784,9 @@ and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\Psi(
 Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the mantle and their spatial structure:
 
 \begin{equation}
-C_{ij} = \int_{V_S} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) \,dV
+C_{ij} = \int_{V_H} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) \,dV
 \label{eq:temperature_fluctuations}
 \end{equation}
-where $V_S$ is the reference spherical volume of the mantle.
 As discussed in Section~\ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
 The surface response is a function of the viscosity structure of the planet and the wavelength and depth of the interal load.
 The factor $(1+k^L_f)$ is generally an order-one parameter 
@@ -1013,6 +1018,10 @@ The preceding results clarify the complex relationship between the Rayleigh numb
 As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
 Equation~\eqref{eq:grow_perturbation} and its relaxation through TPW.
+\citet{goldreich1969some} envisioned an analogy of beetles crawling on the surface of the globe, with
+the spin axis trying to keep up with the instantaneous figure axis set by the beetles.
+Our analysis begins the answer the questions ``how big are the beetles?'' and ``how fast are they crawling?''
+
 We may plug in the estimate for $\Lambda_{ij}$ (Equation~\eqref{eq:lambda_estimate}) into Equation~\eqref{eq:simple_milankovitch} to find the strikingly simple expression
 \begin{equation}
 \frac{\kappa}{R^2} \; \dot{\Theta} \sim -\frac{1}{m} \sin{2 \theta}.
