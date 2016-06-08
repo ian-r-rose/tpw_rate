@@ -82,4 +82,4 @@ ax.text( 1.15,  0.13, r'$\xi$', **text_args)
 ax.add_patch( patches.Ellipse(xy=(1,0), width=0.02, height=0.02, facecolor='k', edgecolor='k') )
 
 #plt.show()
-plt.savefig('perturb.pdf')
+plt.savefig('perturb.pdf', bbox_inches='tight')
