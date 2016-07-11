@@ -1,58 +1,122 @@
-% gjilguid2e.tex
+%% 
+%% Copyright 2007, 2008, 2009 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
 
-%\documentclass[extra,onecolumn]{gji}
-\documentclass[extra,mreferee]{gji}
-\usepackage{timet}
-\usepackage{url}
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%% SP 2008/03/01
+
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
 \usepackage{amsmath}
-\usepackage{graphicx}
-\usepackage{color,soul}
+\usepackage{url}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
 \usepackage{lineno}
 
-\title[TPW Rates]
-  {Scaling rates of true polar wander in convecting planets and moons}
-\author[I. Rose and B. Buffett]
-  {Ian Rose$^1$ and Bruce A. Buffett$^1$ \\
-  $^1$ Department of Earth \& Planetary Science, University of California, Berkeley, CA 94720, USA.  E-mail: ian.rose@berkeley.edu
-  }
-\date{}
-\pagerange{\pageref{firstpage}--\pageref{lastpage}}
-\volume{}
-\pubyear{}
+%% Block of code for fixing corresponding author bug 
+%% in elsarticle template... Don't really understand it
+\makeatletter
+\def\@author#1{\g@addto@macro\elsauthors{\normalsize%
+    \def\baselinestretch{1}%
+    \upshape\authorsep#1\unskip\textsuperscript{%
+      \ifx\@fnmark\@empty\else\unskip\sep\@fnmark\let\sep=,\fi
+      \ifx\@corref\@empty\else\unskip\sep\@corref\let\sep=,\fi
+      }%
+    \def\authorsep{\unskip,\space}%
+    \global\let\@fnmark\@empty
+    \global\let\@corref\@empty  %% Added
+    \global\let\sep\@empty}%
+    \@eadauthor={#1}
+}
+\makeatother
+%% End block of weird code
 
-\let\leqslant=\leq
+%% Command for bold Greek symbols
+\newcommand{\mitbf}[1]{\hbox{\mathversion{bold}$#1$}}
 
 %in case I want to add detail to any derivation
 \newif\ifdetail
 \detailfalse
 %\detailtrue
 
-
-\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
-  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-  \renewenvironment{#1}%
-    {\linenomath\csname old#1\endcsname}%
-    {\csname oldend#1\endcsname\endlinenomath}}% 
-  \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
-    \patchAmsMathEnvironmentForLineno{#1}%
-    \patchAmsMathEnvironmentForLineno{#1*}}%
-  \AtBeginDocument{%
-  \patchBothAmsMathEnvironmentsForLineno{equation}%
-  \patchBothAmsMathEnvironmentsForLineno{align}%
-  \patchBothAmsMathEnvironmentsForLineno{flalign}%
-  \patchBothAmsMathEnvironmentsForLineno{alignat}%
-  \patchBothAmsMathEnvironmentsForLineno{gather}%
-  \patchBothAmsMathEnvironmentsForLineno{multline}%
-  }
+\journal{Physics of Earth and Planetary Interiors}
 
 \begin{document}
 
-\label{firstpage}
+\begin{frontmatter}
 
-\maketitle
+%% Title, authors and addresses
 
-\begin{summary}
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+\title{Scaling rates of true polar wander in convecting planets and moons}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \address[label1]{}
+%% \address[label2]{}
+
+\author{Ian Rose\corref{cor1}\fnref{ref1}}
+\author{Bruce Buffett\fnref{ref1}}
+
+\fntext[ref1]{University of California, Berkeley}
+\cortext[cor1]{Corresponding author, \url{ian.rose@berkeley.edu}}
+
+\address{}
+
+\begin{abstract}
 Mass redistribution in the convecting mantle of a planet can cause perturbations in its moment of inertia tensor. 
 Conservation of angular momentum dictates that these perturbations can change the direction of the rotation vector of the planet, a process known as true polar wander (TPW). 
 Although the existence of TPW on Earth is well-verified, its rate and magnitude over geologic time scales remain controversial. 
@@ -62,11 +126,25 @@ We identify timescales for the growth of moment of inertia perturbations due to 
 These timescales, as well as the relative sizes of convective anomalies, control the rate and magnitude of TPW.
 This analysis also clarifies the nature of so called ``inertial interchange'' TPW events, and when they are likely to occur.
 Finally, we discuss implications for large-scale TPW in Earth's past, which has been suggested to be important for life and climate history.
-\end{summary}
+\end{abstract}
 
-\begin{keywords}
-Earth rotation variations; Mantle processes; Dynamics: convection currents and mantle plumes; Planetary interiors; Numerical solutions; Paleomagnetism applied to tectonics.
-\end{keywords}
+\begin{keyword}
+Rotational variations; polar wobble \sep
+Paleomagnetism \sep
+Models of interior structure \sep
+Planetary interiors \sep
+Convection currents and mantle plumes \sep
+\PACS 91.10.Nj \sep 91.25.Ng \sep 91.35.Cb \sep 91.45.Bg \sep 91.45.Fj
+%% keywords here, in the form: keyword \sep keyword
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
 
 \linenumbers
 
@@ -1103,12 +1181,12 @@ This perspective allows us to consider not only the polar wandering of Phanerozo
 but also allows us to hypothesize about polar wandering during the Archean and Proterozoic, or 
 on other planetary bodies.
 
-\begin{acknowledgments}
-This work was supported by National Science Foundation grant EAR-1246670. We thank Yanick Ricard for thoughtful reviews and constructive comments that greatly improved the paper.
-\end{acknowledgments}
+\section*{Acknowledgments}
+This work was supported by National Science Foundation grant EAR-1246670. We thank Yanick Ricard for careful and constructive comments that greatly improved the paper.
 
-\bibliographystyle{gji}
-\bibliography{tpw_rate.bib}
+\section*{Bibliography}
+\bibliographystyle{elsarticle-harv} 
+\bibliography{tpw_rate}
 
 
 \appendix
@@ -1223,6 +1301,6 @@ degree-two coefficients for the temperature field, which we abbreviate as $T_{\t
 \Lambda_{ij} \sim \Gamma T_{\text{degree-two}}.
 \end{equation}
 
-\label{lastpage}
 
 \end{document}
+\endinput
