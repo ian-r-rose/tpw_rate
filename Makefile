@@ -1,8 +1,4 @@
-tpw_rate.pdf: tpw_rate.tex tpw_rate.bib figures
-	pdflatex tpw_rate
-	bibtex tpw_rate
-	pdflatex tpw_rate
-	pdflatex tpw_rate
+texargs = -interaction nonstopmode -halt-on-error -file-line-error
 
 .PHONY: figures
 figures:
