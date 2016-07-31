@@ -1326,6 +1326,146 @@ degree-two coefficients for the temperature field, which we abbreviate as $T_{\t
 \Lambda_{ij} \sim \Gamma T_{\text{degree-two}}.
 \end{equation}
 
+\section{Derivation of the polar wander rate equation}
+\label{appendix:scalar_liouville}
+
+Here is the tedious algebra for deriving Equation~\eqref{eq:polar_wander_rate}.  
+We begin with the scalar equation Equation~\eqref{eq:polar_wander_rate_tensor}.
+Let the prefactors $\frac{1}{(C-A)T_1}$ be denoted by $A$:
+
+\begin{equation}
+\begin{aligned}
+\dot{\mitbf{\omega}} \cdot \dot{\mitbf{\omega}} = \dot{\Theta}^2  &= 
+A^2 \left[ \left(\mathbf{E}\cdot \mitbf{\omega}\right)^2
+ - \left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2.
+\right]\\
+\end{aligned}
+\end{equation}
+Since this is a scalar equation, we can arbitrarily choose a coordinate system in which to evaluate it.
+It is most convenient to choose the principal axes of $\mathbf{E}$, where
+\begin{equation}
+\mathbf{E} = 
+\begin{bmatrix}
+\lambda_1 & 0 & 0 \\
+0 & \lambda_2 & 0 \\
+0 & 0 & \lambda_3 \\
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\mitbf{\omega} = 
+\begin{bmatrix}
+\sin{\theta} \cos{\phi} \\
+\sin{\theta} \sin{\phi} \\
+\cos{\theta} \\
+\end{bmatrix}.
+\end{equation}
+As a warmup, consider the case where $\phi = 0$, then  
+\begin{equation}
+\mitbf{\omega} = 
+\begin{bmatrix}
+\sin{\theta}  \\
+0 \\
+\cos{\theta} \\
+\end{bmatrix}
+\end{equation}
+We can evaluate some of the terms of the scalar equation for $\dot{\Theta}^2$:
+\begin{equation}
+\mathbf{E}\cdot \mitbf{\omega} = 
+\begin{bmatrix}
+\lambda_1 \sin{\theta} \\
+0 \\
+\lambda_3 \cos{\theta}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\left(\mathbf{E}\cdot \mitbf{\omega}\right)^2 = \lambda_1^2 \sin^2{\theta} + \lambda_3^2 \cos^2{\theta}
+\end{equation}
+
+\begin{equation}
+\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} = 
+\lambda_1 \sin^2{\theta} + \lambda_3 \cos^2{\theta}
+\end{equation}
+
+\begin{equation}
+\left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2 =  
+\lambda_1^2 \sin^4{\theta} + \lambda_3^2 \cos^4{\theta} + 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta}
+\end{equation}
+Therefore, plugging these into the scalar equation for $\dot{\mitbf{\omega}}^2$, we find:
+\begin{equation}
+\begin{aligned}
+\frac{\dot{\Theta}}{A^2}  &= 
+ \left(\mathbf{E}\cdot \mitbf{\omega}\right)^2
+ - \left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2  \\
+ &= \lambda_1^2 \sin^2{\theta} + \lambda_3^2 \cos^2{\theta}
+ - \lambda_1^2 \sin^4{\theta} - \lambda_3^2 \cos^4{\theta} - 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta} \\
+ &= \lambda_1^2 \sin^2{\theta} (1 - \sin^2{\theta}) + \lambda_3^2 \cos^2{\theta} (1 - \cos^2{\theta})
+  - 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta} \\
+ &= \lambda_1^2 \sin^2{\theta} \cos^2{\theta} + \lambda_3^2 \cos^2{\theta} \sin^2{\theta}
+  - 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta} \\
+ &= (\lambda_1^2 + \lambda_3^2 - 2 \lambda_1 \lambda_3) \sin^2{\theta} \cos^2{\theta} \\
+ &= \frac{1}{2} (\lambda_3 - \lambda_1)^2 \sin{2 \theta} \\
+\end{aligned}
+\end{equation}
+which is equivalent to Equation~\eqref{eq:simple_milankovitch}.
+
+Now consider the more general case where $\phi \ne 0$.
+Again, we evaluate some of the terms of the scalar equation for $\dot{\mitbf{\omega}}^2$:
+\begin{equation}
+\mathbf{E}\cdot \mitbf{\omega} = 
+\begin{bmatrix}
+\lambda_1 \sin{\theta} \cos{\phi}\\
+\lambda_2 \sin{\theta} \sin{\phi} \\
+\lambda_3 \cos{\theta}
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\left(\mathbf{E}\cdot \mitbf{\omega}\right)^2 = \lambda_1^2 \sin^2{\theta} \cos^2{\phi} + \lambda_2^2 \sin^2{\theta} \sin^2{\phi} + \lambda_3^2 \cos^2{\theta}
+\end{equation}
+
+\begin{equation}
+\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} = 
+\lambda_1 \sin^2{\theta} \cos^2{\phi} + \lambda_2 \sin^2{\theta} \sin^2{\phi} + \lambda_3 \cos^2{\theta}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2 =  
+&\lambda_1^2 \sin^4{\theta} \cos^4{\phi} + 
+\lambda_2^2 \sin^4{\theta} \sin^4{\phi} +
+\lambda_3^2 \cos^4{\theta} \\
+&+ 2 \lambda_1 \lambda_2 \sin^4{\theta} \cos^2{\phi}\sin^2{\phi} \\ 
+&+ 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta} \cos^2{\phi} \\
+&+ 2 \lambda_2 \lambda_3 \sin^2{\theta} \cos^2{\theta} \sin^2{\phi} \\ 
+\end{aligned}
+\end{equation}
+Again, plugging these into the scalar equation for $\dot{\Theta}^2$, we find:
+\begin{equation}
+\begin{aligned}
+\frac{\dot{\Theta}^2}{A^2}  &= 
+ \left(\mathbf{E}\cdot \mitbf{\omega}\right)^2
+ - \left(\mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega} \right)^2  \\
+&=
+\lambda_1^2 \sin^2{\theta} \cos^2{\phi} + \lambda_2^2 \sin^2{\theta} \sin^2{\phi} + \lambda_3^2 \cos^2{\theta} \\
+&-\lambda_1^2 \sin^4{\theta} \cos^4{\phi} - 
+\lambda_2^2 \sin^4{\theta} \sin^4{\phi} -
+\lambda_3^2 \cos^4{\theta} \\
+&- 2 \lambda_1 \lambda_2 \sin^4{\theta} \cos^2{\phi}\sin^2{\phi} \\ 
+&- 2 \lambda_1 \lambda_3 \sin^2{\theta} \cos^2{\theta} \cos^2{\phi} \\
+&- 2 \lambda_2 \lambda_3 \sin^2{\theta} \cos^2{\theta} \sin^2{\phi}. 
+\end{aligned}
+\end{equation}
+After a lot of simplification, we get
+\begin{equation}
+\begin{aligned}
+\frac{\dot{\Theta}^2}{A^2}  = 
+&\frac{1}{4}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
+&\frac{1}{4}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2 \\
+\end{aligned}
+\end{equation}
+which is Equation~\eqref{eq:polar_wander_rate}.
+
 \end{subappendices}
 
 %%ENDCLIP
