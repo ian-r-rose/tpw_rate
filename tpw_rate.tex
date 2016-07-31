@@ -44,6 +44,8 @@
 %% The amsthm package provides extended theorem environments
 %% \usepackage{amsthm}
 
+\usepackage{appendix}
+
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
@@ -1212,7 +1214,7 @@ on other planetary bodies.
 %\bibliography{tpw_rate}
 
 
-%\appendix
+\begin{subappendices}
 
 \section{Degree-two moments}
 \label{appendix:moments}
@@ -1323,6 +1325,8 @@ degree-two coefficients for the temperature field, which we abbreviate as $T_{\t
 \begin{equation}
 \Lambda_{ij} \sim \Gamma T_{\text{degree-two}}.
 \end{equation}
+
+\end{subappendices}
 
 %%ENDCLIP
 
