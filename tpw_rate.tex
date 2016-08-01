@@ -161,7 +161,7 @@ Paleomagnetic data have been interpreted to require up to $3^\circ-12^\circ$/Myr
 The primary uncertainties in assigning a maximum TPW rate to a convecting planet are the size of convective anomalies, which drive the rotational adjustment, and the viscosity structure of the mantle, which retards it. 
 These two uncertainties are not unrelated: they are both expected to be functions of the geometric and material properties of the mantle.
 As such, they do not vary independently, and first-order questions about the propensity for planets to experience TPW remain: how are rates of TPW expected to vary with the vigor of convection? 
-Are other planetary bodies more or less likely than Earth to experience TPW?  And are these rates expected to vary in Earth history?
+Are other planetary bodies more or less likely than Earth to experience TPW?  And are these rates expected to vary through Earth history?
 
 These questions suggest that an approach rooted in dimensional analysis and fluid dynamics can clarify the rates and magnitudes of TPW.
 Most previous studies coupling mantle convection models to polar wander calculations have done so with prescribed density perturbations \citep[e.g.][]{greff2004upwelling}, or prescribed moment of inertia variations \citep[e.g.][]{tsai2007theoretical, creveling2012mechanisms}. 
@@ -182,8 +182,8 @@ Conservation of angular momentum for a torque-free system in a rotating referenc
 \end{equation}
 where $\mathbf{H} = \mathbf{I} \cdot \mitbf{\Omega}$ is the angular momentum vector, $\mathbf{I}$ is the moment of inertia tensor, and $\mitbf{\Omega}$ is the angular velocity vector.
 On a dynamic planet $\mathbf{I}$ may be a function of time, so to conserve angular momentum $\mitbf{\Omega}$ must be also vary with time.
-In this case Equation~\eqref{eq:euler} is often called the Liouville equation \citep[e.g.][]{munk1960rotation}.
-For a slowly convecting fluid such as a planetary mantle the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
+In this case, Equation~\eqref{eq:euler} is often called the Liouville equation \citep[e.g.][]{munk1960rotation}.
+For a slowly convecting fluid, such as a planetary mantle, the inertial term $\partial \mathbf{H} / \partial t$ is negligible, so we may solve the simplified quasistatic equations
 \begin{equation}
 \mitbf{\Omega } (t)\times ( \mathbf{I}(t) \cdot \mitbf{\Omega }(t) ) = 0.
 \label{eq:quasistatic_liouville}
@@ -214,18 +214,19 @@ Our goal is to characterize this balance from a perspective of scaling and fluid
 True polar wander can be described in different reference frames, and this choice is fundamentally an arbitrary one.
 However, certain aspects of the physics can be made much simpler by an appropriate choice of the reference frame.
 In our treatment of TPW, we will refer to three different reference frames:
-
-First, there is the inertial, non-rotating frame corresponding to spatial coordinates that are fixed in time.
-Second, there is the body-fixed (or geographic) frame.
+\begin{itemize}
+\item First, there is the inertial, non-rotating frame corresponding to spatial coordinates that are fixed in time.
+\item Second, there is the body-fixed (or geographic) frame.
 By definition, the rotation of the body-fixed frame relative to the inertial frame is specified by $\mitbf{\Omega}$.
 A terrestrial no-net-rotation or hotspot reference frame are common choices for the body-fixed frame.
 Treatments of gravitational or rotational deformation of a planet are most naturally expressed in the body-fixed frame,
 as described in Section~\ref{sec:rotational_deformation}.
-Finally, there is the frame described by the principal axes of convective part of the moment of inertia $\mathbf{E}$,
+\item Finally, there is the frame described by the principal axes of convective part of the moment of inertia $\mathbf{E}$,
 which we will refer to as the ``$\mathbf{E}$-frame.'' 
 Redistribution of mantle mass anomalies due to convection changes the principal axes of $\mathbf{E}$, 
 causing the $\mathbf{E}$-frame to slowly rotate with respect to the geographic frame. We denote this drift 
 by a rotation vector $\mitbf{\Psi}$ (see Section~\ref{sec:theta}).
+\end{itemize}
 
 These reference frames and vectors are illustrated in Figure~\ref{fig:reference_frames}.
 
@@ -282,7 +283,7 @@ Since the first term represents the fluid limit of rotational deformation, it au
 \label{sec:convective_moment}
 
 The term on the right-hand side of Equation~\eqref{eq:disequilibrium} represents the moment of inertia due to internal density anomalies as well as the surface deflections due to them.
-This, as well, may be parameterized using a viscoelastic Love number approach:
+This part of the moment of inertia may also be parameterized using a viscoelastic Love number approach:
 \begin{equation} 
 \mathbf{E} = \left[ \delta(t) + k^L(t) \right] * \mathbf{C}
 \end{equation}
@@ -555,11 +556,12 @@ Then Equation~\eqref{eq:polar_wander_rate} becomes significantly simpler, which 
 \frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1).
 \label{eq:simple_milankovitch}
 \end{equation}
-The maximum polar wander rate of the system is achieved when $\theta=45^\circ$ (see, e.g. \citet{fung1965foundations}).
+The maximum true polar wander rate of the system is achieved when $\theta=45^\circ$ (see, e.g. \citet{fung1965foundations}).
 
-From Equation~\eqref{eq:simple_milankovitch} it is clear that the important quantities for estimating $\dot{\Theta}$ are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
-They represent, respectively, the size of convective anomalies in the moment of inertia tensor 
-and the angular mismatch between the rotation axis and the principal axis of the convective moment. 
+From Equation~\eqref{eq:simple_milankovitch} it is clear that the important quantities for estimating the rate of true polar wander ($\dot{\Theta}$)
+are $\theta$ and the differences between the eigenvalues of the convective moment $\mathbf{E}$, both of which depend on the structure and dynamics of mantle convection.  
+They represent, respectively, the angular mismatch between the rotation axis and the principal axis of the convective moment 
+and the size of convective anomalies in the moment of inertia tensor. 
 The dynamics of mantle convection affects the rate of TPW in two ways; 
 it controls $\lambda_i$ and it represents the mechanism that drives the angular mismatch. 
 The value of $\theta$ at any time also depends on the relaxation of the rotation axis back toward the principal axis of $\mathbf{E}$. 
@@ -611,7 +613,7 @@ Note that here we retain the centrifugal term, which is normally either neglecte
 The centrifugal term, although the largest of the terms neglected in typical mantle convection models,
 is generally small compared to gravitational forces (at least for Earthlike parameters),
 and likely does not have a strong influence on the style of convection.
-However, it is critical for determining the the size of the rotational bulge which must be moved around via TPW, 
+However, this term is critical for determining the size of the rotational bulge which must move relative to the mantle,
 and so we must include it to establish the connection between the linear and angular momentum equations.
 
 Dimensional analysis of this system (cf. \citet{barenblatt1996scaling}) requires four nondimensional numbers to characterize it
@@ -627,7 +629,7 @@ and in the geodesy community has commonly been termed $m$ \citep[e.g.][]{nakibog
 Since we have begun with equations that do not have inertia or compressibility, we have implicitly thrown out the dependence on the nondimensional numbers that characterize those effects (e.g., the Prandtl and dissipation numbers).
 It would be straightforward to include them, but they do not affect the overall treatment of this scaling.
 
-In this case the dynamics can be characterized in terms of deviations from a reference hydrostatic state, 
+In this case, the dynamics can be characterized in terms of deviations from a reference hydrostatic state, 
 which includes the dynamic pressure $P^* = P - P_0$ and density perturbations $\delta \rho = \rho- \rho_0 = - \rho_0 \alpha (T-T_0)$.
 In addition, we expect deviations in the figure of the planet from its hydrostatic shape, 
 which we denote by $V = V_H + \Delta V$, where $V_H$ is the hydrostatic figure and $\Delta V$ is the deviation. 
@@ -685,7 +687,7 @@ which may be rewritten via the Jacobi identity to find
  \mitbf{\Omega} \times \int_V \rho \mathbf{r} \times (\mitbf{\Omega}\times \mathbf{r}) \,dV &= 0. \\
 \end{aligned}
 \end{equation}
-This can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
+This equation can be directly identified with Equation~\eqref{eq:quasistatic_liouville},
 and is a statement that a quasistatic body will rotate around the principal axis of its total moment of inertia.
 
 We now seek to evaluate Equation~\eqref{eq:quasistatic_angular_momentum} in the perturbed, convecting state.
@@ -818,7 +820,7 @@ linear momentum equation to the problem of TPW. We would therefore like to rewri
 in terms of the nondimensional numbers identified in Section~\ref{sec:internal}.
 Specifically, we will need estimates for $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$, and $\theta$. 
 
-It is useful to define a nondimensional eigenvalue difference (or ``eigengap'') $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
+It is useful to define a nondimensional eigenvalue difference, which may also be described as a normalized ``eigengap'': $\Lambda_{ij} \equiv (\lambda_i - \lambda_j)/I_0$.  
 This quantity represents the size of fluctuations in the convective moment of inertia compared to the reference value.
 The difference in the polar and equatorial moments of the hydrostatic planet $(C-A)$ is 
 proportional to the ratio of rotational to gravitational forces \citep{munk1960rotation}:
@@ -842,7 +844,7 @@ They represent, respectively, the size of convective anomalies in the moment of 
 
 The quantity $\Lambda_{ij}$ should be a function of our nondimensional parameters $\mathrm{Ra}$, $m$, and $\Gamma$. 
 Similarly, the convective forcing that drives changes in $\theta$ must also be a function these nondimensional parameters. 
-To be explicit in our discussion, we denote this driving force by ${\Psi}$.
+To be explicit in our discussion, we denote the angular velocity induced by forcing by ${\Psi}$ (see Figure~\ref{fig:reference_frames}).
 We consider relatively slowly rotating bodies here ($m \ll 1$), and so make the simplifying assumption that the rotation does not significantly affect the style of convection.  
 In this regime, therefore, we neglect the dependence on $m$, 
 and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\Psi(\mathrm{Ra}, \Gamma)$.
@@ -859,17 +861,18 @@ and look for scalings of the form $\Lambda_{ij}(\mathrm{Ra}, \Gamma)$ and $\Psi(
 \end{figure*}
 
 
-Fluctuations in the nonhydrostatic moment of inertia are due to temperature fluctuations in the mantle and their spatial structure:
+Fluctuations in the nonhydrostatic moment of inertia are caused by density variations 
+due to the temperature fluctuations in the mantle and their spatial structure:
 
 \begin{equation}
 C_{ij} = \int_{V_H} \rho_0 \alpha (T-T_0) \left( r_q r_q \delta_{ij} - r_i r_j \right) \,dV
 \label{eq:temperature_fluctuations}
 \end{equation}
 As discussed in Section~\ref{sec:convective_moment}, these internal density loads may be convolved with their surface responses to get the convective moment of inertia $E_{ij}$.
-The surface response is a function of the viscosity structure of the planet and the wavelength and depth of the interal load.
+The surface response is a function of the viscosity structure of the planet and the wavelength and depth of the internal load.
 The factor $(1+k^L_f)$ is generally an order-one parameter 
 (strictly speaking, dynamic compensation usually makes it less than one, \citep[e.g.][]{richards1984geoid}). 
-For the purposes of scaling it is reasonable to neglect this multiplicative factor.
+For the purposes of scaling, it is reasonable to neglect this multiplicative factor.
 
 For thermal convection, the convective part of the moment of inertia $E_{ij}$ is directly related to the degree-two part of the temperature field (see Appendix~\ref{appendix:moments}).
 Therefore, an estimate for one specifies the other.
@@ -895,7 +898,7 @@ The temperature field has been normalized by $\Delta T$ and thus goes between ze
 \max \left( \displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi) \right) = 1.
 \end{equation}
 This is a strong constraint, but it gives very little information about the distribution of power across the $T_{lmn}$.  
-We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow (relatively low $\mathrm{Ra}$) 
+We can, however, think about the power spectrum in two different regimes: that of steady/quasisteady flow, (relatively low $\mathrm{Ra}$) 
 and that of chaotic flow (relatively high $\mathrm{Ra}$).
 The structure of thermal convection is primarily controlled by the Rayleigh number.  Once the Rayleigh number is sufficiently high ($\sim10^6$) 
 the style of convection changes from steady/quasisteady to chaotic.  Accompanying this transition to chaos is a broadening of the spatial 
@@ -957,16 +960,17 @@ With an estimate for the power in the degree-two part of the temperature field, 
 \Lambda_{ij} \sim \frac{\Gamma}{\mathrm{Ra} }.
 \label{eq:lambda_estimate}
 \end{equation}
-Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' and models with viscosity stratification tend to be ``redder'' \citep{richards1999polar}.
+Other power spectra for the temperature field are possible. Isoviscous models tend to be ``bluer,'' (dominated by small wavelengths) 
+and models with viscosity stratification tend to be ``redder'' (dominated by long wavelengths) \citep{richards1999polar}.
 Present day Earth seems to have a fairly ``red'' spectrum, with large low-degree seismic anomalies due to 
 Cenozoic subduction history and the lower mantle LLSVPs \citep{dziewonski2010mantle}.
 Nevertheless, at high Rayleigh number the expectation is that the power will be distributed across many length scales.
 
 
-\subsection{An estimate for the angular mismatch $\theta$}
+\subsection{An estimate for the angular mismatch angle ($\theta$)}
 \label{sec:theta}
 
-Convection drives a mismatch $\theta$ between the current rotation axis and the principal axis of the convective moment. 
+Convection can drive both growth and decay in the mismatch angle ($\theta$) between the current rotation axis and the principal axis of the convective moment. 
 This parameter is crucial for the rate of TPW, as previously noted in Equation~\eqref{eq:scaled_rotation}.  
 Much of the debate around the existence and magnitude of TPW on Earth comes down to the question of how big $\theta$ can be \citep{kirschvink1997evidence, steinberger1997changes}.
 
@@ -1070,7 +1074,7 @@ Figure~\ref{fig:misfit} shows a representative timeseries for annular convection
 we track the eigenvalues of the moment of inertia and integrate Equation~\eqref{eq:liouville_ode} in time.
 Since it is a 2D model, the spin axis may be represented by a single angle.
 When the eigengap gets small, the misfit angle becomes much larger, and the rate of polar wander becomes much faster.
-At $\sim$1 Gyr the eigengap goes to zero, and the misfit angle goes to approximately $90^\circ$, 
+At $\sim$1 Gyr into the model run the eigengap goes to zero, and the misfit angle goes to approximately $90^\circ$, 
 an IITPW event. But there are several other events where the eigengap becomes small, and there are 
 still large TPW events associated with them.
 For example, at $\sim$0.3 Gyr the eigengap dips, with an associated large TPW event, even though
@@ -1093,7 +1097,7 @@ as it has a lower characteristic gap between principal moments and the gap is mu
 \label{sec:discussion}
 
 The preceding results clarify the complex relationship between the Rayleigh number, $m$, and the rates of TPW for a convecting planet.
-As mantle convection redistributes mass in the planet's interior, the rotational bulge moves around to stay aligned with the principal axes of the convective moment of inertia. 
+As mantle convection redistributes mass in the planet's interior, the spin axis moves around to stay aligned with the principal axes of the convective moment of inertia. 
 There is a constant competition between growth of the mismatch angle $\theta$ through 
 Equation~\eqref{eq:grow_perturbation} and its relaxation through TPW.
 \citet{goldreich1969some} envisioned an analogy of beetles crawling on the surface of the globe, with
@@ -1148,10 +1152,11 @@ during Earth history, so this recent geologic stability may not hold in general 
 Our numerical simulations show that large values for $\theta$ are possible in a vigorously convecting mantle.
 Allowing for such a large mismatch angle ($\theta = 45^\circ$) we may estimate the maximum polar wander rate
 \begin{equation}
-\max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr}
+\max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr},
 \end{equation}
-which is similar to the timescales discussed by \citet{cambiotti2011new}, and within the range 
-suggested by paleomagnetic observations.
+which corresponds to about 66 cm/yr 90$^\circ$ from the TPW axis.
+This is similar to the rates discussed by \citet{cambiotti2011new}, (though our rate is larger since we allow for the
+possibility of a larger mismatch angle), and is within the range suggested by some interpretations of paleomagnetic data.
 The bulk viscosity of Earth's mantle is uncertain by up to a factor of ten \citep{mitrovica2004new},
 which results in a corresponding uncertainty for the relaxation time $T_1$ and the maximum polar wander rate.
 
