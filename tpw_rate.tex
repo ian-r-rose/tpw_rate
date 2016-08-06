@@ -47,7 +47,7 @@
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
-\usepackage{lineno}
+%%\usepackage{lineno}
 
 %% Block of code for fixing corresponding author bug 
 %% in elsarticle template... Don't really understand it
@@ -146,7 +146,7 @@ Convection currents and mantle plumes \sep
 
 \end{frontmatter}
 
-\linenumbers
+%%\linenumbers
 
 \section{Introduction}
 \label{sec:intro}
@@ -1041,7 +1041,12 @@ Let $\delta$ be the size of the perturbation to the convective moment of inertia
 \end{equation} 
 That is to say, if there is a large difference between the eigenvalues, this stabilizes axes to perturbations.  
 If, however, there is a small difference between the eigenvalues (i.e., they are nearly degenerate), then perturbations can cause large rotations of the principal axes.
-This is illustrated schematically in Figure~\ref{fig:perturb}
+This is illustrated schematically in Figure~\ref{fig:perturb}.
+\citet{evans1998} described a situation where the convective moment of inertia of Earth is prolate, with the
+maximum and intermediate moments of inertia nearly equal.
+He argued that perturbations in this case would result in TPW paths that are approximately
+on the great circle path between the intermediate and maximum axes.
+This behavior is a consequence of the instability described in Equation~\eqref{eq:kahan}.
 
 We may arrive at a simple estimate for $|\mitbf{\Psi}|$  
 by differentiating Equation~\eqref{eq:kahan}, tentatively holding $\vert \lambda_i - \lambda_j \vert$ fixed:
@@ -1084,6 +1089,16 @@ We suggest, then, that $90^\circ$ IITPW events are simply a special case of a br
 when the principal moments are close to each other. 
 Furthermore, a more vigorously convecting planet is much more likely to experience rapid TPW events
 as it has a lower characteristic gap between principal moments and the gap is much more likely to go to zero.
+
+\citet{tsai2007theoretical} suggested that interchanges in the principal moments are unlikely to produce large
+TPW events, since (1) during an inertial interchange the total moment of inertia anomaly is small, and
+(2) the TPW event can only asymptotically approach 90$^\circ$.
+This is true for the case of a single interchange. However, we argue that this is overly restrictive
+for our generalization of IITPW.
+Our numerical experiments show that in a vigorously convecting system the principal moments can
+interchange, or almost interchange, quite rapidly, and the perturbation sizes can be large soon after an interchange.
+Furthermore, the location of the principal axes need not stay put during a TPW event,
+which can lead to extended polar wandering of distances greater than 90$^\circ$.
 
 \begin{figure*}
 \centering
