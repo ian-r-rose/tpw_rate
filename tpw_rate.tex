@@ -384,7 +384,7 @@ It is most convenient to choose the principal axes of $\mathbf{E}$, where
 \end{bmatrix}.
 \end{equation}
 
-As a warmup, consider the case where $\phi = 0$, then  
+As a warm-up, consider the case where $\phi = 0$, then  
 \begin{equation}
 \mitbf{\omega} = 
 \begin{bmatrix}
@@ -433,7 +433,7 @@ Therefore, plugging these into the scalar equation for $\dot{\mitbf{\omega}}^2$,
 \end{aligned}
 \end{equation}
 
-Now consider the more general case whhere $\phi \ne 0$.
+Now consider the more general case where $\phi \ne 0$.
 Again, we evaluate some of the terms of the scalar equation for $\dot{\mitbf{\omega}}^2$:
 \begin{equation}
 \mathbf{E}\cdot \mitbf{\omega} = 
@@ -574,7 +574,7 @@ We focus on the dynamics of the convective contribution in the next section.
 Mantle convection and rotational dynamics of planetary bodies are usually considered separately, yet the processes are based on a common set of governing equations. 
 As such, some extra care must be taken to ensure that the equations we consider are self-consistent. 
 Furthermore, since our goal is to establish a scaling for TPW rate, we must identify a minimal set of nondimensional numbers which describe its physics.
-For simplicty we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
+For simplicity we consider an isoviscous planet in a rotating reference frame with no internal heating in the incompressible Boussinesq approximation.  The equations for mass, momentum, and energy then read
 
 \begin{equation}
 \nabla \cdot \mathbf{u} = 0
@@ -611,7 +611,7 @@ The remaining parameters are defined in Table~\ref{tab:parameters}.
 Note that here we retain the centrifugal term, which is normally either neglected or absorbed into a modified pressure
 (in the latter case the boundary conditions on $P$ must be modified).
 The centrifugal term, although the largest of the terms neglected in typical mantle convection models,
-is generally small compared to gravitational forces (at least for Earthlike parameters),
+is generally small compared to gravitational forces (at least for Earth-like parameters),
 and likely does not have a strong influence on the style of convection.
 However, this term is critical for determining the size of the rotational bulge which must move relative to the mantle,
 and so we must include it to establish the connection between the linear and angular momentum equations.
@@ -878,7 +878,7 @@ For thermal convection, the convective part of the moment of inertia $E_{ij}$ is
 Therefore, an estimate for one specifies the other.
 We can expand the temperature structure of the convecting planet with a set of orthonormal basis functions $R_n Y_{lm}$, 
 where $Y_{lm}$ are spherical harmonics, $R_n$ are some set of orthogonal radial polynomials, and
-$T_{nlm}$ are the coefficents for the expansion which have been normalized by $\Delta T$:
+$T_{nlm}$ are the coefficients for the expansion which have been normalized by $\Delta T$:
 \begin{equation} 
 T( r , \theta, \phi, t )  = \Delta T {\displaystyle \sum_{n=0}^\infty \sum_{l=0}^\infty \sum_{m=-l}^{l} } T_{lmn}(t) R_n(r) Y_{lm} (\theta , \phi).
 \label{eq:T_series}
@@ -1070,7 +1070,7 @@ Additionally, the timescale of fluctuations in these values goes down.
 Overall, this makes the principal axes of high Rayleigh number systems much less stable.
 This is consistent with the result of \citet{richards1999polar}.
 
-In the limit that the eigengap becomes zero, the rotation of the pinciple axes can be arbitrary. 
+In the limit that the eigengap becomes zero, the rotation of the principle axes can be arbitrary. 
 This essentially corresponds to the hypothesized ``inertial interchange true polar wander'' \citep{kirschvink1997evidence}, where 
 the mismatch angle is $90^\circ$. However, the eigengap does not need to be zero for there to be large displacements polar wander, 
 and if it does go to zero, the wander does not need to be $90^\circ$.
@@ -1186,7 +1186,7 @@ The theory of TPW response for the case of elastic lithospheres has been develop
 \citet{matsuyama2006rotational}, \citet{creveling2012mechanisms}, and \citet{chan2014time}.
 The formalism developed in Section~\ref{sec:scaling} can still be applied to this case, 
 though the response to internal variations in the moment of inertia becomes more limited 
-(and potentially richer, as in the oscillitory motions suggested by \citet{creveling2012mechanisms}).
+(and potentially richer, as in the oscillatory motions suggested by \citet{creveling2012mechanisms}).
 
 \section{Conclusion}
 We have developed a framework for discussing the rates of true polar wander for a convecting planet 
@@ -1236,7 +1236,7 @@ It is useful to enter the principal axes of the moment of inertia:
 where $\mathbf{1}$ is the identity matrix, and $\lambda_1$, $\lambda_2$, and $\lambda_3$ are the principal moments.
 From Equation~\eqref{eq:polar_wander_rate} we see that the important quantities are the differences between the 
 principal moments, $(\lambda_3-\lambda_1)$, $(\lambda_3-\lambda_2)$ and $(\lambda_2-\lambda_1)$.
-These quantities may be rewritten in terms of degree-two real sperical harmonics \citep[e.g.][]{dahlen1999theoretical}.
+These quantities may be rewritten in terms of degree-two real spherical harmonics \citep[e.g.][]{dahlen1999theoretical}.
 The relevant (fully normalized) harmonics are, in Cartesian coordinates:
 \begin{equation}
 \begin{aligned}
@@ -1247,7 +1247,7 @@ Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}.
 Solving for $( \lambda_i - \lambda_j )$ in terms of these harmonics, we find
 \ifdetail
 
-It is useful to define unnormalized verions of the spherical harmonics as intermediate products:
+It is useful to define unnormalized versions of the spherical harmonics as intermediate products:
 \begin{equation}
 \begin{aligned}
 Y_{20}^* &= 2 z^2 - x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{5} } r^2 Y_{20} \\ 
@@ -1272,7 +1272,7 @@ Substituting back in for the normalized spherical harmonics we find
 \label{eq:degree_two_moments}
 \end{aligned}
 \end{equation}
-Up to the normalization constants, these expressions are idential to multipole expansions, 
+Up to the normalization constants, these expressions are identical to multipole expansions, 
 picking out the degree-two part of the density field laterally, and low-order polynomials radially.
 When density is a function of temperature, we can insert the equation of state, Equation~\eqref{eq:eos}, into 
 Equation~\eqref{eq:degree_two_moments} and integrate over a reference spherical volume $V_S$.
@@ -1315,7 +1315,7 @@ I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV.
 \end{aligned}
 \end{equation}
 \fi
-Dividing Equation~\eqref{eq:degree_two_moments_of_temperature} by $I_0$ and nodimensionalizing 
+Dividing Equation~\eqref{eq:degree_two_moments_of_temperature} by $I_0$ and nondimensionalizing 
 the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
 degree-two coefficients for the temperature field, which we abbreviate as $T_{\text{degree-two}}$:
 \begin{equation}
