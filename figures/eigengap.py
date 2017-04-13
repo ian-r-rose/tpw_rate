@@ -11,7 +11,7 @@ from itertools import cycle
 import glob
 
 try:
-  plt.style.use('ian')
+  plt.style.use('./tpw_rate.mplstyle')
 except AttributeError:
   print "old matplotlib version?"
 except ValueError:

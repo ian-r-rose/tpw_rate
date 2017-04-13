@@ -7,7 +7,7 @@ import scipy.signal as signal
 import scipy.interpolate as interp
 
 try:
-  plt.style.use('ian')
+  plt.style.use('./tpw_rate.mplstyle')
 except AttributeError:
   print "old matplotlib version?"
 except ValueError:
