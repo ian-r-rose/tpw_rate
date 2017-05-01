@@ -70,10 +70,6 @@
 %% Command for bold Greek symbols
 \newcommand{\mitbf}[1]{\hbox{\mathversion{bold}$#1$}}
 
-%in case I want to add detail to any derivation
-\newif\ifdetail
-\detailfalse
-%\detailtrue
 
 \journal{Physics of Earth and Planetary Interiors}
 
@@ -297,12 +293,12 @@ We are in a position to address the rates of true polar wander for a given conve
 A considerable simplification occurs if we neglect secular changes in the rotation rate, and just consider changes in direction of the pole ($d \Omega^2 / dt = 2 {\Omega_i} \dot{ \Omega}_i = 0$)
 Substituting Equation~\eqref{eq:rotational_deformation} into Equation~\eqref{eq:disequilibrium} we find
 \begin{equation}
-\frac{k_f a^5 T_1 \Omega^2}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right).
+\frac{k_f a^5 \tau_R \Omega^2}{3G}\mitbf{\Omega} \times \dot{\mitbf{\Omega} } = \mitbf{\Omega} \times \left( \mathbf{E} \cdot \mitbf{\Omega} \right).
 \label{eq:liouville}
 \end{equation}
 Introducing a unit vector $\mitbf{\omega} = \mitbf{\Omega}/\|\mitbf{\Omega} \|$ and using Equation~\eqref{eq:fluid_love} for $k_f$,  we may solve this equation for $\dot{\mitbf{\omega}}$:
 \begin{equation}
- \dot{\mitbf{\omega}}  = \frac{1}{(C-A)T_1} \left[ \mathbf{E} \cdot \mitbf{\omega} - \left( \mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega}  \right) \mitbf{\omega} \right].
+ \dot{\mitbf{\omega}}  = \frac{1}{(C-A)\tau_R} \left[ \mathbf{E} \cdot \mitbf{\omega} - \left( \mitbf{\omega} \cdot \mathbf{E} \cdot \mitbf{\omega}  \right) \mitbf{\omega} \right].
 \label{eq:liouville_ode}
 \end{equation}
 In order to evaluate $\dot{\mitbf{\omega}}$ we require knowledge of both $\mathbf{E}$ and $\mitbf{\omega}$ in the geographic frame (i.e. the frame used to derive Equation (13)). The same frame is also used to measure TPW, but the expressions on the right-hand-side of Equation (13) are more naturally evaluated in the reference frame of the principal axes of $\mathbf{E}$.
@@ -310,7 +306,7 @@ We can avoid the need to reconcile these two frames by confining our attention t
  $\dot{W} = \vert \dot{\mitbf{\omega}} \vert$) .
 Evaluating the scalar product $\dot{W}^2 = \dot{\mitbf{\omega}} \cdot \dot{\mitbf{\omega}}$ gives
 \begin{equation}
-\dot{W}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 T_1^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right].
+\dot{W}^2 = \dot{\mitbf{\omega}}^2 = \frac{1}{(C-A)^2 \tau_R^2} \left[ (\mathbf{E}\cdot\mitbf{\omega})^2 - (\mitbf{\omega}\cdot\mathbf{E}\cdot\mitbf{\omega})^2 \right].
 \label{eq:polar_wander_rate_tensor}
 \end{equation}
 The scalar terms on the right-hand-side of Equation (14) can now be evaluated in either the geographic or the $E$ frames.
@@ -324,8 +320,8 @@ and after some tedious algebra, we find
 \begin{equation}
 \begin{aligned}
 \dot{W}^2 = 
-&\frac{1}{4(C-A)^2 T_1^2}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
-&\frac{1}{4(C-A)^2 T_1^2}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2. \\
+&\frac{1}{4(C-A)^2 \tau_R^2}\sin^2{2\theta} \left[( \lambda_3 - \lambda_1)^2 \cos^2{\phi} + (\lambda_3 - \lambda_2)^2 \sin^2{\phi} \right] +\\
+&\frac{1}{4(C-A)^2 \tau_R^2}\sin^4{\theta} \sin^2{2\phi}\left( \lambda_2 - \lambda_1 \right)^2. \\
 \label{eq:polar_wander_rate}
 \end{aligned}
 \end{equation}
@@ -337,8 +333,8 @@ then it can be expressed in terms of the second invariant ($E_{\mathrm{II}}$) of
 \begin{equation}
 \begin{aligned}
 \dot{W}^2
-&= \frac{1}{9(C-A)^2 T_1^2}\left[( \lambda_3 - \lambda_1)^2 + (\lambda_3 - \lambda_2)^2 + (\lambda_2 - \lambda_1)^2 \right]\\
-&= \frac{E_{\mathrm{II}}}{9(C-A)^2 T_1^2}. \\
+  &= \frac{1}{9(C-A)^2 ]\tau_R^2}\left[( \lambda_3 - \lambda_1)^2 + (\lambda_3 - \lambda_2)^2 + (\lambda_2 - \lambda_1)^2 \right]\\
+  &= \frac{E_{\mathrm{II}}}{9(C-A)^2 \tau_R^2}. \\
 \end{aligned}
 \end{equation}
 The second invariant of the stress deviator is commonly used in the theories of plasticity
@@ -356,7 +352,7 @@ The second special case occurs when the rotation vector $\mitbf{\omega}$ lies in
 Equation~\eqref{eq:polar_wander_rate} reduces to
 \begin{equation}
 \vert \dot{W} \vert = 
-\frac{1}{2(C-A) T_1}\sin{2\theta} ( \lambda_3 - \lambda_1)\, .
+\frac{1}{2(C-A) \tau_R}\sin{2\theta} ( \lambda_3 - \lambda_1)\, .
 \label{eq:simple_milankovitch}
 \end{equation}
 An equivalent expression was given by \citet{tsai2007theoretical}. We adopt Equation (17) as the basis for our dimensional analysis. Note that
@@ -472,14 +468,6 @@ Therefore we can neglect those terms, and we are left with
 \end{aligned}
 \end{equation}
 which may be rewritten via the Jacobi identity to find
-\ifdetail
-\begin{equation}
-\begin{aligned}
-- \int_V \rho (\mitbf{\Omega}\times \mathbf{r}) \times ( \mathbf{r} \times \mitbf{\Omega} ) \,dV + 
-- \int_V \rho \mitbf{\Omega}\times(\mitbf{\Omega}\times \mathbf{r}) \times \mathbf{r} \,dV &= 0 \\
-\end{aligned}
-\end{equation}
-\fi
 \begin{equation}
 \begin{aligned}
  \mitbf{\Omega} \times \int_V \rho \mathbf{r} \times (\mitbf{\Omega}\times \mathbf{r}) \,dV &= 0. \\
@@ -560,7 +548,7 @@ $\Gamma$ & density deficit &$ \alpha \Delta T$ & $10^{-2}$ \\
 \section{Scaling}
 \label{sec:scaling}
 
-Equation (17) defines the rate of TPW in terms of four physical parameters: $(C-A)$, $T_1$, $(\lambda_3-\lambda_1)$ and $\theta$. This equation can be expressed in nondimensional form using the dimensionless numbers from Table 2. We begin by expressing $\dot{W}$ in terms of a nondimensional time $t^{\prime} = t /\tau_T$, where $\tau_T = R^2/\kappa$ is the thermal diffusion time. Similarly, the time constant $\tau_R$ can be expressed in terms of $\tau_T$ and other dimensionless numbers. In detail $\tau_R$ represents a weighted average of different relaxation modes, but it is sufficient for our purposes to let
+Equation (17) defines the rate of TPW in terms of four physical parameters: $(C-A)$, $\tau_R$, $(\lambda_3-\lambda_1)$ and $\theta$. This equation can be expressed in nondimensional form using the dimensionless numbers from Table 2. We begin by expressing $\dot{W}$ in terms of a nondimensional time $t^{\prime} = t /\tau_T$, where $\tau_T = R^2/\kappa$ is the thermal diffusion time. Similarly, the time constant $\tau_R$ can be expressed in terms of $\tau_T$ and other dimensionless numbers. In detail $\tau_R$ represents a weighted average of different relaxation modes, but it is sufficient for our purposes to let
 \begin{equation}
 \tau_R \sim \frac{ \eta }{ \rho_0 g_0 R} = \tau_T \, \frac{\Gamma}{\mathrm{Ra} }.
 \end{equation}
@@ -796,7 +784,7 @@ during Earth history, so this recent geologic stability may not hold in general 
 Our numerical simulations show that large values for $\theta$ are possible in a vigorously convecting mantle.
 Allowing for such a large mismatch angle ($\theta = 45^\circ$) we may estimate the maximum polar wander rate
 \begin{equation}
-\max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{T_1} \sim 6^\circ / \mathrm{Myr},
+\max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{\tau_R} \sim 6^\circ / \mathrm{Myr},
 \end{equation}
 which corresponds to about 66 cm/yr 90$^\circ$ from the TPW axis.
 This value is similar to the rates discussed by \citet{cambiotti2011new} for the past 100 Myr, though our rate is roughly a factor of four larger because we allow for the
@@ -872,25 +860,6 @@ Y_{22} &= \frac{1}{4} \sqrt{\frac{15}{\pi}} \frac{ x^2 - y^2}{r^2}.
 \end{aligned}
 \end{equation}
 Solving for $( \lambda_i - \lambda_j )$ in terms of these harmonics, we find
-\ifdetail
-
-It is useful to define unnormalized versions of the spherical harmonics as intermediate products:
-\begin{equation}
-\begin{aligned}
-Y_{20}^* &= 2 z^2 - x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{5} } r^2 Y_{20} \\ 
-Y_{22}^* &= x^2 - y^2 &= 4 \sqrt{ \frac{\pi}{15} } r^2 Y_{22}.
-\end{aligned}
-\end{equation}
-These make it easy to rewrite the differences between the $\lambda_n$:
-\begin{equation}
-\begin{aligned}
-(\lambda_2 - \lambda_1) &= \int_V \rho Y_{22}^* \, dV \\
-(\lambda_3 - \lambda_1) &= \frac{1}{2} \int_V  \rho \left( Y_{22}^* - Y_{20}^* \right) dV \\
-(\lambda_3 - \lambda_2) &= -\frac{1}{2} \int_V \rho \left( Y_{22}^* + Y_{20}^*  \right) dV. \\
-\end{aligned}
-\end{equation}
-Substituting back in for the normalized spherical harmonics we find
-\fi
 \begin{equation}
 \begin{aligned}
 (\lambda_2 - \lambda_1) &= 4 \sqrt{\frac{\pi}{15} } \int_V   \rho r^2  Y_{22} \,dV \\
@@ -913,35 +882,9 @@ This allows us to drop the terms which integrate to zero due to the orthogonalit
 \end{aligned}
 \end{equation}
 We normalize the differences in eigenvalues by the reference moment $I_0$:
-\ifdetail
-\begin{equation}
-\begin{aligned}
-\int_{V_S} \rho_0 \frac{2 r^2 - Y_{20}^*}{3} &= \int_{V_S} \rho_0 (x^2 + y^2) dV = I_0 \\
-\end{aligned}
-\end{equation}
-\begin{equation}
-I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \left(1 - 2 \sqrt{\frac{\pi}{5}} Y_{20}\right) \,dV
-\end{equation}
-\fi
 \begin{equation}
 I_0 = \frac{2}{3} \int_{V_S} \rho_0 r^2 \,dV.
 \end{equation}
-\ifdetail
-\begin{equation}
-\begin{aligned}
-\Lambda_{21} &= \alpha \Delta T \frac{-6 \sqrt{\frac{\pi}{15} } \int_{V_S} T^\prime r^2  Y_{22} \,dV}{\int_{V_S} r^2 \, dV} \\
-\Lambda_{31} &= \alpha \Delta T \frac{-3 \sqrt{ \frac{\pi}{15} } \int_{V_S} T^\prime r^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV}{\int_{V_S} r^2 \, dV}\\
-\Lambda_{32} &= \alpha \Delta T \frac{3 \sqrt{ \frac{\pi}{15} }  \int_{V_S}  T^\prime r^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV}{\int_{V_S} r^2 \, dV} \\
-\end{aligned}
-\end{equation}
-\begin{equation}
-\begin{aligned}
-\Lambda_{21} &= \Gamma \frac{-6 \sqrt{\frac{\pi}{15} } \int_{V_S^\prime} T^\prime {r^\prime}^2  Y_{22} \,dV^\prime}{\int_{V_S^\prime} {r^\prime}^2 \,dV^\prime} \\
-\Lambda_{31} &= \Gamma \frac{-3 \sqrt{ \frac{\pi}{15} } \int_{V_S^\prime} T^\prime {r^\prime}^2 \left( Y_{22} - \sqrt{3} Y_{20} \right) dV^\prime}{\int_{V_S} {r^\prime}^2 \, dV^\prime}\\
-\Lambda_{32} &= \Gamma \frac{3 \sqrt{ \frac{\pi}{15} }  \int_{V_S^\prime}  T^\prime {r^\prime}^2 \left( Y_{22} + \sqrt{3} Y_{20} \right) dV^\prime}{\int_{V_S} {r^\prime}^2 \, dV^\prime} \\
-\end{aligned}
-\end{equation}
-\fi
 Dividing Equation~\eqref{eq:degree_two_moments_of_temperature} by $I_0$ and nondimensionalizing 
 the integrals results in a factor of $\Gamma = \alpha \Delta T$ and a normalized set of 
 degree-two coefficients for the temperature field, which we abbreviate as $T_{\text{degree-two}}$:
