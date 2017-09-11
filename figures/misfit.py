@@ -9,9 +9,9 @@ import scipy.interpolate as interp
 try:
   plt.style.use('./tpw_rate.mplstyle')
 except AttributeError:
-  print "old matplotlib version?"
+  print("old matplotlib version?")
 except ValueError:
-  print "Cannot find the requested stylesheet"
+  print("Cannot find the requested stylesheet")
 
 data = np.loadtxt('statistics_500', skiprows=50, usecols=(1,17,18,19,20))
 

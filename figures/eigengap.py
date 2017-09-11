@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import matplotlib
 import numpy as np
 import scipy as sp
@@ -13,9 +15,9 @@ import glob
 try:
   plt.style.use('./tpw_rate.mplstyle')
 except AttributeError:
-  print "old matplotlib version?"
+  print("old matplotlib version?")
 except ValueError:
-  print "Cannot find the requested stylesheet"
+  print("Cannot find the requested stylesheet")
 
 #c = ['#0A5F02', '#1c567a', '#814292', '#d7383b', '#fdae61', '#c0f8b8']
 #c = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33'] 
@@ -38,7 +40,7 @@ frac = 50
 
 def get_spin_spectrum(text_file):
 
-  print text_file
+  print(text_file)
   #load the data
   data = np.loadtxt(text_file,skiprows=50, usecols=(1,17,18,19,20))
   #get rid of duplicate times (why might these exist?)
@@ -72,7 +74,7 @@ def get_spin_spectrum(text_file):
 output_files = [f for f in glob.glob("statistics_*")]
 sort_key = lambda s: float(s.split('_')[1])
 output_files.sort(key=sort_key)
-print output_files
+print(output_files)
 
 amplitudes = []
 Rayleighs = []
@@ -112,7 +114,7 @@ ax.set_ylim(0, 8.0e-5)
 ax.set_xlabel(r'Time (Gyr)')
 ax.set_ylabel(r'$\Lambda_{21} = (\lambda_2-\lambda_1)/I_0$')
 ax.legend(loc="upper right")
-print np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1)
+print(np.polyfit(np.log(Rayleighs[3:]), np.log(amplitudes[3:]),1))
 
 ax = plt.subplot(122)
 ax.grid(False)
