@@ -76,11 +76,12 @@ ax = fig.add_subplot(313)
 
 ax.plot(np.array([]), np.array([]))
 ax.plot(np.array([]), np.array([]))
-ax.plot(time, spin_rate/1000., label=r'Spin axis')
+ax.plot(time, np.abs(spin_rate)/1000., label=r'Spin axis')
 ax.set_xlim(tmin, tmax)
+ax.set_ylim(0., 6.)
 ax.set_xlabel(r"Time (Gyr)")
 ax.set_ylabel(r'TPW rate ($^\circ$/Myr)')
 
 
 plt.savefig("misfit.pdf", bbox_inches='tight')
-plt.show()
+#plt.show()
