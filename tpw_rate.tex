@@ -47,7 +47,7 @@
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
-%%\usepackage{lineno}
+\usepackage{lineno}
 
 %% Block of code for fixing corresponding author bug 
 %% in elsarticle template... Don't really understand it
@@ -119,7 +119,7 @@ Although the existence of TPW on Earth is firmly established, its rate and magni
 Here we present scaling analyses and numerical simulations of TPW due to mantle convection over a range of parameter space relevant to planetary interiors. 
 For simple rotating convection, we identify a set of dimensionless parameters that fully characterize true polar wander. We use these parameters to define  timescales for the growth of moment of inertia perturbations due to convection and for their relaxation due to true polar wander. 
 These timescales, as well as the relative sizes of convective anomalies, control the rate and magnitude of TPW.
-This analysis also clarifies the nature of so called ``inertial interchange'' TPW events, and relates them to a  broader class of events that enable large and often rapid TPW. We expect these events to have been more frequent in Earth’s past.
+This analysis also clarifies the nature of so called ``inertial interchange'' TPW events, and relates them to a  broader class of events that enable large and often rapid TPW. We expect these events to have been more frequent in Earth's past.
 \end{abstract}
 
 \begin{keyword}
@@ -140,7 +140,7 @@ Convection currents and mantle plumes \sep
 
 \end{frontmatter}
 
-%%\linenumbers
+\linenumbers
 
 \section{Introduction}
 \label{sec:intro}
@@ -282,7 +282,7 @@ When the timescale of the surface response is short compared to the true polar w
 \begin{equation}
 E_{ij} = (1+k^L_f) C_{ij}.
 \end{equation}
-An alternative to the Love number formalism is to calculate to surface deflections directly using mantle convection simulations with a true free surface boundary condition.
+An alternative to the Love number formalism is to calculate surface deflections directly using mantle convection simulations with a true free surface boundary condition.
 A recent implementation of a free surface boundary condition in the CIG-sponsored mantle convection software \texttt{ASPECT} \citep{rose2016free}
 permits more general treatments of mantle rheology.
 
@@ -733,8 +733,8 @@ when the principal moments are close to each other. We argue that large TPW even
 
 \citet{tsai2007theoretical} suggested that large TPW events do not always accompany an interchange of the principal moments because the rate of TPW is low. A large 90$^{\circ}$ change in the orientation of the rotation axis can only occur over a long time.  While
 this is true for idealized cases, the numerical convection calculation reveals a more complex behavior. 
-First, the principal moments can interchange, or almost interchange, quite rapidly. In these cases  the perturbations in the convective moments can become large soon after an interchange. Second, the
- the location of the principal axes do not stay put during a IITPW event. A persistent drift of the principal axes can can lead to extended polar wandering, yielding angular changes greater than 90$^\circ$.
+First, the principal moments can interchange, or almost interchange, quite rapidly. In these cases  the perturbations in the convective moments can become large soon after an interchange.
+Second, the location of the principal axes do not stay put during a IITPW event. A persistent drift of the principal axes can can lead to extended polar wandering, yielding angular changes greater than 90$^\circ$.
 
 \begin{figure*}
 \centering
