@@ -396,7 +396,7 @@ The gravitational potential obeys
 \nabla^2 V = 4 \pi G \rho.
 \end{equation}
 where $G$ is the gravitational constant. 
-For the purposes of scaling, we assume that the magnitude of the gravitational acceleration, $g_0$, is the approximately constant (as is the case for Earth's mantle).
+For the purposes of scaling, we assume that the magnitude of the gravitational acceleration, $g_0$, is approximately constant (as is the case for Earth's mantle).
 In addition we use the simple equation of state
 \begin{equation}
 \rho = \rho_0 \left( 1 - \alpha (T-T_0) \right).
@@ -641,6 +641,7 @@ We may make the hypothesis that each of the modes are roughly as likely as any o
 
 \begin{equation}
 T_{\text{degree-two}}(t) \sim \frac{1}{N_{\text{modes}}} \sim \left( \frac{d}{R}\right)^3.
+\label{eq:degree_two_of_lengthscale}
 \end{equation}
 
 Any of a number of scaling laws can provide an estimate for the characteristic length scale of a convecting system. The specifics are likely to depend on rheology, geometry, and density structure.
@@ -677,7 +678,12 @@ Using this estimate in Equation (33) gives
 \frac{d W}{dt^\prime} = \frac{1}{m} \sin 2 \theta
 \end{equation}
 Remarkably, $Ra$ and $\Gamma$ have completely dropped from the expression for the rate of TPW.  The time constant $\tau_R$ goes down at high Rayleigh numbers. At the same time, the  coherence in the temperature structure goes down, reducing the amount of power in the degree-two part of the field responsible for driving TPW.
-That these two effects cancel is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
+\citet{tsai2007theoretical} arrive at a similar result by a different path.
+Their estimate for the ratio of the convective timescale to the timescale for TPW depends only on $m$ (see their Equation~(4)).
+That the two results are similar is surprising, as their estimate of $T_\text{degree-two}$ varies linearly with $d/R$,
+rather than with $(d/R)^3$ (Equation~\eqref{eq:degree_two_of_lengthscale}).
+
+The cancellation of explicit $\mathrm{Ra}$ dependence is something of a coincidence due to the simple estimate of the smallest lengthscales of the problem.
 Scalings for lengthscales of convection in fluids with temperature dependent viscosity \citep[e.g.][]{solomatov1995scaling} or pseudoplastic rheology \citep[e.g.][]{korenaga2010scaling} have different functional dependencies on $\mathrm{Ra}$ or additional nondimensional parameters.
 However, a common feature in most scalings is that typical lengthscales are still some power-law of Rayleigh number $d \propto \mathrm{Ra}^{-\beta}$.
 With this form, our scaling for TPW rate has the following dependence on $\mathrm{Ra}$:
@@ -693,8 +699,9 @@ on the Rayleigh number.
 \label{sec:theta}
 
 Much of the debate about the magnitude of TPW on Earth comes down to the question of how big $\theta$ can be.
-\citet{kirschvink1997evidence} hypothesized about an event where $\theta$ was approximately 90$^\circ$,
-while many geodynamic simulations of recent TPW assume that $\theta$ is small \citep{steinberger1997changes}.
+\citet{kirschvink1997evidence} hypothesized about an inertial interchange event, where $\theta$ alters by approximately 90$^\circ$,
+and can lead to large ($\sim90^\circ$) TPW over time (a process which they termed ``inertial interchange TPW, or IITPW).
+Conversely, many geodynamic simulations of recent TPW assume that $\theta$ is small \citep{steinberger1997changes}.
 In this section we seek to characterize the maximum value for $\theta$ in terms of the dimensionless parameters.
 
 Two processes control the evolution of $\theta$. It grows through perturbations in the convective moment and  decays by relaxation of the rotation axis towards the principal axis of $\mathbf{E}$. Large values of $\theta$ are achieved when
@@ -709,7 +716,7 @@ Given a random perturbation to $\mathbf{E}$, we would like to give a bound on th
 \label{eq:kahan}
 \end{equation} 
 Small changes in orientation (i.e. small $\xi$) occur when the difference in eigenvalues is large. Conversely, large changes in orientation are possible when differences between the eigenvalues are small. 
-This dependence is illustrated schematically in Figure~\ref{fig:perturb}.  Unstable conditions prevail when the maximum and intermediate moments of inertia are nearly equal, leading to large TPW events \citep{evans1998true}. On the hand hand, \citet{tsai2007theoretical} argue that large TPW events take a long time because the rate of TPW is small when $\Lambda_{31}$ is small or when $\theta = 0$ or $\pi/2$ (see Equation (33)). If the maximum and intermediate axes are interchanged when the misalignment angle is small $\theta \approx 0$, then the new definition of the maximum axis after the interchange ensures that $\theta \approx \pi/2$. In this case the rate of TPW may be small before and after the interchange. 
+This dependence is illustrated schematically in Figure~\ref{fig:perturb}.  Unstable conditions prevail when the maximum and intermediate moments of inertia are nearly equal, leading to large TPW events \citep{evans1998true}. On the other hand, \citet{tsai2007theoretical} point out that large TPW events take a long time because the rate of TPW is small when $\Lambda_{31}$ is small or when $\theta = 0$ or $\pi/2$ (see Equation (33)). If the maximum and intermediate axes are interchanged when the misalignment angle is small $\theta \approx 0$, then the new definition of the maximum axis after the interchange ensures that $\theta \approx \pi/2$. In this case the rate of TPW may be small before and after the interchange.
 
 \begin{figure*}
 \centering
@@ -723,7 +730,7 @@ Therefore, the characteristic gap between the eigenvalues of the convective mome
 Additionally, the timescale of fluctuations in these values goes down because the density anomalies are moving faster.
 Overall, this makes the principal axes of high Rayleigh number systems much less stable, consistent with the result of \citet{richards1999polar}, based on mantle convection calculations.
 
-In the limit that the eigengap becomes zero, a small perturbation $\delta$ can produce an arbitrary rotation of the principal axes. In effect, the location of the principal axes are set by the location of a small density anomaly. There is a close correspondence with  hypothesized ``inertial interchange true polar wander'' (IITPW) \citep{kirschvink1997evidence}. As noted above, the interchange of the maximum and intermediate axis can produce a large change in $\theta$ because the misalignment angle is suddenly measured from a new axis. An IITPW event can produce a large change in the orientation of the rotation axis (potentially $90^{\circ}$ if there are not further perturbations to the $\mathbf{E}$ tensor).  However, the eigengap does not need to be zero for there to be large polar wander events. In addition, wander does not need to be $90^\circ$ after an interchange of maximum and intermediate axes due to the subsequent evolution of density anomalies during the event.  We clarify these points using numerical simulations of convection in a 2D spherical annulus.
+In the limit that the eigengap becomes zero, a small perturbation $\delta$ can produce an arbitrary rotation of the principal axes. In effect, the location of the principal axes are set by the location of a small density anomaly. This has a close correspondence with hypothesized IITPW \citep{kirschvink1997evidence}. As noted above, the interchange of the maximum and intermediate axex can produce a large change in $\theta$ because the misalignment angle is suddenly measured from a new axis. The resulting TPW event can produce a large change in the orientation of the rotation axis (potentially $90^{\circ}$ if there are not further perturbations to the $\mathbf{E}$ tensor).  However, the eigengap does not need to be zero for there to be large polar wander events. In addition, wander does not need to be $90^\circ$ after an interchange of maximum and intermediate axes due to the subsequent evolution of density anomalies during the event.  We clarify these points using numerical simulations of convection in a 2D spherical annulus.
 
 Figure~\ref{fig:misfit} shows a representative time series from the convection calculations. As before, we compute the convective moment of inertia in the geographic frame and evaluate the eigenvalues of $\mathbf{E}$ to determine the eigengap. We also evolve the orientation of the rotation axis by integrating  Equation~\eqref{eq:liouville_ode} in time.
 Since it is a 2D model, the spin axis is described by a single angle. The misalignment angle $\theta$ also lies in the plane of the 2D model.
@@ -745,7 +752,7 @@ Second, the location of the principal axes do not stay put during a IITPW event.
 \begin{figure*}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/misfit.pdf}
-\caption{Top: Time series of principal moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Center: Time series of spin axis and mismatch angle $\theta$.  Bottom: Time series of TPW rate. When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger. At $\sim$1 Gyr the gap goes to zero and there is a nearly $90^\circ$ TPW event, with $\sim80^\circ$ degrees of polar wander in $\sim$30 Myr. However, there are several other large TPW events which happen when the eigengap is small.}
+  \caption{Top: Time series of principal moments for 2D annular convection at $\mathrm{Ra}\sim10^8$.  Center: Time series of spin axis and mismatch angle $\theta$.  Bottom: Time series of TPW rate. When the two moments are close to each other (small eigengap), the mismatch angle becomes large, and the rate of polar wander is significantly larger. At $\sim$1 Gyr the gap goes to zero and there is a nearly $90^\circ$ TPW event, with $\sim80^\circ$ degrees of polar wander in $\sim$30 Myr. However, there are several other large TPW events which happen when the eigengap is small. These results are fairly characteristic of high $\mathrm{Ra}$ convection.}
 \label{fig:misfit}
 \end{figure*}
 
@@ -785,7 +792,7 @@ Allowing for such a large mismatch angle ($\theta = 45^\circ$) we may estimate t
 \begin{equation}
 \max ( \dot{\Theta} ) = \frac{(\lambda_3-\lambda_1)}{(C-A)}\frac{1}{\tau_R} \sim 6^\circ / \mathrm{Myr},
 \end{equation}
-which corresponds to about 66 cm/yr at a point 90$^\circ$ from the TPW axis.
+which corresponds to about 66 cm/yr at a point 90$^\circ$ from the TPW axis (and is comparable to the maximum rates seen in Figure~\ref{fig:misfit}.
 This value is similar to the rates discussed by \citet{cambiotti2011new} for the past 100 Myr, though our rate is roughly a factor of four larger because we allow for the
 possibility of a larger mismatch angle. Such large angles may be necessary to explain the range of rates suggested by some interpretations of paleomagnetic data \citep{mitchell2011sutton}.
 The bulk viscosity of Earth's mantle is uncertain by up to a factor of ten \citep{mitrovica2004new},
